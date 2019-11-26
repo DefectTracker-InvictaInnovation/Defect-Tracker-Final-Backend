@@ -214,4 +214,46 @@ public class DashboardServiceImpl implements DashboardService {
 
 	}
 
+	@Override
+	public Double calculatedefectRemarksratio(long count, int reject) {
+		count = (int) defectRepository.count();
+		System.out.println(count);
+		reject = defectRepository.countByStatusRejected();
+		System.out.println(reject);
+		double c = (count - reject);
+		System.out.println(c);
+		double r = (double) c/(double)count;
+		System.out.println(r);
+		double totalratio = (double) (r*0.01);
+	    System.out.println(totalratio);
+		return totalratio;
+	}
+
+	@Override
+	public Integer countprioritytotalmedium(long countprioritymedium, int rejectprioritymedium) {
+		countprioritymedium = (int) defectRepository.countByPriorityMedium();
+		rejectprioritymedium = (int) defectRepository.countByPriorityStatusRejectedmedium();
+		
+		int totalprioritymedium =(int) ( countprioritymedium - rejectprioritymedium);
+		return totalprioritymedium;
+	}
+
+	@Override
+	public Integer countprioritytotalhigh(long countpriorityhigh, int rejectpriorityhigh) {
+		countpriorityhigh = (int) defectRepository.countByPriorityHigh();
+		rejectpriorityhigh = (int) defectRepository.countByPriorityStatusRejectedhigh();
+		
+		int totalpriorityhigh =(int) ( countpriorityhigh - rejectpriorityhigh);
+		return totalpriorityhigh;
+	}
+
+	@Override
+	public Integer countprioritytotallow(long countprioritylow, int rejectprioritylow) {
+		countprioritylow = (int) defectRepository.countByPriorityLow();
+		rejectprioritylow = (int) defectRepository.countByPriorityStatusRejectedlow();
+		
+		int totalprioritylow =(int) ( countprioritylow - rejectprioritylow);
+		return totalprioritylow;
+	}
+
 }

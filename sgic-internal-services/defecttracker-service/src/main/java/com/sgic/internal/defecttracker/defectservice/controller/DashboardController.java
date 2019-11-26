@@ -99,4 +99,25 @@ public class DashboardController {
 		return null;
 
 	}
+	
+	@GetMapping("/getremarksratio")
+	public ResponseEntity<Double> getRemarksRatio() {
+		return new ResponseEntity<>(dashboardService.calculatedefectRemarksratio(count, reject), HttpStatus.OK);
+
+	}
+	
+	@GetMapping("/getprioritymediumcount")
+	public ResponseEntity<Integer> countprioritytotalmedium() {
+		return new ResponseEntity<>(dashboardService.countprioritytotalmedium(count, High), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getpriorityhighcount")
+	public ResponseEntity<Integer> countprioritytotalhigh() {
+		return new ResponseEntity<>(dashboardService.countprioritytotalhigh(count, High), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getprioritylowcount")
+	public ResponseEntity<Integer> countprioritytotallow() {
+		return new ResponseEntity<>(dashboardService.countprioritytotallow(count, High), HttpStatus.OK);
+	}
 }

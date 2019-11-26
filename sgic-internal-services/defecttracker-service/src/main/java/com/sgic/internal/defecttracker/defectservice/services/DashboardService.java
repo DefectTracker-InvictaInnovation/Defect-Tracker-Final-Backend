@@ -56,4 +56,12 @@ public interface DashboardService {
 //	<--Severity Total Count -->
 	public Integer countseveritytotalhig();
 	
+	public Double calculatedefectRemarksratio(long count, int reject);
+	
+	public Integer countprioritytotalmedium(long countprioritymedium, int rejectprioritymedium);
+	
+	public Integer countprioritytotalhigh(long countpriorityhigh, int rejectpriorityhigh);
+	
+	public Integer countprioritytotallow(long countprioritylow, int rejectprioritylow);
+	
 }

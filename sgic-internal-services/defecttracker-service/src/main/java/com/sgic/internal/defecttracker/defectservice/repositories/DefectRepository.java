@@ -97,6 +97,24 @@ int countByStatusRejectedHigh();
 
 @Query("SELECT COUNT(severity) FROM Defect WHERE status='Rejected' AND severity = 'medium'")
 int countByStatusRejectedmedium();
+
+@Query("SELECT COUNT(priority) FROM Defect WHERE priority='Medium'")
+int countByPriorityMedium();
+
+@Query("SELECT COUNT(priority) FROM Defect WHERE status='Rejected' AND priority = 'medium'")
+int countByPriorityStatusRejectedmedium();
+
+@Query("SELECT COUNT(priority) FROM Defect WHERE priority='High'")
+int countByPriorityHigh();
+
+@Query("SELECT COUNT(priority) FROM Defect WHERE status='Rejected' AND priority = 'High'")
+int countByPriorityStatusRejectedhigh();
+
+@Query("SELECT COUNT(priority) FROM Defect WHERE priority='low'")
+int countByPriorityLow();
+
+@Query("SELECT COUNT(priority) FROM Defect WHERE status='Rejected' AND priority = 'low'")
+int countByPriorityStatusRejectedlow();
 }
 
 
