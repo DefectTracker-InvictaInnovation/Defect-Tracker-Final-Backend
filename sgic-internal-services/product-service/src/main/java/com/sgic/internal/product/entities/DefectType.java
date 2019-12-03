@@ -8,12 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(schema = "productservice", name = "defecttype")
+@Table(schema = "productservice", name = "defecttype",  uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "name" }) })
 public class DefectType implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
