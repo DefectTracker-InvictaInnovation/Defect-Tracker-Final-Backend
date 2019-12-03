@@ -3,6 +3,7 @@ package com.sgic.internal.defecttracker.defectservice.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sgic.internal.defecttracker.defectservice.entities.Project;
@@ -88,6 +89,11 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public Long countProject() {
 		return projectRepository.count();
+	}
+
+	@Override
+	public List<Project> findByProjectOrderByProjectIdDesc(String projectId) {
+		return projectRepository.findAll(Sort.by(Sort.Direction.DESC, "projectId"));
 	}
 
 }

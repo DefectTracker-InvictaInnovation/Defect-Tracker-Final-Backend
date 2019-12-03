@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sgic.internal.product.entities.DefectPriority;
-import com.sgic.internal.product.repositories.CompanyRepository;
 import com.sgic.internal.product.repositories.DefectPriorityRepository;
 import com.sgic.internal.product.services.PriorityService;
 

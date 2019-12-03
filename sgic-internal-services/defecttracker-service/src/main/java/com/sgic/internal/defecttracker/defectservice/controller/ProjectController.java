@@ -41,8 +41,13 @@ public class ProjectController {
 	// Post Mapping For Create a Project
 	@PostMapping(value = "/createproject")
 	public ResponseEntity<Object> createProject(@Valid @RequestBody ProjectDto projectDto) {
-		projectDtoMapper.saveProjectforMapper(projectDto);
-		logger.info("Project created");
+		
+		if (projectDtoMapper.getByProjectId(projectDto.getProjectId()) != null) {
+//			logger.info("Successfully Saved");
+		} else {
+			projectDtoMapper.saveProjectforMapper(projectDto);
+			logger.info("Project created");
+		}	
 		return new ResponseEntity<>(new ApiResponse(RestApiResponseStatus.OK), HttpStatus.OK);
 	}
 
@@ -119,4 +124,11 @@ public class ProjectController {
 	public ResponseEntity<Long> getAllProjectCount(){
 		return new ResponseEntity<>(projectService.countProject(),HttpStatus.OK);
 	}
+	
+	// Get Mapping For Get all Project
+		@GetMapping(value = "/getallproject")
+		public ResponseEntity<List<ProjectDto>> sortListProjectInfo(String projectId) {
+			logger.info("Project are listed ");
+			return new ResponseEntity<>(projectDtoMapper.getAllSortProjectInfo(projectId), HttpStatus.OK);
+		}
 }

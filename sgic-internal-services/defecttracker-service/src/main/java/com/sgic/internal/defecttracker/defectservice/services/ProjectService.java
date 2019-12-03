@@ -40,5 +40,7 @@ public interface ProjectService {
 	public List<Project> getBystatus(String status);
 	
 	public Long countProject();
+	
+	public List<Project> findByProjectOrderByProjectIdDesc(String projectId);
 
 }

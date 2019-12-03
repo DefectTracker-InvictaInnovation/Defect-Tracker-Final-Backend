@@ -95,7 +95,7 @@ public class Defect {
 	public String getAbbre() {
 		return abbre;
 	}
-	
+
 	public Long getDefectId() {
 		return defectId;
 	}

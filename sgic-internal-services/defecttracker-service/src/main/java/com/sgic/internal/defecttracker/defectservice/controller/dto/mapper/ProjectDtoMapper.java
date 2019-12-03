@@ -65,5 +65,11 @@ public class ProjectDtoMapper {
 		
 		 projectService.deleteById(projectId);
 	}
+	
+	public List<ProjectDto> getAllSortProjectInfo(String projectId) { // List Method for ProjectMapper
+		List<Project> projects = projectService.findByProjectOrderByProjectIdDesc(projectId);
+		return ProjectConverter.projectToProjectDto(projects);
+
+	}
 
 }

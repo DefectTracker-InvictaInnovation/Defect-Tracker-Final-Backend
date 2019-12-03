@@ -48,13 +48,13 @@ public interface DashboardService {
 	public Double calculateSeverityIndex();
 
 //	<--Severity Total Count -->
-	public Integer countseveritytotalLow();
+	public Integer countseveritytotalLow(long countseveritylow, int rejectseveritylow);
 	
 //	<--Severity Total Count -->
-	public Integer countseveritytotalmedium();
+	public Integer countseveritytotalmedium(long countseveritymedium, int rejectseveritymedium);
 	
 //	<--Severity Total Count -->
-	public Integer countseveritytotalhig();
+	public Integer countseveritytotalhig(long countseverityhigh, int rejectseverityhigh);
 	
 	public Double calculatedefectRemarksratio(long count, int reject);
 	

@@ -66,7 +66,7 @@ public class DashboardController {
 	public ResponseEntity<Integer> countseveritytotalLow() {
 		try {
 			logger.info("Dashboard Controller--> successfully get Total Severity Low ");
-			return new ResponseEntity<>(dashboardService.countseveritytotalLow(), HttpStatus.OK);
+			return new ResponseEntity<>(dashboardService.countseveritytotalLow(count, High), HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Dashboard Controller--> Error" + e.getMessage());
 		}
@@ -79,7 +79,7 @@ public class DashboardController {
 	public ResponseEntity<Integer> countseveritytotalmedium() {
 		try {
 			logger.info("Dashboard Controller--> successfully get Total Severity Low ");
-			return new ResponseEntity<>(dashboardService.countseveritytotalmedium(), HttpStatus.OK);
+			return new ResponseEntity<>(dashboardService.countseveritytotalmedium(count, High), HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Dashboard Controller--> Error" + e.getMessage());
 		}
@@ -92,7 +92,7 @@ public class DashboardController {
 	public ResponseEntity<Integer> countseveritytotalhigh() {
 		try {
 			logger.info("Dashboard Controller--> successfull ");
-			return new ResponseEntity<>(dashboardService.countseveritytotalhig(), HttpStatus.OK);
+			return new ResponseEntity<>(dashboardService.countseveritytotalhig(count, High), HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Dashboard Controller--> Error" + e.getMessage());
 		}

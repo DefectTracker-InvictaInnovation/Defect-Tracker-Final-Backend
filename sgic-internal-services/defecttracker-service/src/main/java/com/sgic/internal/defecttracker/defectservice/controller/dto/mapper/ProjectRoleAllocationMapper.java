@@ -50,7 +50,13 @@ public class ProjectRoleAllocationMapper {
 	public void deleteByProjectId(Long projectroleId) {
 		logger.info(" successfully deleted ");
 		projectRoleAllocationService.deleteProjectByprojectId(projectroleId);
-		
-
+	}
+	
+//	<--- Get RoleByResourceId  -->
+	@SuppressWarnings("static-access")
+	public List<ProjectRoleAllocationDto> getRoleByProject(Long resourceId) {
+		logger.info("Project Role Allaction Mapper --- Successfully Listed Project Role Allocation --- ");
+		List<ProjectRoleAllocation> namelist = projectRoleAllocationService.getroleByProject(resourceId);
+		return projectRoleAllocationConverter.ProjectRoleAllocationToProjectRoleAllocationDtoList(namelist);
 	}
 }

@@ -3,6 +3,8 @@ package com.sgic.internal.defecttracker.defectservice.entities;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,6 +55,7 @@ public class Project implements Serializable {
 	@DateTimeFormat(iso = ISO.DATE)
 	private Date endDate;
 
+	@Nullable
 	@Column(name = "duration")
 	private Long duration;
 

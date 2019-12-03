@@ -38,10 +38,15 @@ public class ProjectRoleAllocationServiceImpl implements ProjectRoleAllocationSe
 	@Override
 	public ProjectRoleAllocation deleteProjectByprojectId(Long projectroleId) {
 		moduleAllocationRepository.deleteByProjectId(projectroleId);
-		System.out.println("projectID" +projectroleId);
+		System.out.println("projectID" + projectroleId);
 		projectRoleAllocationRepository.deleteByProjectId(projectroleId);
 		return null;
 
+	}
+
+	@Override
+	public List<ProjectRoleAllocation> getroleByProject(Long projectroleId) {
+		return projectRoleAllocationRepository.getResourceById(projectroleId);
 	}
 
 }

@@ -178,40 +178,33 @@ public class DashboardServiceImpl implements DashboardService {
 
 //	<--Total Severity Low Defect Count method--->
 	@Override
-	public Integer countseveritytotalLow() {
-		try {
-			logger.info("Deshboard Service imp--> Success");
-			return defectRepository.countBySeverity();
-		} catch (Exception e) {
-			logger.error("Deshboard Service imp--> Error" + e.getMessage());
-		}
-		return null;
-
+	public Integer countseveritytotalLow(long countseveritylow, int rejectseveritylow) {
+		countseveritylow = (int) defectRepository.countBySeverity();
+		rejectseveritylow = (int) defectRepository.countByStatusRejectedlow();
+		
+		int totalseveritylow =(int) ( countseveritylow - rejectseveritylow);
+		return totalseveritylow;
 	}
 
 //	<--Total Severity High Defect Count method--->
 	@Override
-	public Integer countseveritytotalhig() {
-		try {
-			logger.info("Deshboard Service imp--> Success");
-			return defectRepository.countBySeverityhigh();
-		} catch (Exception e) {
-			logger.error("Deshboard Service imp--> Error" + e.getMessage());
-		}
-		return null;
+	public Integer countseveritytotalhig(long countseverityhigh, int rejectseverityhigh) {
+		countseverityhigh = (int) defectRepository.countBySeverityhigh();
+		rejectseverityhigh = (int) defectRepository.countByStatusRejectedHigh();
+		
+		int totalseverityhigh =(int) ( countseverityhigh - rejectseverityhigh);
+		return totalseverityhigh;
 	}
 
 //	<--Total Severity medium Defect Count method--->
 	@Override
-	public Integer countseveritytotalmedium() {
-		try {
-			logger.info("Deshboard Service imp--> Success");
-			return defectRepository.countBySeverityMedium();
-		} catch (Exception e) {
-			logger.error("Deshboard Service imp--> Error" + e.getMessage());
-		}
-		return null;
-
+	public Integer countseveritytotalmedium(long countseveritymedium, int rejectseveritymedium) {
+		
+		countseveritymedium = (int) defectRepository.countBySeverityMedium();
+		rejectseveritymedium = (int) defectRepository.countByStatusRejectedmedium();
+		
+		int totalseveritymedium =(int) ( countseveritymedium - rejectseveritymedium);
+		return totalseveritymedium;
 	}
 
 	@Override

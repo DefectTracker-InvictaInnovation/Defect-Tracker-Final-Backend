@@ -36,8 +36,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 	public ResponseEntity<String> saveresource(ResourceAllocation resourceAllocation) {
 		try {
 
-			
-			System.out.println("ccccccccccccccccccccccc"+resourceAllocation.getAvailability());
+			System.out.println("ccccccccccccccccccccccc" + resourceAllocation.getAvailability());
 			Long eid = resourceAllocation.getEmpId();
 			int availability = resourceAllocation.getAvailability();
 			System.out.println("Employee id" + eid);
@@ -64,7 +63,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 			// System.out.println("resourceAllocationRepository.AvailabileSum(eid).intValue()
 			// " +resourceAllocationRepository.AvailabileSum(eid));
 
-			if (total < 100|| total ==100) {
+			if (total < 100 || total == 100) {
 				if (isNotExceed) {
 
 					resourceAllocationRepository.save(resourceAllocation);
@@ -76,7 +75,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 					headers1.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 					if (isExist) {
 						int x = resourceAllocation
-								.setAvailability( resourceAllocationRepository.AvailabileSum(eid).intValue());
+								.setAvailability(resourceAllocationRepository.AvailabileSum(eid).intValue());
 						System.out.println("Availability--> " + resourceAllocation.getAvailability());
 						System.out.println("x-->" + x);
 					}
@@ -234,7 +233,20 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 
 	@Override
 	public List<ResourceAllocation> getByprojectId(String projectId) {
-		return resourceAllocationRepository.findResourceAllocationByprojectId(projectId);
-	}
+//		return resourceAllocationRepository.findResourceAllocationByprojectId(projectId);
+		List<ResourceAllocation> resourceAllocationq = resourceAllocationRepository
+				.findResourceAllocationByprojectId(projectId);
+//		List<String> col = new ArrayList<>();
+		List<ResourceAllocation> resp = null;
+		for (ResourceAllocation res : resourceAllocationq) {
+			System.out.println("resourceId " + res.getResourceId());
+			String url = "http://localhost:8081/defectservices/getRoleByResourceId/" + res.getResourceId();
+			resp = restTemplate.getForObject(url, List.class);
 
+			System.out.println("resp " + resp);
+		}
+		// System.out.println("resout" +resp);
+		return resp;
+
+	}
 }

@@ -138,5 +138,13 @@ public class ProjectRoleAllocationController {
 		}
 		return null;
 	}
+	
+//	<--- Get RoleByResourceId  -->
+	@GetMapping("/getRoleByResourceId/{resourceId}")
+	public ResponseEntity<List<ProjectRoleAllocationDto>> getRoleByProject(
+			@PathVariable(name = "resourceId") Long resourceId) {
+		logger.info("Project Role Allocation Controller -> GetProjectRole");
+		return new ResponseEntity<>(projectRoleAllocationMapper.getRoleByProject(resourceId), HttpStatus.OK);
+	}
 
 }

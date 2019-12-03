@@ -32,6 +32,7 @@ public class AuditLogData {
 	public void setUser(String user) {
 		this.user = user;
 	}
+	
 	public Long getDefectId() {
 		return defectId;
 	}
