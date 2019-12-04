@@ -203,7 +203,6 @@ public class ResourceAllocationController {
 	@GetMapping("/getprojectbyresource/{projectId}") 
 	public List<ResourceAllocationDto> getByprojectId(@PathVariable(name = "projectId") String projectId) {
 		try {
-			System.out.println(resourceAllocationDtoMapper.getResourceAllocationByprojectId(projectId));
 			return resourceAllocationDtoMapper.getResourceAllocationByprojectId(projectId);
 			
 		} catch (Exception ex) {
