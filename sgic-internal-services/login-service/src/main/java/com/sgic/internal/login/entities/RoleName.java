@@ -7,6 +7,5 @@ public enum  RoleName {
     ROLE_DEVELOPER,
     ROLE_HR,
     ROLE_PRODUCT_ADMIN,
-    ROLE_TECH_LEAD,
-    ROLE_QA_LEAD
+    ROLE_TECH_LEAD
 }

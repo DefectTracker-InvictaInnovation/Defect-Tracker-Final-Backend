@@ -1,15 +1,19 @@
+
 package com.sgic.internal.login.controller;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,19 +21,25 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.eureka.common.security.JwtConfig;
 import com.sgic.internal.login.entities.ConfirmationToken;
 import com.sgic.internal.login.entities.Email;
 import com.sgic.internal.login.entities.Role;
@@ -48,6 +58,9 @@ import com.sgic.internal.login.services.CurrentUser;
 import com.sgic.internal.login.servicesimpl.UserDetailsServiceImpl;
 import com.sgic.internal.login.servicesimpl.UserPrinciple;
 import com.sgic.internal.login.servicesimpl.UserSummary;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -71,120 +84,116 @@ public class LoginController {
 
 	@Autowired
 	UserDetailsServiceImpl userDetailsServiceImpl;
-	
+
 	@Autowired
-	ConfirmationTokenRepository confirmationTokenRepository;
+	private ConfirmationTokenRepository confirmationTokenRepository;
+
+	@Autowired
+	JwtConfig jwtConfig;
+
+	@Autowired
+	private RestTemplate restTemplate;
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
-
+		System.out.println(
+				"fffffffffffffffffffffffffffffffffffffff :" + loginRequest.getUsername() + loginRequest.getUsername());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		String jwt = jwtProvider.generateJwtToken(authentication);
+		Long now = System.currentTimeMillis();
+		String token = Jwts.builder().setSubject(authentication.getName())
+				// Convert to list of strings.
+				// This is important because it affects the way we get them back in the Gateway.
+				.claim("authorities",
+						authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
+								.collect(Collectors.toList()))
+				.setIssuedAt(new Date(now)).setExpiration(new Date(now + jwtConfig.getExpiration() * 1000)) // in
+																											// milliseconds
+				.signWith(SignatureAlgorithm.HS512, jwtConfig.getSecret().getBytes()).compact();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-		return ResponseEntity.ok(
-				new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(), userDetails.isEnabled()));
+		return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername(), userDetails.getAuthorities(),
+				userDetails.isEnabled()));
 	}
 
 	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser( @RequestBody SignUpForm signUpRequest) {
-		System.out.println("fffffffffffffffffffffffffffffffffffffff :" + signUpRequest.getEmail()+signUpRequest.getLastname()+signUpRequest.getName()+signUpRequest.getPassword()+signUpRequest.getRole()+signUpRequest.getUsername());
-		
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			System.out.println("Fail -> Email is already taken!");
-			// return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already taken!"),
-			// HttpStatus.BAD_REQUEST);
-			} else if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			System.out.println("Fail ->  Username is already takenss!");
-			// return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
-			// HttpStatus.BAD_REQUEST);
-			} else {
+	public ResponseEntity<?> registerUser(@RequestBody SignUpForm signUpRequest) {
+		System.out.println("fffffffffffffffffffffffffffffffffffffff :" + signUpRequest.getEmail()
+				+ signUpRequest.getLastname() + signUpRequest.getName() + signUpRequest.getPassword()
+				+ signUpRequest.getRole() + signUpRequest.getUsername());
 
-		
-//		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-//			return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
-//					HttpStatus.BAD_REQUEST);
-//		}
-//
-//		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-//			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
-//					HttpStatus.BAD_REQUEST);
-//		}
-
-//		User user1 = new User();
-//
-//		if (signUpRequest.getEmail() != user1.getEmail()) {
-
-			// Creating user's account
-			User user = new User(signUpRequest.getName(), signUpRequest.getLastname(), signUpRequest.getUsername(),
-					signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
-
-			String strRoles = signUpRequest.getRole();
-			Set<Role> roles = new HashSet<>();
-
-			switch (strRoles) {
-			case "Admin":
-				Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: admin Role not find."));
-				roles.add(adminRole);
-
-				break;
-			case "PM":
-				Role pmRole = roleRepository.findByName(RoleName.ROLE_PM)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: pm Role not find."));
-				roles.add(pmRole);
-
-				break;
-			case "QA":
-				Role qaRole = roleRepository.findByName(RoleName.ROLE_QA)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: qa Role not find."));
-				roles.add(qaRole);
-
-				break;
-			case "Developer":
-				Role devrole = roleRepository.findByName(RoleName.ROLE_DEVELOPER)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: developer Role not find."));
-				roles.add(devrole);
-
-				break;
-			case "HR":
-				Role hrrole = roleRepository.findByName(RoleName.ROLE_HR)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: hr Role not find."));
-				roles.add(hrrole);
-
-				break;
-			case "ProductAdmin":
-				Role productrole = roleRepository.findByName(RoleName.ROLE_PRODUCT_ADMIN)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause:  productadmin Role not find."));
-				roles.add(productrole);
-
-				break;
-			case "TecLead":
-				Role techrole = roleRepository.findByName(RoleName.ROLE_TECH_LEAD)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause:  techlead Role not find."));
-				roles.add(techrole);
-
-				break;
-			case "QALead":
-				Role qaleadrole = roleRepository.findByName(RoleName.ROLE_QA_LEAD)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause:  qalead Role not find."));
-				roles.add(qaleadrole);
-
-				break;
-			default:
-				Role userRole = roleRepository.findByName(RoleName.ROLE_QA)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-				roles.add(userRole);
-			}
-
-			user.setRoles(roles);
-			userRepository.save(user);
-
+		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+			return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
+					HttpStatus.BAD_REQUEST);
 		}
+
+		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
+					HttpStatus.BAD_REQUEST);
+		}
+
+		// Creating user's account
+		User user = new User(signUpRequest.getName(), signUpRequest.getLastname(), signUpRequest.getUsername(),
+				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
+
+		String strRoles = signUpRequest.getRole();
+		Set<Role> roles = new HashSet<>();
+
+		switch (strRoles) {
+		case "Admin":
+			Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+					.orElseThrow(() -> new RuntimeException("Fail! -> Cause: admin Role not find."));
+			roles.add(adminRole);
+
+			break;
+		case "PM":
+			Role pmRole = roleRepository.findByName(RoleName.ROLE_PM)
+					.orElseThrow(() -> new RuntimeException("Fail! -> Cause: pm Role not find."));
+			roles.add(pmRole);
+
+			break;
+		case "QA":
+			Role qaRole = roleRepository.findByName(RoleName.ROLE_QA)
+					.orElseThrow(() -> new RuntimeException("Fail! -> Cause: qa Role not find."));
+			roles.add(qaRole);
+
+			break;
+		case "Developer":
+			Role devrole = roleRepository.findByName(RoleName.ROLE_DEVELOPER)
+					.orElseThrow(() -> new RuntimeException("Fail! -> Cause: developer Role not find."));
+			roles.add(devrole);
+
+			break;
+		case "HR":
+			Role hrrole = roleRepository.findByName(RoleName.ROLE_HR)
+					.orElseThrow(() -> new RuntimeException("Fail! -> Cause: hr Role not find."));
+			roles.add(hrrole);
+
+			break;
+		case "ProductAdmin":
+			Role productrole = roleRepository.findByName(RoleName.ROLE_PRODUCT_ADMIN)
+					.orElseThrow(() -> new RuntimeException("Fail! -> Cause:  productadmin Role not find."));
+			roles.add(productrole);
+
+			break;
+		case "TecLead":
+			Role techrole = roleRepository.findByName(RoleName.ROLE_TECH_LEAD)
+					.orElseThrow(() -> new RuntimeException("Fail! -> Cause:  techlead Role not find."));
+			roles.add(techrole);
+
+			break;
+		default:
+			Role userRole = roleRepository.findByName(RoleName.ROLE_QA)
+					.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+			roles.add(userRole);
+		}
+
+		user.setRoles(roles);
+		userRepository.save(user);
+
 		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 	}
 
@@ -196,7 +205,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/user/admin")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+
 	public UserSummary getCurrentAdmin(@CurrentUser UserPrinciple currentUser) {
 		UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(),
 				currentUser.getName());
@@ -218,7 +227,7 @@ public class LoginController {
 		return userDetailsServiceImpl.getUserDetails();
 
 	}
-	
+
 	@GetMapping("/getemail/{email}")
 	public User getByEmail(@PathVariable(name = "email") String email) {
 		return userDetailsServiceImpl.getByEmail(email);
@@ -312,5 +321,22 @@ public class LoginController {
 //				return userDetailsServiceImpl.updateUser(user);
 
 		return null;
+	}
+
+	@GetMapping("/getuserbyid/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id) {
+		return new ResponseEntity<>(userDetailsServiceImpl.getByuserId(id), HttpStatus.OK);
+	}
+
+	@PutMapping("userupdate/{id}")
+	public ResponseEntity<String> updateUser(@RequestBody User user) {
+		userDetailsServiceImpl.updateUser(user);
+		return null;
+	}
+
+	@DeleteMapping("/deletetoken/{tokenid}")
+	public ResponseEntity<String> deletetokenId(@PathVariable("tokenid") Long tokenid) {
+		userDetailsServiceImpl.deleteBytokenId(tokenid);
+		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
 	}
 }
