@@ -16,4 +16,5 @@ public interface HRPrivilegeService {
 	public HRPrivilege updateHRPrivilege(HRPrivilege hrPrivilege, Long id);
 	
 	public void deleteHRPrivilege(Long id);
+
 }
