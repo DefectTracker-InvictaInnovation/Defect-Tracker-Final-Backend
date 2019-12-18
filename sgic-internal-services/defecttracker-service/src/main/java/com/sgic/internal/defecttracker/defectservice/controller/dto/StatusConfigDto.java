@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class StatusConfigDto {
 	
 	private Long statusId;
-	private String projectId;
+	private Long projectId;
 	private ArrayList<String> statusList;
 	
 	public Long getStatusId() {
@@ -20,11 +20,12 @@ public class StatusConfigDto {
 	public void setStatusList(ArrayList<String> statusList) {
 		this.statusList = statusList;
 	}
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
+	
 		
 }

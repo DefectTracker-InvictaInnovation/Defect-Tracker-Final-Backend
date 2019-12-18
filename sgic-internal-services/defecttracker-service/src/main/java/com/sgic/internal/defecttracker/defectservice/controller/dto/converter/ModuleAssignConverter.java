@@ -16,7 +16,7 @@ public class ModuleAssignConverter {
 		if (moduleAssignDto != null) {
 
 			moduleAssign.setProjectId(moduleAssignDto.getProjectId());
-			moduleAssign.setSubmoduleId(moduleAssignDto.getSubModuleId());
+			moduleAssign.setSubmoduleId(moduleAssignDto.getSubmoduleId());
 
 			Module module = new Module();
 			module.setModuleId(moduleAssignDto.getModuleId());

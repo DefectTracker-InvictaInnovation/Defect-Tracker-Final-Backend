@@ -11,11 +11,11 @@ public class ProjectRoleAllocationDto {
 	private String email;
 	private String roleName;
 	private String employeeid;
-	private String projectId;
+	private Long projectId;
 	private String projectName;
-	private String moduleId;
+	private Long moduleId;
 	private String moduleName;
-	private String subModuleId;
+	private Long subModuleId;
 	private String subModuleName;
 	private boolean bench;
 	
@@ -74,10 +74,12 @@ public class ProjectRoleAllocationDto {
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
-	public String getProjectId() {
+	
+	
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 	public String getProjectName() {
@@ -92,22 +94,24 @@ public class ProjectRoleAllocationDto {
 	public void setPassword(String string) {
 		this.password = string;
 	}
-	public String getModuleId() {
-		return moduleId;
-	}
-	public void setModuleId(String moduleId) {
-		this.moduleId = moduleId;
-	}
+	
 	public String getModuleName() {
 		return moduleName;
 	}
 	public void setModuleName(String moduleName) {
 		this.moduleName = moduleName;
 	}
-	public String getSubModuleId() {
+	
+	public Long getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
+	}
+	public Long getSubModuleId() {
 		return subModuleId;
 	}
-	public void setSubModuleId(String subModuleId) {
+	public void setSubModuleId(Long subModuleId) {
 		this.subModuleId = subModuleId;
 	}
 	public String getSubModuleName() {

@@ -1,12 +1,9 @@
 package com.sgic.internal.defecttracker.defectservice.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +25,7 @@ public class ModuleAssignController {
 	@PostMapping(value = "/assignmodule")
 	public ResponseEntity<Object> createModule(@RequestBody ModuleAssignDto moduleAssignDto) {
 		ModuleAssign moduleAssign = ModuleAssignConverter.moduleAssignDtoToModuleAssign(moduleAssignDto);
-		System.out.println(moduleAssignDto.getSubModuleId());
+		System.out.println(moduleAssignDto.getSubmoduleId());
 		moduleAssignRepository.save(moduleAssign);
 		return new ResponseEntity<Object>(new ApiResponse(RestApiResponseStatus.OK), HttpStatus.OK);
 

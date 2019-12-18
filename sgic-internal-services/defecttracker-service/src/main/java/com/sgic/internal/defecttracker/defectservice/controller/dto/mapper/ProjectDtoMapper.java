@@ -26,7 +26,7 @@ public class ProjectDtoMapper {
 		return projectService.createProject(project);
 	}
 
-	public ProjectDto getByProjectId(String projectId) {
+	public ProjectDto getByProjectId(Long projectId) {
 		Project project = projectService.getByprojectId(projectId);
 		return ProjectConverter.projectToProjectDto(project);
 	}
@@ -56,17 +56,17 @@ public class ProjectDtoMapper {
 		return ProjectConverter.projectToProjectDto(project);
 	}
 
-	public Project UpdateProject(String projectid, ProjectDto projectDto) {
+	public Project UpdateProject(Long projectid, ProjectDto projectDto) {
 		Project project = ProjectConverter.projectDtoToProject(projectDto);
 		return projectService.updateProject(projectid, project);
 	}
 
-	public void deleteById(String projectId) {
+	public void deleteById(Long projectId) {
 		
 		 projectService.deleteById(projectId);
 	}
 	
-	public List<ProjectDto> getAllSortProjectInfo(String projectId) { // List Method for ProjectMapper
+	public List<ProjectDto> getAllSortProjectInfo(Long projectId) { // List Method for ProjectMapper
 		List<Project> projects = projectService.findByProjectOrderByProjectIdDesc(projectId);
 		return ProjectConverter.projectToProjectDto(projects);
 

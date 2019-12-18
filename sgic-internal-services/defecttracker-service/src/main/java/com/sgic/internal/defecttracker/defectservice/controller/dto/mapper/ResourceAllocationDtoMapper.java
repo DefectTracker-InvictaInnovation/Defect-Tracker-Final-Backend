@@ -81,7 +81,7 @@ public class ResourceAllocationDtoMapper {
 	}
 	
 	@SuppressWarnings("static-access")
-	public List<ResourceAllocationDto> getResourceAllocationByprojectId(String projectId) {
+	public List<ResourceAllocationDto> getResourceAllocationByprojectId(Long projectId) {
 		List<ResourceAllocation> resourceAllocation =resourceAllocationService.getByprojectId(projectId);
 		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceAllocation);
 

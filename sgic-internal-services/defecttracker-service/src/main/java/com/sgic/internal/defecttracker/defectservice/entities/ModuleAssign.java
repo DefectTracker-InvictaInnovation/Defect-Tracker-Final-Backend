@@ -11,11 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.converter.SubmoduleMapConverter;
 
 @Entity
@@ -29,10 +26,10 @@ public class ModuleAssign {
     @JoinColumn(name = "moduleId", nullable = false)
 	private Module module;
 	
-	private String projectId;
+	private Long projectId;
 	
 	@Convert(converter = SubmoduleMapConverter.class)
-	private List<String> submoduleId;
+	private List<Long> submoduleId;
 
 	public ModuleAssign() {
 		
@@ -56,23 +53,25 @@ public class ModuleAssign {
 		this.module = module;
 	}
 
-	public String getProjectId() {
+	
+
+	public Long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 
-	public List<String> getSubmoduleId() {
+	public List<Long> getSubmoduleId() {
 		return submoduleId;
 	}
 
-	public void setSubmoduleId(List<String> submoduleId) {
+	public void setSubmoduleId(List<Long> submoduleId) {
 		this.submoduleId = submoduleId;
 	}
 
-	public ModuleAssign(Long id, Module module, String projectId, List<String> submoduleId) {
+	public ModuleAssign(Long id, Module module, Long projectId, List<Long> submoduleId) {
 		super();
 		this.id = id;
 		this.module = module;

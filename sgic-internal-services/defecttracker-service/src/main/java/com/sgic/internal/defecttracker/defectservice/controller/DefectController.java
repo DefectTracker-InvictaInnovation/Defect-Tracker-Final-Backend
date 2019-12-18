@@ -98,14 +98,14 @@ public class DefectController {
 
 	// get all defects by particular project id
 	@GetMapping(value = "/getAllDefectsByProjectId/{projectId}")
-	public List<DefectData> getByProjectId(@PathVariable(name = "projectId") String projectId) {
+	public List<DefectData> getByProjectId(@PathVariable(name = "projectId") Long projectId) {
 		logger.info("Controller -> getByProjectId Successfull");
 		return defectDataMapper.getAllDefectByProjectById(projectId);
 	}
 
 	// get all defects by particular module id
 	@GetMapping(value = "/getAllDefectsByModuleId/{moduleId}")
-	public List<DefectData> getByModuleId(@PathVariable(name = "moduleId") String moduleId) {
+	public List<DefectData> getByModuleId(@PathVariable(name = "moduleId") Long moduleId) {
 		logger.info("Controller -> getBymoduleId Successfull");
 		return defectDataMapper.getAllDefectByModuleById(moduleId);
 	}
@@ -196,38 +196,38 @@ public class DefectController {
 	// Hari matrix
 
 	@GetMapping(value = "/getStatusNew/{projectId}")
-	public Long getStatusNew(@PathVariable(name = "projectId") String projectId ) {
-		return defectService.getStatusNew("New", projectId);
+	public Long getStatusNew(@PathVariable(name = "projectId") Long projectId ) {
+		return defectService.getStatusNew(projectId, "New");
 	}
 
 	@GetMapping(value = "/getStatusOpen/{projectId}")
-	public Long getStatusOpen(@PathVariable(name = "projectId") String projectId) {
-		return defectService.getStatusOpen("Open", projectId);
+	public Long getStatusOpen(@PathVariable(name = "projectId") Long projectId) {
+		return defectService.getStatusOpen(projectId, "Open");
 	}
 
 	@GetMapping(value = "/getStatusClose/{projectId}")
-	public Long getStatusClose(@PathVariable(name = "projectId") String projectId) {
-		return defectService.getStatusClose("Close", projectId);
+	public Long getStatusClose(@PathVariable(name = "projectId") Long projectId) {
+		return defectService.getStatusClose(projectId, "Close");
 	}
 
 	@GetMapping(value = "/getStatusRejected/{projectId}")
-	public Long getStatusRejected(@PathVariable(name = "projectId") String projectId) {
-		return defectService.getStatusRejected("Rejected", projectId);
+	public Long getStatusRejected(@PathVariable(name = "projectId") Long projectId) {
+		return defectService.getStatusRejected(projectId, "Rejected");
 	}
 
 	@GetMapping(value = "/getStatusReOpen/{projectId}")
-	public Long getStatusReOpen(@PathVariable(name = "projectId") String projectId) {
-		return defectService.getStatusReOpen("ReOpen", projectId);
+	public Long getStatusReOpen(@PathVariable(name = "projectId") Long projectId) {
+		return defectService.getStatusReOpen(projectId, "ReOpen");
 	}
 
 	@GetMapping(value = "/getStatusFixed/{projectId}")
-	public Long getStatusFixed(@PathVariable(name = "projectId") String projectId) {
-		return defectService.getStatusFixed("Fixed", projectId);
+	public Long getStatusFixed(@PathVariable(name = "projectId") Long projectId) {
+		return defectService.getStatusFixed(projectId, "Fixed");
 	}
 
 	@GetMapping(value = "/getStatusDefered/{projectId}")
-	public Long getStatusDefered(@PathVariable(name = "projectId") String projectId) {
-		return defectService.getStatusDefered("Defered", projectId);
+	public Long getStatusDefered(@PathVariable(name = "projectId") Long projectId) {
+		return defectService.getStatusDefered(projectId, "Defered");
 	}
 
 }

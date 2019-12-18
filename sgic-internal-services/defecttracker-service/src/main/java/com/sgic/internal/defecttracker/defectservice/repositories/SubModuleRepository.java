@@ -9,9 +9,9 @@ import org.springframework.data.repository.query.Param;
 import com.sgic.internal.defecttracker.defectservice.entities.Module;
 import com.sgic.internal.defecttracker.defectservice.entities.SubModule;
 
-public interface SubModuleRepository extends JpaRepository<SubModule, String> {
+public interface SubModuleRepository extends JpaRepository<SubModule, Long> {
 
-	SubModule getBySubModuleId(String subModuleId);
+	SubModule getBySubModuleId(Long subModuleId);
 
 	List<SubModule> findModuleBysubModuleId(Module module);
 

@@ -28,7 +28,9 @@ public interface ResourceAllocationService {
 	
 	public List<ResourceAllocation> getByEmployee(Long empId);
 	
-	public List<ResourceAllocation> getByprojectId(String projectId);
+	public List<ResourceAllocation> getByprojectId(Long projectId);
+
+	//List<ResourceAllocation> getByprojectId(Long projectId);
 	
 
 }
