@@ -232,13 +232,18 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 	}
 
 	@Override
-	public List<ResourceAllocation> getByprojectId(String projectId) {
-//		return resourceAllocationRepository.findResourceAllocationByprojectId(projectId);
-		List<ResourceAllocation> resourceAllocationq = resourceAllocationRepository
+	public List<ResourceAllocation> getByprojectId(Long projectId) { 
+				return resourceAllocationRepository.findResourceAllocationByprojectId(projectId);
+				
+		
+		
+		
+	/*	
+		//		return resourceAllocationRepository.findResourceAllocationByprojectId(projectId);
+		List<ResourceAllocation> resourceAllocationList = resourceAllocationRepository
 				.findResourceAllocationByprojectId(projectId);
-//		List<String> col = new ArrayList<>();
 		List<ResourceAllocation> resp = null;
-		for (ResourceAllocation res : resourceAllocationq) {
+		for (ResourceAllocation res : resourceAllocationList) {
 			System.out.println("resourceId " + res.getResourceId());
 			String url = "http://localhost:8081/defectservices/getRoleByResourceId/" + res.getResourceId();
 			resp = restTemplate.getForObject(url, List.class);
@@ -247,6 +252,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 		}
 		// System.out.println("resout" +resp);
 		return resp;
-
+		
+		*/
 	}
 }

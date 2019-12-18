@@ -49,4 +49,9 @@ public class ProjectRoleAllocationServiceImpl implements ProjectRoleAllocationSe
 		return projectRoleAllocationRepository.getResourceById(projectroleId);
 	}
 
+	@Override
+	public List<ProjectRoleAllocation> getAllRoleAllocationOnlyDevAndQA() {
+		return projectRoleAllocationRepository.findQaAndDev();
+	}
+
 }

@@ -59,4 +59,11 @@ public class ProjectRoleAllocationMapper {
 		List<ProjectRoleAllocation> namelist = projectRoleAllocationService.getroleByProject(resourceId);
 		return projectRoleAllocationConverter.ProjectRoleAllocationToProjectRoleAllocationDtoList(namelist);
 	}
+	
+	
+	public List<ProjectRoleAllocationDto> getAllDevelopersAndQaforMapper() {
+		logger.info("Project Role Allaction Mapper --- Successfully Listed Project Role Allocation --- ");
+		List<ProjectRoleAllocation> roleList = projectRoleAllocationService.getAllRoleAllocationOnlyDevAndQA();
+		return projectRoleAllocationConverter.ProjectRoleAllocationToProjectRoleAllocationDtoList(roleList);
+	}
 }
