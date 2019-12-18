@@ -31,7 +31,7 @@ public class Project implements Serializable {
 
 	@NotEmpty
 	@Size(min = 2, max = 50)
-	@Pattern(regexp = "[a-z-A-Z]*", message = "Project Name can not contain invalid characters")
+	@Pattern(regexp = "[0-9a-zA-Z]*", message = "Project Name can not contain invalid characters")
 	@Column(name = "project_name")
 	private String projectName;
 	

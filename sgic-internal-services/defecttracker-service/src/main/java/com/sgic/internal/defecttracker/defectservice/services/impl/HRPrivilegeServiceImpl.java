@@ -45,7 +45,6 @@ public class HRPrivilegeServiceImpl implements HRPrivilegeService {
 
 	@Override
 	public void deleteHRPrivilege(Long id) {
-		// TODO Auto-generated method stub
 		hrPrivilegeRepository.deleteById(id);
 		
 	}
