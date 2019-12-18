@@ -2,6 +2,7 @@ package com.sgic.internal.defecttracker.defectservice.controller.dto.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ModuleAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.converter.ModuleAllocationConverter;
 import com.sgic.internal.defecttracker.defectservice.entities.ModuleAllocation;

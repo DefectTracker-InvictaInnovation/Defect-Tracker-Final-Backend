@@ -33,7 +33,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public boolean isProjectAlreadyExists(String projectid) {
+	public boolean isProjectAlreadyExists(Long projectid) {
 		return projectRepository.existsById(projectid);
 	}
 
@@ -43,7 +43,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public Project getByprojectId(String projectid) {
+	public Project getByprojectId(Long projectid) {
 		return projectRepository.getByprojectId(projectid);
 	}
 
@@ -68,7 +68,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public Project updateProject(String projectid, Project project) {
+	public Project updateProject(Long projectid, Project project) {
 		if (projectRepository.findAll() != null) {
 			project.setProjectId(projectid);
 			projectRepository.save(project);
@@ -77,7 +77,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public void deleteById(String projectid) {
+	public void deleteById(Long projectid) {
 		projectRepository.deleteById(projectid);
 	}
 
@@ -92,7 +92,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public List<Project> findByProjectOrderByProjectIdDesc(String projectId) {
+	public List<Project> findByProjectOrderByProjectIdDesc(Long projectId) {
 		return projectRepository.findAll(Sort.by(Sort.Direction.DESC, "projectId"));
 	}
 

@@ -3,7 +3,7 @@ package com.sgic.internal.defecttracker.defectservice.controller.dto;
 
 public class DefectConfigDto {
 	private long configId;
-	private String projectId;
+	private Long projectId;
 	private String name;
 	private String value;
 	private String color;
@@ -16,10 +16,11 @@ public class DefectConfigDto {
 	public void setConfigId(long configId) {
 		this.configId = configId;
 	}
-	public String getProjectId() {
+		
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 	public String getName() {
@@ -46,5 +47,6 @@ public class DefectConfigDto {
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
+	
 	
 }

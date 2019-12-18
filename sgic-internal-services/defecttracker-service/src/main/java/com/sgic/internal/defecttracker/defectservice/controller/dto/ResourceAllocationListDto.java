@@ -14,7 +14,7 @@ public class ResourceAllocationListDto {
 	private boolean bench;
 	private Long designationid;
 	private String designationname;
-	private String projectId;
+	private Long projectId;
 	private String projectName;
 	
 	public Long getResourceId() {
@@ -77,10 +77,11 @@ public class ResourceAllocationListDto {
 	public void setDesignationname(String designationname) {
 		this.designationname = designationname;
 	}
-	public String getProjectId() {
+	
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 	public String getProjectName() {

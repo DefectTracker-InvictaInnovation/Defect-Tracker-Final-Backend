@@ -27,7 +27,8 @@ public class HRPrivilegeController {
 	
 	@PostMapping("/saveHRPrivilege")
 	public HRPrivilege savePMPrivilege(@RequestBody HRPrivilege hrPrivilege) {
-		return hrPrivilegeService.createHRPrivilege(hrPrivilege);	
+		hrPrivilegeService.createHRPrivilege(hrPrivilege);
+		return hrPrivilege;	 
 	}
 	
 	@GetMapping("/getAlHRPrivilegeInfo")

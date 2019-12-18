@@ -18,10 +18,10 @@ Defect getByDefectId(Long defectId);
 List<Defect> getByDefectAbbr(String defectAbbr);
 
 @Query(value ="FROM Defect WHERE project_id =:projectId") 
-List<Defect>getByProjectId(@Param("projectId")String projectId); 
+List<Defect>getByProjectId(@Param("projectId")Long projectId); 
 
 @Query(value ="FROM Defect WHERE module_id =:moduleId") 
-List<Defect>getByModuleId(@Param("moduleId")String moduleId);
+List<Defect>getByModuleId(@Param("moduleId")Long moduleId);
 
 
 @Query(value ="FROM Defect WHERE date_and_time =:dateAndTime") 
@@ -58,7 +58,7 @@ List<Defect> getByType(@Param("type")String type);
 
 
 @Query(value = "SELECT COUNT(status) FROM Defect WHERE project_id=:projectId AND status =:status")
-Long countByStatus(String status, String projectId );
+Long countByStatus(String status, Long projectId );
 
 //@Query("SELECT COUNT(*) FROM Defect d WHERE d.status=:rejected")
 //Long countRejectedDefect(@Param("rejected") String defectId);

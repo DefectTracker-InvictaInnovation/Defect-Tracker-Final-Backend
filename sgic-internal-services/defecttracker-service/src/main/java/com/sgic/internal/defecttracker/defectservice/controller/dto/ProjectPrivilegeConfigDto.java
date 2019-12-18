@@ -2,7 +2,7 @@ package com.sgic.internal.defecttracker.defectservice.controller.dto;
 
 public class ProjectPrivilegeConfigDto {
 	private Long projectConfigurationId;
-	private String projectId;
+	private Long projectId;
 	private String projectName;
 	private boolean projectConfigurationStatus;
 	
@@ -12,10 +12,10 @@ public class ProjectPrivilegeConfigDto {
 	public void setProjectConfigurationId(Long projectConfigurationId) {
 		this.projectConfigurationId = projectConfigurationId;
 	}
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 	public String getProjectName() {

@@ -3,8 +3,6 @@ package com.sgic.internal.defecttracker.defectservice.entities;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,11 +27,11 @@ public class Project implements Serializable {
 	@Id
 	@Column(name = "project_id", unique = true)
 	@NotEmpty
-	private String projectId;
+	private Long projectId;
 
 	@NotEmpty
 	@Size(min = 2, max = 50)
-	@Pattern(regexp = "[a-z-A-Z]*", message = "Project Name can not contain invalid characters")
+	@Pattern(regexp = "[0-9a-zA-Z]*", message = "Project Name can not contain invalid characters")
 	@Column(name = "project_name")
 	private String projectName;
 	
@@ -67,17 +65,17 @@ public class Project implements Serializable {
 
 //	Getters and setters for project 
 
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
-
 	public String getProjectName() {
 		return projectName;
 	}
+
 
 
 	public void setProjectName(String projectName) {

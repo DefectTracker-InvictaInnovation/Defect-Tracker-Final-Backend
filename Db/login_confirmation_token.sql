@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: defectservices
+-- Host: localhost    Database: login
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
@@ -16,28 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `severityweight`
+-- Table structure for table `confirmation_token`
 --
 
-DROP TABLE IF EXISTS `severityweight`;
+DROP TABLE IF EXISTS `confirmation_token`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `severityweight` (
-  `severity_weight_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `high_weight` bigint(20) DEFAULT NULL,
-  `low_weight` bigint(20) DEFAULT NULL,
-  `medium_weight` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`severity_weight_id`)
+CREATE TABLE `confirmation_token` (
+  `token_id` bigint(20) NOT NULL,
+  `confirmation_token` varchar(255) DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`token_id`),
+  KEY `FKah4p1rycwibwm6s9bsyeckq51` (`user_id`),
+  CONSTRAINT `FKah4p1rycwibwm6s9bsyeckq51` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `severityweight`
+-- Dumping data for table `confirmation_token`
 --
 
-LOCK TABLES `severityweight` WRITE;
-/*!40000 ALTER TABLE `severityweight` DISABLE KEYS */;
-/*!40000 ALTER TABLE `severityweight` ENABLE KEYS */;
+LOCK TABLES `confirmation_token` WRITE;
+/*!40000 ALTER TABLE `confirmation_token` DISABLE KEYS */;
+/*!40000 ALTER TABLE `confirmation_token` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-04 14:28:57
+-- Dump completed on 2019-12-17 15:13:32

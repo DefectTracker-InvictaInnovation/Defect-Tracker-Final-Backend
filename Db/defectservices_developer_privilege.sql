@@ -16,32 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `files`
+-- Table structure for table `developer_privilege`
 --
 
-DROP TABLE IF EXISTS `files`;
+DROP TABLE IF EXISTS `developer_privilege`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `files` (
+CREATE TABLE `developer_privilege` (
   `id` bigint(20) NOT NULL,
-  `file_download_uri` varchar(255) DEFAULT NULL,
-  `file_name` varchar(255) DEFAULT NULL,
-  `file_type` varchar(255) DEFAULT NULL,
-  `size` bigint(20) NOT NULL,
-  `defect_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKid1sngn8euwo23tgfrnfq5jn1` (`defect_id`),
-  CONSTRAINT `FKid1sngn8euwo23tgfrnfq5jn1` FOREIGN KEY (`defect_id`) REFERENCES `defect` (`defect_id`)
+  `privilege_name` varchar(255) DEFAULT NULL,
+  `status` bit(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `files`
+-- Dumping data for table `developer_privilege`
 --
 
-LOCK TABLES `files` WRITE;
-/*!40000 ALTER TABLE `files` DISABLE KEYS */;
-/*!40000 ALTER TABLE `files` ENABLE KEYS */;
+LOCK TABLES `developer_privilege` WRITE;
+/*!40000 ALTER TABLE `developer_privilege` DISABLE KEYS */;
+INSERT INTO `developer_privilege` VALUES (182,'DeleteProject',_binary '\0'),(183,'EditProject',_binary '\0'),(184,'AddProject',_binary '\0'),(185,'AddDefect',_binary ''),(186,'EditDefect',_binary ''),(187,'DeleteDefect',_binary ''),(318,'ManageModule',_binary '\0'),(319,'ProductAdministration',_binary '\0'),(320,'CompanyDashboard',_binary '\0'),(321,'ManageDefect',_binary ''),(322,'ManageSubModule',_binary '\0'),(323,'ManageProject',_binary '\0'),(324,'DefectDashboard',_binary ''),(325,'PMManageAllocation',_binary '\0'),(326,'PMDashboard',_binary '\0'),(327,'QADashboard',_binary '\0'),(328,'DeveloperDashboard',_binary ''),(329,'CompanyAdministration',_binary '\0'),(330,'ManageCompany',_binary '\0'),(331,'GeneralConfiguration',_binary '\0'),(333,'Generalsetting',_binary '\0'),(334,'LookAndFeel',_binary '\0'),(335,'ProfileSetting',_binary ''),(337,'TroubleshootAndSupport',_binary '\0'),(338,'privilege',_binary '\0'),(339,'ProjectAllocation',_binary '\0'),(340,'DefectStatusFlow',_binary '\0');
+/*!40000 ALTER TABLE `developer_privilege` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-04 14:28:51
+-- Dump completed on 2019-12-17 15:08:46

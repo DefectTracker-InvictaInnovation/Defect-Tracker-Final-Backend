@@ -3,7 +3,6 @@ package com.sgic.internal.defecttracker.defectservice.controller.dto;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sgic.internal.defecttracker.defectservice.entities.SubModule;
 
 public class ModuleAllocationDto {
 
@@ -15,7 +14,7 @@ public class ModuleAllocationDto {
 	private String email;
 //	private String subModuleId;
 //	private String subModuleName;
-	private String moduleId;
+	private Long moduleId;
 	private String moduleName;
 	@JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
 	private ArrayList<String> subModuleList;
@@ -75,14 +74,15 @@ public class ModuleAllocationDto {
 //	public void setSubModuleName(String subModuleName) {
 //		this.subModuleName = subModuleName;
 //	}
-	public String getModuleId() {
-		return moduleId;
-	}
-	public void setModuleId(String moduleId) {
-		this.moduleId = moduleId;
-	}
+	
 	public String getModuleName() {
 		return moduleName;
+	}
+	public Long getModuleId() {
+		return moduleId;
+	}
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
 	}
 	public void setModuleName(String moduleName) {
 		this.moduleName = moduleName;
