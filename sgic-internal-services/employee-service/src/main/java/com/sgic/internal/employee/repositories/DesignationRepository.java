@@ -16,9 +16,14 @@ public interface DesignationRepository extends JpaRepository<Designation, Long> 
 //	 @Query(value="SELECT e.name fROM employee e INNER JOIN designation d ON e.designationid=d.designationid", nativeQuery=true)
 //	 List<Employee> getEmployeeByDesigName();
 	
-	String fetchEmployeeByDesignation = "SELECT * FROM employee e WHERE e.designationid in (SELECT designationid from designation d where d.designationname=:designationname)";
+//	String fetchEmployeeByDesignation = "SELECT * FROM employee e WHERE e.designationid in (SELECT designationid from designation d where d.designationname=:designationname)";
+//	@Query(value = fetchEmployeeByDesignation, nativeQuery = true)
+//	<T> List<T> getEmployeeByDesigName(String designationname);
+	
+	
+	String fetchEmployeeByDesignation = "SELECT * FROM employee e WHERE e.designationid in (SELECT designationid from designation d where d.designationname=\"PM\")";
 	@Query(value = fetchEmployeeByDesignation, nativeQuery = true)
-	<T> List<T> getEmployeeByDesigName(String designationname);
+	<T> List<T> getEmployeeByDesigName();
 	
 //	delete Designation method
 	public void deleteDesignationBydesignationid(Long designationid);

@@ -54,11 +54,11 @@ public class DesignationController {
 		return new ResponseEntity<>(designationDTOMapper.getBydesignationid(designationid), HttpStatus.OK);
 	}
 	
-	@GetMapping("/getemployee/{designationname}")
+	@GetMapping("/getemployee")
 	// <---Get Designation By Designation ID--->
-	public ResponseEntity<List<Employee>> getByName(@PathVariable(name = "designationname") String designationname) {
+	public ResponseEntity<List<Employee>> getByName() {
 		logger.info("Designation Controller --> Get by Designation by Id");
-		return new ResponseEntity<>(designationService.getBydesignationname(designationname), HttpStatus.OK);
+		return new ResponseEntity<>(designationService.getBydesignationname(), HttpStatus.OK);
 	}
 
 }

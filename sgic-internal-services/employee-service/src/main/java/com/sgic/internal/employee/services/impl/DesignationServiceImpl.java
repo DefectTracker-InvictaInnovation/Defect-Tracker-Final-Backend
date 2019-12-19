@@ -49,8 +49,8 @@ public class DesignationServiceImpl implements DesignationService {
 	}
 
 	@Override
-	public List<Employee> getBydesignationname(String designationname) {// TODO Auto-generated method stub
-		return designationRepository.getEmployeeByDesigName(designationname);
+	public List<Employee> getBydesignationname() {// TODO Auto-generated method stub
+		return designationRepository.getEmployeeByDesigName();
 	}
 
 }
