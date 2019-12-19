@@ -30,7 +30,7 @@ public interface ResourceAllocationService {
 	
 	public List<ResourceAllocation> getByprojectId(Long projectId);
 
-	//List<ResourceAllocation> getByprojectId(Long projectId);
+	List<ResourceAllocation> getResourceByprojectId(Long projectId);
 	
 
 }

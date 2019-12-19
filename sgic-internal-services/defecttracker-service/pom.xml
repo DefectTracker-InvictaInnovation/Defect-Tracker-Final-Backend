@@ -13,7 +13,7 @@
 	<artifactId>sgic-internal-services</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>employee-service</name>
+	<name>defect-service</name>
 	<packaging>war</packaging>
 
 	<description>Demo project for Spring Boot</description>

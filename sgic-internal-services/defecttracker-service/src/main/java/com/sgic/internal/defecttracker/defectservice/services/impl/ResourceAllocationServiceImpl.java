@@ -252,9 +252,8 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 
 	}
 
-//	@Override
-//	public List<ResourceAllocation> getByprojectId(Long projectId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public List<ResourceAllocation> getResourceByprojectId(Long projectId) {
+		return resourceAllocationRepository.getByProjectId(projectId);
+	}
 }

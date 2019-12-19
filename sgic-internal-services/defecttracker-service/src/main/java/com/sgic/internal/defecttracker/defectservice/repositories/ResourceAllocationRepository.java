@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 
 public interface ResourceAllocationRepository extends JpaRepository<ResourceAllocation, Long> {
@@ -27,7 +29,10 @@ public interface ResourceAllocationRepository extends JpaRepository<ResourceAllo
 	@Query("SELECT SUM(availability) FROM ResourceAllocation WHERE empId=:empId")
 	Long AvailabileSum(Long empId);
 	
-	@Query(value = "from ResourceAllocation where project_id=:projectId")
+	@Query(value = "from ResourceAllocation where projectId=:projectId")
 	List<ResourceAllocation> findResourceAllocationByprojectId(Long projectId);
+	
+	@Query(value ="FROM ResourceAllocation WHERE project_id =:projectId") 
+	List<ResourceAllocation>getByProjectId(@Param("projectId")Long projectId); 
 
 }
