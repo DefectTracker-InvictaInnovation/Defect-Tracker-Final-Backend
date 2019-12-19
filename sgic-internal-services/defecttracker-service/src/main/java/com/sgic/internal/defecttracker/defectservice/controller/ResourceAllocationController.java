@@ -219,5 +219,8 @@ public class ResourceAllocationController {
 		logger.info("Resource Allocation Controller -> GetProjectRole");
 		return new ResponseEntity<>(resourceAllocationDtoMapper.getAllDevelopersAndQaforMapper(), HttpStatus.OK);
 	}
+	
+	
+	
 
 }

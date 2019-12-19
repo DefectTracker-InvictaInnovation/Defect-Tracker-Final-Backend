@@ -64,7 +64,7 @@ public class EmployeeConverter {
 	}
 
 	// Employee List Converter
-	public static List<EmployeeDTO> EmployeeToEmployeeDTO(List<Employee> employeeList) {
+	public static List<EmployeeDTO> EmployeeToEmployeeDTOList(List<Employee> employeeList) {
 
 		if (employeeList != null) {
 			logger.info("Employee Converter---> Employee to DTO Converter");
