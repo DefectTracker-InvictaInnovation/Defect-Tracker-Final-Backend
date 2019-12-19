@@ -3,6 +3,8 @@ package com.sgic.internal.defecttracker.defectservice.entities;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Table(schema = "defectservices", name = "submodule")
 public class SubModule {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long subModuleId;
 	private String subModuleName;
 
