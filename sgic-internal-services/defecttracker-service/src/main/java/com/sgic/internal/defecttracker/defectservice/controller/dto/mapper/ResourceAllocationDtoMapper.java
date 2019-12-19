@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.sgic.internal.defecttracker.defectservice.controller.dto.converter.ResourceAllocationConverter;
+import com.sgic.internal.defecttracker.defectservice.controller.dto.ProjectRoleAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ResourceAllocationDto;
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 import com.sgic.internal.defecttracker.defectservice.services.ResourceAllocationService;
 
@@ -83,8 +85,21 @@ public class ResourceAllocationDtoMapper {
 	@SuppressWarnings("static-access")
 	public List<ResourceAllocationDto> getResourceAllocationByprojectId(Long projectId) {
 		List<ResourceAllocation> resourceAllocation =resourceAllocationService.getByprojectId(projectId);
-		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoListWIthRole(resourceAllocation);
+		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceAllocation);
 
 	}
 
+	public List<ResourceAllocationDto> getAllDevelopersAndQaforMapper() {
+		logger.info("Resource Allaction Mapper --- Successfully Listed Resource Allocation --- ");
+		List<ResourceAllocation> resourceList = resourceAllocationService.getAllResourceAllocationOnlyDevAndQA();
+		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceList);
+	}
+
+	
+	
+//	public List<ProjectRoleAllocationDto> getAllDevelopersAndQaforMapper() {
+//		logger.info("Project Role Allaction Mapper --- Successfully Listed Project Role Allocation --- ");
+//		List<ProjectRoleAllocation> roleList = resourceAllocationService.getAllRoleAllocationOnlyDevAndQA();
+//		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceList);
+//	}
 }

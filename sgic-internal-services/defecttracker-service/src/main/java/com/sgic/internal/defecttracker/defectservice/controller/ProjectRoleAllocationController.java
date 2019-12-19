@@ -147,10 +147,6 @@ public class ProjectRoleAllocationController {
 		return new ResponseEntity<>(projectRoleAllocationMapper.getRoleByProject(resourceId), HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/getseandqaOnly")
-	public ResponseEntity<List<ProjectRoleAllocationDto>> getAllDevelopersAndQa() {
-		logger.info("Project Role Allocation Controller -> GetProjectRole");
-		return new ResponseEntity<>(projectRoleAllocationMapper.getAllDevelopersAndQaforMapper(), HttpStatus.OK);
-	}
+	
 
 }

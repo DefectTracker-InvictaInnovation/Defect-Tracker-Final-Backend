@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import com.sgic.internal.defecttracker.defectservice.controller.dto.ProjectRoleAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ResourceAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.mapper.ResourceAllocationDtoMapper;
 import com.sgic.internal.defecttracker.defectservice.entities.Employee;
@@ -208,6 +210,13 @@ public class ResourceAllocationController {
 		} catch (Exception ex) {
 		}
 		return null;
+	}
+	
+	
+	@GetMapping(value = "/getseandqaOnly")
+	public ResponseEntity<List<ResourceAllocationDto>> getAllDevelopersAndQa() {
+		logger.info("Resource Allocation Controller -> GetProjectRole");
+		return new ResponseEntity<>(resourceAllocationDtoMapper.getAllDevelopersAndQaforMapper(), HttpStatus.OK);
 	}
 
 }

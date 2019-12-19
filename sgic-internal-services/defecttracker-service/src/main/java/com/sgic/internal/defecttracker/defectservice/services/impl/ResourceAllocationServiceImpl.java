@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 import com.sgic.internal.defecttracker.defectservice.repositories.ResourceAllocationRepository;
 import com.sgic.internal.defecttracker.defectservice.services.ResourceAllocationService;
@@ -259,8 +260,13 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 	}
 
 	@Override
-	public List<ResourceAllocation> getByprojectId(Long projectId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ResourceAllocation> getAllResourceAllocationOnlyDevAndQA() {
+		return resourceAllocationRepository.findQaAndDev();
 	}
+	
+//	@Override
+//	public List<ProjectRoleAllocation> getAllRoleAllocationOnlyDevAndQA() {
+//		return resourceAllocationRepository.findQaAndDev();
+//	}
+
 }

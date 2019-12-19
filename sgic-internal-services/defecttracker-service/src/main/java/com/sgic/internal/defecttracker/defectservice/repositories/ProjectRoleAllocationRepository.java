@@ -13,7 +13,7 @@ import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocat
 public interface ProjectRoleAllocationRepository extends JpaRepository<ProjectRoleAllocation, Long> {
 
 	ProjectRoleAllocation findProjectRoleAllocationByprojectroleId(Long projectroleId);
-	
+
 	@Transactional
 	@Modifying
 	@Query(value = "DELETE FROM ProjectRoleAllocation WHERE projectrole_id =:projectroleId")
@@ -23,9 +23,5 @@ public interface ProjectRoleAllocationRepository extends JpaRepository<ProjectRo
 	@Modifying
 	@Query(value = "from ProjectRoleAllocation where resource_id=:resourceId")
 	List<ProjectRoleAllocation> getResourceById(@Param("resourceId") Long resourceId);
-	
-	
-	String fetchAllQaAndDev = "select * from resource_allocation where resource_id in (select resource_id from assign_role where role_id in (select role_id from role where role_name!=PM and role_name!=HR ))";
-	@Query(value = fetchAllQaAndDev, nativeQuery = true)
-	List<ProjectRoleAllocation> findQaAndDev();
+
 }
