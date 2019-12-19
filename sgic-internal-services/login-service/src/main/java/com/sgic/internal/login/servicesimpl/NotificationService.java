@@ -1,4 +1,4 @@
-package com.sgic.internal.employee.services.impl;
+package com.sgic.internal.login.servicesimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NotificationService {
-	
+
 	@SuppressWarnings("unused")
 	private JavaMailSender javaMailSender;
 	
@@ -21,7 +21,7 @@ public class NotificationService {
 		
 		//Send Mail
 		
-//		SimpleMailMessage mail = new SimpleMailMessage();
+//		cc
 //		mail.setTo(employee.getEmail());
 //		mail.setSubject("Hello "+employee.getFirstname()+" this your password :"+employee.getName());
 //		mail.setText("This is a cool email notification");

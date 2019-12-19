@@ -236,7 +236,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public long countDeveloperby(String designationName) {
-		return employeeRepository.findByDesignationName(designationName);
+	public long countDeveloperby(String designationname) {
+		return employeeRepository.countByDesignationName(designationname);
 	}
+
+	@Override
+	public List<Employee> getByDesignationName(String designationname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+//	@Override
+//	// Find By Employee Designation
+//	public List<Employee> getByDesignationName(String designationName) {
+//		try {
+//			logger.info("Successfully Get Employee By Designation");
+//			return employeeRepository.;
+//		} catch (Exception ex) {
+//			logger.error("Employee Service Imp:--> Error" + ex.getMessage());
+//		}
+//		return null;
+//	}
 }

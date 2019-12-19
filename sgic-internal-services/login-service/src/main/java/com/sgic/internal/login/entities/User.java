@@ -51,7 +51,7 @@ public class User{
     private String email;
 
     @NotBlank
-    @Size(min=6, max = 100)
+    @Size(min=3, max = 100)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

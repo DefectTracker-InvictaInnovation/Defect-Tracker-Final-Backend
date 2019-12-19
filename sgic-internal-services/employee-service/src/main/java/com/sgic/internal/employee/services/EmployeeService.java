@@ -26,6 +26,9 @@ public interface EmployeeService {
 
 	// Method for Getting One Employee Record by Email
 	public List<Employee> getByDesignation(Long designationid);
+	
+	// Method for Getting One Employee Record by Email
+	public List<Employee> getByDesignationName(String designationname);
 
 	// Method for Update Employee
 	public Employee updateEmployee(Employee employee);

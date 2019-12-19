@@ -13,8 +13,6 @@ import com.sgic.internal.employee.services.impl.NotificationService;
 @RestController
 public class EmailController {
 
-	
-	
 	@Autowired
 	private NotificationService notificationService;
 	

@@ -13,6 +13,7 @@ public class EmployeeDTO {
 	private int availability =100;
 	private boolean bench;
 	private String profilePicPath;
+	private String password;
 
 	public EmployeeDTO() {
 		super();
@@ -20,6 +21,14 @@ public class EmployeeDTO {
 
 	public EmployeeDTO(String string, String string2, String string3, String string4) {
 		
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	// Initialize Designation DTO Getter Setter

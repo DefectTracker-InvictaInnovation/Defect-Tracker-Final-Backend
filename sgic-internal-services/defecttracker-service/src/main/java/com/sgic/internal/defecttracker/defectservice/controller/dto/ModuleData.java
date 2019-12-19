@@ -8,19 +8,19 @@ import com.sgic.internal.defecttracker.defectservice.entities.SubModule;
 
 @Component
 public class ModuleData {
-	private String moduleId;
+	private Long moduleId;
 	private String moduleName;
-	private String projectid;
+	private Long projectId;
 	private String projectName;
 //	private String subModuleId;
 //	private String subModuleName;
 	private List<SubModule> subModule;
 	
-	public ModuleData(String moduleId, String moduleName, String projectid, String projectName ) {
+	public ModuleData(Long moduleId, String moduleName, Long projectId, String projectName ) {
 		super();
 		this.moduleId = moduleId;
 		this.moduleName = moduleName;
-		this.projectid = projectid;
+		this.projectId = projectId;
 		this.projectName =  projectName;
 	}
 
@@ -28,16 +28,18 @@ public class ModuleData {
 	}
 
 	// getters setters for module DTO
-	public String getModuleId() {
-		return moduleId;
-	}
-
-	public void setModuleId(String moduleId) {
-		this.moduleId = moduleId;
-	}
+	
 
 	public String getModuleName() {
 		return moduleName;
+	}
+
+	public Long getModuleId() {
+		return moduleId;
+	}
+
+	public void setModuleId(Long moduleId) {
+		this.moduleId = moduleId;
 	}
 
 	public void setModuleName(String moduleName) {
@@ -63,16 +65,20 @@ public class ModuleData {
 //	}
 
 //	// getters setters for project id
-	public String getProjectid() {
-		return projectid;
-	}
-
-	public void setProjectid(String projectid) {
-		this.projectid = projectid;
-	}
+	
 
 	public String getProjectName() {
 		return projectName;
+	}
+
+	
+
+	public Long getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
 	}
 
 	public void setProjectName(String projectName) {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TypeConfigDto {
 	
 	private Long typeId;
-	private String projectId;
+	private Long projectId;
 	private ArrayList<String> typeList;
 	
 	public Long getTypeId() {
@@ -20,12 +20,13 @@ public class TypeConfigDto {
 	public void setTypeList(ArrayList<String> typeList) {
 		this.typeList = typeList;
 	}
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
+	
 	
 	
 }

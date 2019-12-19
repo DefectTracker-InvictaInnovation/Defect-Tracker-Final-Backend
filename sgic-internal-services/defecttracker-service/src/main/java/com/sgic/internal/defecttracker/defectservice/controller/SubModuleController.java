@@ -53,14 +53,14 @@ public class SubModuleController {
 
 	// Get Mapping For Get Sub Module By Id
 	@GetMapping("/getSubModuleById/{subModuleId}")
-	public ResponseEntity<SubModuleData> getSubModuleById(@PathVariable(name="subModuleId") String subModuleId) {
+	public ResponseEntity<SubModuleData> getSubModuleById(@PathVariable(name="subModuleId") Long subModuleId) {
 		logger.info("Sub Moduleare get by Id ");
 		return new ResponseEntity<>(subModuleDataMapper.getBySubModuleId(subModuleId), HttpStatus.OK);
 	}
 
 	// Delete Mapping For SubModule
 	@DeleteMapping("deleteSubModuleById/{subModuleId}")
-	public void  deleteSubModuleById(@PathVariable String subModuleId) {
+	public void  deleteSubModuleById(@PathVariable Long subModuleId) {
 		logger.info("SubModule are delete by Id ");
 		  subModuleDataMapper.deleteSubModuleById(subModuleId);
 	}
@@ -68,7 +68,7 @@ public class SubModuleController {
 
 	// Put Mapping For SubModule
 	@PutMapping("/updateSubModule/{submoduleId}")
-	public ResponseEntity<String> updateSubModule(@PathVariable(name = "submoduleId") String submoduleId,
+	public ResponseEntity<String> updateSubModule(@PathVariable(name = "submoduleId") Long submoduleId,
 			@RequestBody SubModuleData submoduleDto) {
 		logger.info("SubModulecontroller -> updatedmodule");
 		if (subModuleDataMapper.UpdateSubModule(submoduleId, submoduleDto) != null)

@@ -17,6 +17,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,6 +41,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eureka.common.security.JwtConfig;
+
 import com.sgic.internal.login.entities.ConfirmationToken;
 import com.sgic.internal.login.entities.Email;
 import com.sgic.internal.login.entities.Role;
@@ -55,6 +57,7 @@ import com.sgic.internal.login.response.JwtResponse;
 import com.sgic.internal.login.response.ResponseMessage;
 import com.sgic.internal.login.securityjwt.JwtProvider;
 import com.sgic.internal.login.services.CurrentUser;
+import com.sgic.internal.login.servicesimpl.NotificationService;
 import com.sgic.internal.login.servicesimpl.UserDetailsServiceImpl;
 import com.sgic.internal.login.servicesimpl.UserPrinciple;
 import com.sgic.internal.login.servicesimpl.UserSummary;
@@ -84,6 +87,9 @@ public class LoginController {
 
 	@Autowired
 	UserDetailsServiceImpl userDetailsServiceImpl;
+
+@Autowired
+NotificationService notificationService;
 
 	@Autowired
 	private ConfirmationTokenRepository confirmationTokenRepository;
@@ -121,9 +127,30 @@ public class LoginController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUpForm signUpRequest) {
+		Email email = new Email();
+		
+		email.setEmail(signUpRequest.getEmail());
+		email.setSubject("Username & Password");
+		email.setText("This is your password:" + signUpRequest.getPassword()+"&&"+"This is your Username:" + signUpRequest.getUsername());
+		
+		
+//		notificationService.sendNotofication(email);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<Email> entity = new HttpEntity<Email>(email, headers);
+		System.out.println("yes");
+		if(signUpRequest.getRole().equalsIgnoreCase("HR")) {
+		ResponseEntity<?> obj = restTemplate.exchange("http://localhost:8084/employeeservice/sendmail",
+				HttpMethod.POST, entity, Email.class);
+		
+
+		System.out.println("obj" + obj);
+		
+		}
 		System.out.println("fffffffffffffffffffffffffffffffffffffff :" + signUpRequest.getEmail()
-				+ signUpRequest.getLastname() + signUpRequest.getName() + signUpRequest.getPassword()
-				+ signUpRequest.getRole() + signUpRequest.getUsername());
+				+ signUpRequest.getLastname() + signUpRequest.getName() + signUpRequest.getPassword() + signUpRequest.getUsername());
+//				+ signUpRequest.getRole() + 
 
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
@@ -138,7 +165,7 @@ public class LoginController {
 		// Creating user's account
 		User user = new User(signUpRequest.getName(), signUpRequest.getLastname(), signUpRequest.getUsername(),
 				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
-
+		
 		String strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
@@ -193,6 +220,22 @@ public class LoginController {
 
 		user.setRoles(roles);
 		userRepository.save(user);
+		
+		Email email2 = new Email();
+		email2.setEmail(user.getEmail());
+		email2.setSubject("UserName & Password");
+		email2.setText(
+				"This is your userName -" + " " + user.getUsername()+ "\n" + "This is your Password -" + " " + signUpRequest.getPassword());
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<Email> entity = new HttpEntity<Email>(email2, headers);
+		System.out.println("wwwwwwwwwwwwwww"+ " " + email2.getEmail() + email2.getText());
+
+		RestTemplate restTemplate = new RestTemplate();
+		Email result = restTemplate.postForObject("http://localhost:8084/employeeservice/sendmail", email2, Email.class);
+
+		System.out.println(result);
 
 		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 	}

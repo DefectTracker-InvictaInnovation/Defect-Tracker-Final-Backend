@@ -9,8 +9,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.sgic.internal.login.entities.Role;
 import com.sgic.internal.login.entities.User;
 import com.sgic.internal.login.repositories.ConfirmationTokenRepository;
+import com.sgic.internal.login.repositories.RoleRepository;
 import com.sgic.internal.login.repositories.UserRepository;
 
 @Service
@@ -18,6 +21,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	RoleRepository roleRepository;
 	
 	@Autowired 
 	ConfirmationTokenRepository comfirmationTokenRepository;

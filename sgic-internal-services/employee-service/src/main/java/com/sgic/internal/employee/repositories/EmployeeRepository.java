@@ -2,7 +2,6 @@ package com.sgic.internal.employee.repositories;
 
 import java.util.List;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,14 +26,18 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	// Find Employee By Name
 	@Query(value = "from Employee where name = :name")
 	List<Employee> findByName(String name);
-	
+
 	// Find Employee By DesignationId
 	@Query("SELECT COUNT(designationid) FROM Employee WHERE designationid=:designationid")
 	Long getDeveloperCount(Long designationid);
-	
+
 	// Find Employee By Designation Name
 	@Query("SELECT designationid FROM Designation WHERE designationname=:designationName")
-	Long findByDesignationName(String designationName);
+	Long countByDesignationName(String designationName);
+	
+	String fetchAllSubjectId = "SELECT e.name FROM employee e WHERE e.designationid in (SELECT designationid from designation d where d.designationname=:designationname)";
+	@Query(value = fetchAllSubjectId, nativeQuery = true)
+	<T> List<T> getAllByDesignationName(String designationname);	
 
 	// Find Employee By Bench
 	@Transactional
@@ -51,8 +54,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	@Transactional
 	@Modifying(clearAutomatically = true)
 	@Query("UPDATE Employee e SET e.availability=:availablenow where e.empId = :empId")
-	void updateAvailability(@Param("availablenow") int availablenow, @Param("empId") Long empId );
-		
-	
-		
+	void updateAvailability(@Param("availablenow") int availablenow, @Param("empId") Long empId);
+
 }

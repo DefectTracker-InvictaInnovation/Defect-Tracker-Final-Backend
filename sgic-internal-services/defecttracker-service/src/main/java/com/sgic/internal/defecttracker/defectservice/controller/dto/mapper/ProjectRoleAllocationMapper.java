@@ -59,4 +59,7 @@ public class ProjectRoleAllocationMapper {
 		List<ProjectRoleAllocation> namelist = projectRoleAllocationService.getroleByProject(resourceId);
 		return projectRoleAllocationConverter.ProjectRoleAllocationToProjectRoleAllocationDtoList(namelist);
 	}
+	
+	
+	
 }

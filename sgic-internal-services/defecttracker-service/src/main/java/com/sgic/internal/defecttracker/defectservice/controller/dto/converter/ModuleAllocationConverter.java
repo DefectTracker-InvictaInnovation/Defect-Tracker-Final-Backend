@@ -1,19 +1,18 @@
 package com.sgic.internal.defecttracker.defectservice.controller.dto.converter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ModuleAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.entities.Employee;
 import com.sgic.internal.defecttracker.defectservice.entities.Module;
 import com.sgic.internal.defecttracker.defectservice.entities.ModuleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
-import com.sgic.internal.defecttracker.defectservice.entities.SubModule;
 
 @Service
 public class ModuleAllocationConverter {

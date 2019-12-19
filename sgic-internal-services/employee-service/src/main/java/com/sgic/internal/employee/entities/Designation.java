@@ -10,13 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(schema = "employeeservice", name = "designation")
+@Table(schema = "employeeservice", name = "designation" ,uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "designationname" }) })
 public class Designation implements Serializable {
 
 	@Id

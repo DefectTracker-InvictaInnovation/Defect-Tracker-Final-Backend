@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.sgic.internal.defecttracker.defectservice.controller.dto.FileData;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.converter.FileDTOConverter;
-import com.sgic.internal.defecttracker.defectservice.entities.Comments;
 import com.sgic.internal.defecttracker.defectservice.entities.DBFile;
 import com.sgic.internal.defecttracker.defectservice.services.FileStorageService;
 
