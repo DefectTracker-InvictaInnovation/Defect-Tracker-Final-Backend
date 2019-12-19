@@ -227,9 +227,9 @@ NotificationService notificationService;
 		email2.setText(
 				"This is your userName -" + " " + user.getUsername()+ "\n" + "This is your Password -" + " " + signUpRequest.getPassword());
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<Email> entity = new HttpEntity<Email>(email2, headers);
+		HttpHeaders headers1 = new HttpHeaders();
+		headers1.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<Email> entity1 = new HttpEntity<Email>(email2, headers1);
 		System.out.println("wwwwwwwwwwwwwww"+ " " + email2.getEmail() + email2.getText());
 
 		RestTemplate restTemplate = new RestTemplate();
