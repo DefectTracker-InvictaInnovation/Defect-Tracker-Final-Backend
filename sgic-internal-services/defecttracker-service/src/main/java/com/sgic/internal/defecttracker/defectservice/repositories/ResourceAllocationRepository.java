@@ -32,7 +32,7 @@ public interface ResourceAllocationRepository extends JpaRepository<ResourceAllo
 	@Query(value = "from ResourceAllocation where project_id=:projectId")
 	List<ResourceAllocation> findResourceAllocationByprojectId(Long projectId);
 	
-	String fetchAllQaAndDev = "select * from defectservices.resource_allocation where emp_id in (select emp_id from employeeservice.employee where designationid in (select designationid from employeeservice.designation where designationname!=\"PM\" and designationname!=\"HR\" ))";
+	String fetchAllQaAndDev = "select * from defectservices.resource_allocation where emp_id in (select emp_id from employeeservice.employee where availability>0 and designationid in (select designationid from employeeservice.designation where designationname!=\"PM\" and designationname!=\"HR\" ))";
 	@Query(value = fetchAllQaAndDev, nativeQuery = true)
 	List<ResourceAllocation> findQaAndDev();
 
