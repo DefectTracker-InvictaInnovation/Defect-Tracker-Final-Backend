@@ -15,14 +15,16 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Table(schema = "defectservices", name = "submodule")
 public class SubModule {
 	@Id
-	private String subModuleId;
+	private Long subModuleId;
 	private String subModuleName;
 
-	public String getSubModuleId() {
+	
+
+	public Long getSubModuleId() {
 		return subModuleId;
 	}
 
-	public void setSubModuleId(String subModuleId) {
+	public void setSubModuleId(Long subModuleId) {
 		this.subModuleId = subModuleId;
 	}
 

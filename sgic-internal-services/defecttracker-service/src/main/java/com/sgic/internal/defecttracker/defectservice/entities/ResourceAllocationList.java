@@ -13,7 +13,7 @@ public class ResourceAllocationList {
 	private boolean bench;
 	private Long designationid;
 	private String designationname;
-	private String projectId;
+	private Long projectId;
 	private String projectName;
 
 	public Long getResourceId() {
@@ -104,12 +104,12 @@ public class ResourceAllocationList {
 //		this.employeeObj = employeeObj;
 //	}
 
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
+	public void setProjectId(Long long1) {
+		this.projectId = long1;
 	}
 
 	public String getProjectName() {

@@ -201,7 +201,7 @@ public class ResourceAllocationController {
 	}
 	
 	@GetMapping("/getprojectbyresource/{projectId}") 
-	public List<ResourceAllocationDto> getByprojectId(@PathVariable(name = "projectId") String projectId) {
+	public List<ResourceAllocationDto> getByprojectId(@PathVariable(name = "projectId") Long projectId) {
 		try {
 			return resourceAllocationDtoMapper.getResourceAllocationByprojectId(projectId);
 			

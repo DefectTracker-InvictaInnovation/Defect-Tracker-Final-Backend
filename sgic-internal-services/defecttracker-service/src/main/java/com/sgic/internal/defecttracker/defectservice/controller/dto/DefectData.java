@@ -11,8 +11,8 @@ public class DefectData {
 	private Long defectId;
 	private String defectAbbr;
 	private String abbre = "private String projectAbbr";
-	private String projectId;
-	private String moduleId;
+	private Long projectId;
+	private Long moduleId;
 	private String priority;
 	private String severity;
 	private String type;
@@ -51,16 +51,18 @@ public class DefectData {
 	public void setAbbre(String abbre) {
 		this.abbre = abbre;
 	}
-	public String getProjectId() {
+	
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
-	public String getModuleId() {
+	
+	public Long getModuleId() {
 		return moduleId;
 	}
-	public void setModuleId(String moduleId) {
+	public void setModuleId(Long moduleId) {
 		this.moduleId = moduleId;
 	}
 	public String getDefectDescription() {

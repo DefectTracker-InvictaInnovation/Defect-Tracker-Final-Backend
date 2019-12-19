@@ -21,7 +21,7 @@ public class SubModuleServiceImpl implements SubModuleService {
 	}
 
 	@Override
-	public boolean isSubModuleAlreadyExists(String subModuleId) {
+	public boolean isSubModuleAlreadyExists(Long subModuleId) {
 		return subModuleRepository.existsById(subModuleId);
 	}
 
@@ -31,13 +31,13 @@ public class SubModuleServiceImpl implements SubModuleService {
 	}
 
 	@Override
-	public void deleteSubModuleById(String subModuleId) {
+	public void deleteSubModuleById(Long subModuleId) {
 		subModuleRepository.deleteById(subModuleId);
 
 	}
 
 	@Override
-	public SubModule updateSubModule(String subModuleId, SubModule subModule) {
+	public SubModule updateSubModule(Long subModuleId, SubModule subModule) {
 		if (subModuleRepository.getOne(subModuleId) != null) {
 			subModule.setSubModuleId(subModuleId);
 			subModuleRepository.save(subModule);
@@ -46,7 +46,7 @@ public class SubModuleServiceImpl implements SubModuleService {
 	}
 
 	@Override
-	public SubModule getBySubModuleId(String subModuleId) {
+	public SubModule getBySubModuleId(Long subModuleId) {
 		return subModuleRepository.getBySubModuleId(subModuleId);
 	}
 

@@ -67,14 +67,14 @@ public class DefectServiceImpl implements DefectService {
 
 	//get all defects by particular project id
 	@Override
-	public List<Defect> getProjectById(String projectId) {
+	public List<Defect> getProjectById(Long projectId) {
 		logger.info("DefectService started -> getProjectById");
 		return defectRepository.getByProjectId(projectId);
 	}
 
 	//get all defects by particular module id
 	@Override
-	public List<Defect> getModuleById(String moduleId) {
+	public List<Defect> getModuleById(Long moduleId) {
 		logger.info("DefectService started -> getModuleById");
 		return defectRepository.getByModuleId(moduleId);
 	}
@@ -167,47 +167,43 @@ public class DefectServiceImpl implements DefectService {
 	}
 
 	//Hari matrix
-	@Override
-	public Long getStatusNew( String status,String projectId) {
-		Long totNew = defectRepository.countByStatus(status,  projectId);
-		return totNew;
-	}
+	
 
-	@Override
-	public Long getStatusOpen(String status,String projectId) {
-		Long totOpen = defectRepository.countByStatus(status,  projectId);
-		return totOpen;
-	}
+//	@Override
+//	public Long getStatusOpen(String status,Long projectId) {
+//		Long totOpen = defectRepository.countByStatus(status,  projectId);
+//		return totOpen;
+//	}
 
-	@Override
-	public Long getStatusClose(String status,String projectId) {
-		Long totClose= defectRepository.countByStatus(status,  projectId);
-		return totClose;
-	}
+//	@Override
+//	public Long getStatusClose(String status,Long projectId) {
+//		Long totClose= defectRepository.countByStatus(status,  projectId);
+//		return totClose;
+//	}
 
-	@Override
-	public Long getStatusRejected(String status,String projectId) {
-		Long totRej= defectRepository.countByStatus(status,  projectId);
-		return totRej;
-	}
+//	@Override
+//	public Long getStatusRejected(String status,Long projectId) {
+//		Long totRej= defectRepository.countByStatus(status,  projectId);
+//		return totRej;
+//	}
 
-	@Override
-	public Long getStatusDefered(String status,String projectId) {
-		Long totDefered= defectRepository.countByStatus(status,  projectId);
-		return totDefered;
-	}
+//	@Override
+//	public Long getStatusDefered(String status,Long projectId) {
+//		Long totDefered= defectRepository.countByStatus(status,  projectId);
+//		return totDefered;
+//	}
 
-	@Override
-	public Long getStatusReOpen(String status,String projectId) {
-		Long totReOpen= defectRepository.countByStatus(status,  projectId);
-		return totReOpen;
-	}
+//	@Override
+//	public Long getStatusReOpen(String status,Long projectId) {
+//		Long totReOpen= defectRepository.countByStatus(status,  projectId);
+//		return totReOpen;
+//	}
 
-	@Override
-	public Long getStatusFixed(String status,String projectId) {
-		Long totFixed= defectRepository.countByStatus(status,  projectId);
-		return totFixed;
-	}
+//	@Override
+//	public Long getStatusFixed(String status,Long projectId) {
+//		Long totFixed= defectRepository.countByStatus(status,  projectId);
+//		return totFixed;
+//	}
 
 	@Override
 	public long countTotalDefect() {
@@ -223,6 +219,48 @@ public class DefectServiceImpl implements DefectService {
 	@Override
 	public List<Defect> getByDefectAbbre(String defectAbbr) {
 		return defectRepository.getByDefectAbbr(defectAbbr);
+	}
+
+	@Override
+	public Long getStatusNew(Long projectId, String status) {
+		// TODO Auto-generated method stub
+		return defectRepository.countByStatus(status, projectId);
+	}
+
+	@Override
+	public Long getStatusOpen(Long projectId, String status) {
+		// TODO Auto-generated method stub
+		return defectRepository.countByStatus(status,  projectId);
+	}
+
+	@Override
+	public Long getStatusClose(Long projectId, String status) {
+		// TODO Auto-generated method stub
+		return defectRepository.countByStatus(status,  projectId);
+	}
+
+	@Override
+	public Long getStatusRejected(Long projectId, String status) {
+		// TODO Auto-generated method stub
+		return defectRepository.countByStatus(status,  projectId);
+	}
+
+	@Override
+	public Long getStatusDefered(Long projectId, String status) {
+		// TODO Auto-generated method stub
+		return defectRepository.countByStatus(status,  projectId);
+	}
+
+	@Override
+	public Long getStatusReOpen(Long projectId, String status) {
+		// TODO Auto-generated method stub
+		return defectRepository.countByStatus(status,  projectId);
+	}
+
+	@Override
+	public Long getStatusFixed(Long projectId, String status) {
+		// TODO Auto-generated method stub
+		return defectRepository.countByStatus(status,  projectId);
 	}
 
 	

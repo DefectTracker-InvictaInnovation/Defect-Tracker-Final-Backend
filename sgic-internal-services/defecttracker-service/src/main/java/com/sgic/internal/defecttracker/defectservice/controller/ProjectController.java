@@ -60,21 +60,21 @@ public class ProjectController {
 
 	// Get Mapping For Get Project By Id
 	@GetMapping("/getProjectById/{projectId}")
-	public ResponseEntity<ProjectDto> getProjectById(@PathVariable String projectId) {
+	public ResponseEntity<ProjectDto> getProjectById(@PathVariable Long projectId) {
 		logger.info("Projects are get by id ");
 		return new ResponseEntity<>(projectDtoMapper.getByProjectId(projectId), HttpStatus.OK);
 	}
 	
 	// Delete Mapping For Project
 	@DeleteMapping("deleteById/{projectId}")
-	public void deleteById(@PathVariable String projectId) {
+	public void deleteById(@PathVariable Long projectId) {
 		logger.info("Projects are delete by id ");
 		projectDtoMapper.deleteById(projectId);
 	}
 	
 	// Put Mapping For Project
 	@PutMapping("/updateProject/{projectid}")
-	public ResponseEntity<String> updateProject(@Valid @PathVariable(name = "projectid") String projectid,
+	public ResponseEntity<String> updateProject(@Valid @PathVariable(name = "projectid") Long projectid,
 			@RequestBody ProjectDto projectDto) {
 		logger.info("Projectcontroller -> updatedproject");
 		if (projectDtoMapper.UpdateProject(projectid, projectDto) != null)
@@ -127,7 +127,7 @@ public class ProjectController {
 	
 	// Get Mapping For Get all Project
 		@GetMapping(value = "/getallproject")
-		public ResponseEntity<List<ProjectDto>> sortListProjectInfo(String projectId) {
+		public ResponseEntity<List<ProjectDto>> sortListProjectInfo(Long projectId) {
 			logger.info("Project are listed ");
 			return new ResponseEntity<>(projectDtoMapper.getAllSortProjectInfo(projectId), HttpStatus.OK);
 		}

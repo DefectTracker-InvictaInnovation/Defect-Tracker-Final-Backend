@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class SeverityConfigDto {
 	
 	private Long severityId;
-	private String projectId;
+	private Long projectId;
 	private ArrayList<String> severityList;
 	
 	public Long getSeverityId() {
@@ -20,12 +20,13 @@ public class SeverityConfigDto {
 	public void setSeverityList(ArrayList<String> severityList) {
 		this.severityList = severityList;
 	}
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
+	
 	
 	
 }

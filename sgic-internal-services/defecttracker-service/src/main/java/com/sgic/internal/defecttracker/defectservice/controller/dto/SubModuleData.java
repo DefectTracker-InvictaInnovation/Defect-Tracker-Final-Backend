@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SubModuleData {
 
-	private String subModuleId;
+	private Long subModuleId;
 	private String subModuleName;
-	private String moduleId;
-	private String projectId;
+	private Long moduleId;
+	private Long projectId;
 
 	
-	public SubModuleData(String subModuleId, String subModuleName) {
+	public SubModuleData(Long subModuleId, String subModuleName) {
 		super();
 		this.subModuleId = subModuleId;
 		this.subModuleName = subModuleName;
@@ -21,23 +21,26 @@ public class SubModuleData {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getModuleId() {
+	
+
+	public Long getSubModuleId() {
+		return subModuleId;
+	}
+
+	public void setSubModuleId(Long subModuleId) {
+		this.subModuleId = subModuleId;
+	}
+
+	public Long getModuleId() {
 		return moduleId;
 	}
 
-	public void setModuleId(String moduleId) {
+	public void setModuleId(Long moduleId) {
 		this.moduleId = moduleId;
 	}
 
 	// Getters and Setters for Sub Module
-	public String getSubModuleId() {
-		return subModuleId;
-	}
-
-	public void setSubModuleId(String subModuleId) {
-		this.subModuleId = subModuleId;
-	}
-
+	
 
 	public String getSubModuleName() {
 		return subModuleName;
@@ -47,13 +50,15 @@ public class SubModuleData {
 		this.subModuleName = subModuleName;
 	}
 
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
+
+	
 
 
 }

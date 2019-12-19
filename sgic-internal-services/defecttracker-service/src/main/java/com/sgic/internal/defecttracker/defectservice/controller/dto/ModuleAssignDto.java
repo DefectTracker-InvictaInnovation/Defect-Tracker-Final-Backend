@@ -4,10 +4,14 @@ import java.util.List;
 
 public class ModuleAssignDto {
 	private Long id;
-	private String projectId;
-	private List<String> submoduleId;
+	private Long projectId;
+	private List<Long> submoduleId;
+//	private Long submoduleId;
+	
+	
+	
 	private String submoduleName;
-	private String moduleId;
+	private Long moduleId;
 	private String moduleName;
 	private Long projectroleId;
 	
@@ -23,32 +27,42 @@ public class ModuleAssignDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getProjectId() {
+	
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
+
+	
 	public String getSubmoduleName() {
 		return submoduleName;
 	}
 	public void setSubmoduleName(String submoduleName) {
 		this.submoduleName = submoduleName;
 	}
-	public String getModuleId() {
+	
+	
+	
+	
+//	public List<Long> getSubmoduleId() {
+//		return submoduleId;
+//	}
+//	public void setSubmoduleId(List<Long> submoduleId) {
+//		this.submoduleId = submoduleId;
+//	}
+	public Long getModuleId() {
 		return moduleId;
 	}
-	public List<String> getSubModuleId() {
-		return submoduleId;
-	}
 	
-	public List<String> getSubmoduleId() {
+	public List<Long> getSubmoduleId() {
 		return submoduleId;
 	}
-	public void setSubmoduleId(List<String> submoduleId) {
+	public void setSubmoduleId(List<Long> submoduleId) {
 		this.submoduleId = submoduleId;
 	}
-	public void setModuleId(String moduleId) {
+	public void setModuleId(Long moduleId) {
 		this.moduleId = moduleId;
 	}
 	public String getModuleName() {

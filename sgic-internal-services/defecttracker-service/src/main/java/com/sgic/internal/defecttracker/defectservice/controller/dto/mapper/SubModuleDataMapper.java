@@ -25,7 +25,7 @@ public class SubModuleDataMapper {
 		return subModuleService.createSubModule(subModule);
 	}
 
-	public SubModuleData getBySubModuleId(String subModuleId) {
+	public SubModuleData getBySubModuleId(Long subModuleId) {
 		SubModule subModule = subModuleService.getBySubModuleId(subModuleId);
 		return SubModuleConverter.subModuleToSubModuleData(subModule);
 	}
@@ -36,13 +36,13 @@ public class SubModuleDataMapper {
 
 	}
 
-	public SubModule UpdateSubModule(String subModuleId, SubModuleData subModuleData) {
+	public SubModule UpdateSubModule(Long subModuleId, SubModuleData subModuleData) {
 		SubModule subModule = SubModuleConverter.subModuleDataToSubModule(subModuleData);
 		return subModuleService.updateSubModule(subModuleId, subModule);
 
 	}
 
-	public void deleteSubModuleById(String subModuleId) {
+	public void deleteSubModuleById(Long subModuleId) {
 		subModuleService.deleteSubModuleById(subModuleId);
 		
 	}

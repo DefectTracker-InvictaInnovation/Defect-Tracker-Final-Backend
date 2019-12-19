@@ -8,15 +8,15 @@ public interface SubModuleService {
 
 	public SubModule createSubModule(SubModule subModule);
 
-	public boolean isSubModuleAlreadyExists(String subModuleId);
+	public boolean isSubModuleAlreadyExists(Long subModuleId);
 
 	public List<SubModule> getallDetails();
 
-	public void deleteSubModuleById(String subModuleId);
+	public void deleteSubModuleById(Long subModuleId);
 
-	public SubModule updateSubModule(String subModuleId, SubModule subModule);
+	public SubModule updateSubModule(Long subModuleId, SubModule subModule);
 
-	public SubModule getBySubModuleId(String subModuleId);
+	public SubModule getBySubModuleId(Long subModuleId);
 	
 	public List<SubModule> getByabbre(String abbre);
 
