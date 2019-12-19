@@ -41,6 +41,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eureka.common.security.JwtConfig;
+
 import com.sgic.internal.login.entities.ConfirmationToken;
 import com.sgic.internal.login.entities.Email;
 import com.sgic.internal.login.entities.Role;
@@ -56,6 +57,7 @@ import com.sgic.internal.login.response.JwtResponse;
 import com.sgic.internal.login.response.ResponseMessage;
 import com.sgic.internal.login.securityjwt.JwtProvider;
 import com.sgic.internal.login.services.CurrentUser;
+import com.sgic.internal.login.servicesimpl.NotificationService;
 import com.sgic.internal.login.servicesimpl.UserDetailsServiceImpl;
 import com.sgic.internal.login.servicesimpl.UserPrinciple;
 import com.sgic.internal.login.servicesimpl.UserSummary;
@@ -85,6 +87,9 @@ public class LoginController {
 
 	@Autowired
 	UserDetailsServiceImpl userDetailsServiceImpl;
+
+@Autowired
+NotificationService notificationService;
 
 	@Autowired
 	private ConfirmationTokenRepository confirmationTokenRepository;
@@ -122,6 +127,27 @@ public class LoginController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUpForm signUpRequest) {
+		Email email = new Email();
+		
+		email.setEmail(signUpRequest.getEmail());
+		email.setSubject("Username & Password");
+		email.setText("This is your password:" + signUpRequest.getPassword()+"&&"+"This is your Username:" + signUpRequest.getUsername());
+		
+		
+//		notificationService.sendNotofication(email);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<Email> entity = new HttpEntity<Email>(email, headers);
+		System.out.println("yes");
+		if(signUpRequest.getRole().equalsIgnoreCase("HR")) {
+		ResponseEntity<?> obj = restTemplate.exchange("http://localhost:8084/employeeservice/sendmail",
+				HttpMethod.POST, entity, Email.class);
+		
+
+		System.out.println("obj" + obj);
+		
+		}
 		System.out.println("fffffffffffffffffffffffffffffffffffffff :" + signUpRequest.getEmail()
 				+ signUpRequest.getLastname() + signUpRequest.getName() + signUpRequest.getPassword() + signUpRequest.getUsername());
 //				+ signUpRequest.getRole() + 

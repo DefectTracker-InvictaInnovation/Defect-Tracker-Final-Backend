@@ -18,8 +18,8 @@ public interface DefectService {
 	public Defect deleteDefect(Long defectId);   
 	public List<Defect> getAllDefects(); 
 	
-	public List<Defect> getProjectById (String projectId); 
-	public List<Defect> getModuleById (String moduleId); 
+	public List<Defect> getProjectById (Long projectId); 
+	public List<Defect> getModuleById (Long moduleId); 
 	public List<Defect> getDefectByAvailableIn (String availableIn);
 	public List<Defect> getDefectByFoundIn (String foundIn);
 	public List<Defect> getDefectByFixedIn (String fixedIn);
@@ -36,12 +36,12 @@ public interface DefectService {
 	public long countTotalDefect();
 	
 	 //Hari
-	public Long getStatusNew( String projectId,String status); 
-	public Long getStatusOpen(String projectId,String status);
-	public Long getStatusClose(String projectId,String status);
-	public Long getStatusRejected(String projectId,String status);
-	public Long getStatusDefered(String projectId,String status);
-	public Long getStatusReOpen(String projectId,String status);
-	public Long getStatusFixed(String projectId,String status);
+	public Long getStatusNew( Long projectId,String status); 
+	public Long getStatusOpen(Long projectId,String status);
+	public Long getStatusClose(Long projectId,String status);
+	public Long getStatusRejected(Long projectId,String status);
+	public Long getStatusDefered(Long projectId,String status);
+	public Long getStatusReOpen(Long projectId,String status);
+	public Long getStatusFixed(Long projectId,String status);
 	     	
 }

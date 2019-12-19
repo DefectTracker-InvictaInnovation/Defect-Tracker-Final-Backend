@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.PasswordGeneratorText;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ProjectRoleAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.entities.Employee;
-import com.sgic.internal.defecttracker.defectservice.entities.Module;
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.Role;

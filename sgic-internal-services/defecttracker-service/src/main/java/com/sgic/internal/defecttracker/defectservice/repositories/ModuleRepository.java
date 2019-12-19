@@ -9,17 +9,17 @@ import org.springframework.data.repository.query.Param;
 import com.sgic.internal.defecttracker.defectservice.entities.Module;
 import com.sgic.internal.defecttracker.defectservice.entities.Project;
 
-public interface ModuleRepository extends JpaRepository<Module, String> {
+public interface ModuleRepository extends JpaRepository<Module, Long> {
 
-	Module getByModuleId(String moduleId);
+	Module getByModuleId(Long moduleId);
 
 //	@Query("SELECT  m.moduleName, s.subModuleName FROM Module m INNER JOIN SubModule s ON m.id = s.module.id WHERE m.project.id =:projectid")
 
 	@Query(value = "FROM Module WHERE module_name= :moduleName")
 	List<Module> getBymoduleName(@Param("moduleName") String moduleName);
 //
-	@Query("SELECT m FROM Module m WHERE m.project.id =:projectid")
-	List<Module> getByProjectId(@Param("projectid") String projectid);
+	@Query("SELECT m FROM Module m WHERE m.project.id =:projectId")
+	List<Module> getByProjectId(@Param("projectId") Long projectId);
 	
 //	List<Object> getSubmodule(@Param("projectid") String projectid);
 	
@@ -39,5 +39,5 @@ public interface ModuleRepository extends JpaRepository<Module, String> {
 
 //	List<Module> getBySubModuleId(String subModuleId);
 	
-	Module findAllmoduleByModuleId(String moduleId);
+	Module findAllmoduleByModuleId(Long moduleId);
 }

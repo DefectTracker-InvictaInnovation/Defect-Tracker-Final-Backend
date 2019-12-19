@@ -9,27 +9,27 @@ public interface ModuleService {
 
 	public Module createModule(Module module);
 
-	public boolean isModuleAlreadyExists(String moduleId);
+	public boolean isModuleAlreadyExists(Long moduleId);
 
-	public List<Module> getallModuleDetails(String projectid);
+	public List<Module> getallModuleDetails(Long projectid);
 
-	public void deleteById(String moduleId);
+	public void deleteById(Long moduleId);
 
-	public Module updateModule(String moduleId, Module module);
+	public Module updateModule(Long moduleId, Module module);
 
-	Module getByModuleId(String moduleId);
+	Module getByModuleId(Long moduleId);
 
 	public List<Module> getBymoduleName(String moduleName);
 
 	// service for get project id
-	public List<Module> getByprojectId(String projectid);
+	public List<Module> getByprojectId(Long projectid);
 
-	List<Module> getallDetails(String moduleId);
+	List<Module> getallDetails(Long moduleId);
 	
-	Module getByallModuleId(String moduleId);
+	Module getByallModuleId(Long moduleId);
 	
 	public Module moduleUpdate(Module module);
 
 	// List Module Info
-	public List<Module> findByModuleOrderByModuleIdDesc(String moduleId);
+	public List<Module> findByModuleOrderByModuleIdDesc(Long moduleId);
 }

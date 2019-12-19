@@ -6,7 +6,6 @@ import java.util.List;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ModuleData;
 import com.sgic.internal.defecttracker.defectservice.entities.Module;
 import com.sgic.internal.defecttracker.defectservice.entities.Project;
-import com.sgic.internal.defecttracker.defectservice.entities.SubModule;
 
 
 public class ModuleConverter {
@@ -16,7 +15,7 @@ public class ModuleConverter {
 		if (module != null) {
 			moduleData.setModuleId(module.getModuleId());
 			moduleData.setModuleName(module.getModuleName());
-            moduleData.setProjectid(module.getProject().getProjectId());
+            moduleData.setProjectId(module.getProject().getProjectId());
             moduleData.setProjectName(module.getProject().getProjectName());
             moduleData.setSubModule(module.getSubModule());
 			return moduleData;
@@ -31,7 +30,7 @@ public class ModuleConverter {
 		
 		// project constructor
 		Project project = new Project();
-		project.setProjectId(moduleData.getProjectid());
+		project.setProjectId(moduleData.getProjectId());
 		project.setProjectName(moduleData.getProjectName());
 		module.setProject(project);
 		
@@ -48,7 +47,7 @@ public class ModuleConverter {
 				moduleData.setModuleId(module.getModuleId());
 				moduleData.setModuleName(module.getModuleName());
 				
-				moduleData.setProjectid(module.getProject().getProjectId());
+				moduleData.setProjectId(module.getProject().getProjectId());
 				moduleData.setProjectName(module.getProject().getProjectName());
 				
 				moduleData.setSubModule(module.getSubModule());

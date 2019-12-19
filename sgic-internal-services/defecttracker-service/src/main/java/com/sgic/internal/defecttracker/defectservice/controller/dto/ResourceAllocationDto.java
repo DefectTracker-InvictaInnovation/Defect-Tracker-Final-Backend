@@ -1,5 +1,7 @@
 package com.sgic.internal.defecttracker.defectservice.controller.dto;
 
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
+
 public class ResourceAllocationDto {
 
 	
@@ -7,7 +9,7 @@ public class ResourceAllocationDto {
 	private Long resourceId;
 //	private String resourceName;
 	private String projectName;
-	private String projectId;
+	private Long projectId;
 	private Long empId;
 	private String employeeid;
 	private String name;
@@ -17,6 +19,10 @@ public class ResourceAllocationDto {
 	private boolean bench;
 	private Long designationid;
 	private String designationname;
+	
+	private Long projectRoleId;
+	private Long roleId;
+	private String roleName;
 	
 	
 //	<--- Resource Allocation DTO--- Getter Setter --->
@@ -32,10 +38,10 @@ public class ResourceAllocationDto {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	public String getProjectId() {
+	public Long getProjectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 	public Long getEmpId() {
@@ -91,5 +97,27 @@ public class ResourceAllocationDto {
 	}
 	public void setDesignationname(String designationname) {
 		this.designationname = designationname;
-	}	
+	}
+	public Long getProjectRoleId() {
+		return projectRoleId;
+	}
+	public void setProjectRoleId(Long projectRoleId) {
+		this.projectRoleId = projectRoleId;
+	}
+	public Long getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Long long1) {
+		this.roleId = long1;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	
+	
+	
 }

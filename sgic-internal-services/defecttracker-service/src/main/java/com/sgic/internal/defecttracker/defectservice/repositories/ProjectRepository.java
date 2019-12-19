@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 import com.sgic.internal.defecttracker.defectservice.entities.Project;
 
-public interface ProjectRepository  extends JpaRepository<Project, String> {
-	Project getByprojectId(String projectid);
+public interface ProjectRepository  extends JpaRepository<Project, Long> {
+	Project getByprojectId(Long projectId);
 
 	// Find Project By Project_Name Method
 	@Query(value = "FROM Project WHERE project_name= :projectName")
@@ -30,4 +30,8 @@ public interface ProjectRepository  extends JpaRepository<Project, String> {
 	// Find Project By Project_Status Method
 	@Query(value = "FROM Project WHERE status= :status")
 	List<Project> getBystatus(String status);
+
+	void deleteById(Long projectId);
+
+	boolean existsById(Long projectId);
 }

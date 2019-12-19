@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 
 public interface ResourceAllocationRepository extends JpaRepository<ResourceAllocation, Long> {
@@ -28,6 +30,10 @@ public interface ResourceAllocationRepository extends JpaRepository<ResourceAllo
 	Long AvailabileSum(Long empId);
 	
 	@Query(value = "from ResourceAllocation where project_id=:projectId")
-	List<ResourceAllocation> findResourceAllocationByprojectId(String projectId);
+	List<ResourceAllocation> findResourceAllocationByprojectId(Long projectId);
+	
+	String fetchAllQaAndDev = "select * from defectservices.resource_allocation where emp_id in (select emp_id from employeeservice.employee where availability>0 and designationid in (select designationid from employeeservice.designation where designationname!=\"PM\" and designationname!=\"HR\" ))";
+	@Query(value = fetchAllQaAndDev, nativeQuery = true)
+	List<ResourceAllocation> findQaAndDev();
 
 }

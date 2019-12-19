@@ -17,7 +17,7 @@ public class ModuleDataMapper {
 	public  ModuleService moduleService;
 	
 	
-	public List<ModuleData>getAllModuleForMapper(String projectid){
+	public List<ModuleData>getAllModuleForMapper(Long projectid){
 		List<Module>moduleList =moduleService.getallModuleDetails(projectid);
 		return ModuleConverter.moduleToModuleDataList(moduleList);
 	}
@@ -30,8 +30,8 @@ public class ModuleDataMapper {
 //		List<Module>moduleList =moduleService.getSubmodule(projectid);
 //		return ModuleConverter.moduleToModuleData(moduleList);
 //	}
-	public ModuleData getByModuleId(String moduleId) {
-		Module module = moduleService.getByModuleId(moduleId);
+	public ModuleData getByModuleId(Long ModuleId) {
+		Module module = moduleService.getByModuleId(ModuleId);
 		return ModuleConverter.moduleToModuleData(module);
 		
 	}
@@ -41,12 +41,12 @@ public class ModuleDataMapper {
 		return ModuleConverter.moduleToModuleDataList(module);
 	}
 	
-	public Module UpdateModule(String moduleId, ModuleData moduleData) {
+	public Module UpdateModule(Long moduleId, ModuleData moduleData) {
 		Module module = ModuleConverter.moduleDataToModule(moduleData);
 		return moduleService.updateModule(moduleId, module);
 	}
 	
-	public ModuleData deleteById(String moduleId) {
+	public ModuleData deleteById(Long moduleId) {
 		moduleService.deleteById(moduleId);
 		return null;
 	}
@@ -54,7 +54,7 @@ public class ModuleDataMapper {
 
 	@SuppressWarnings("static-access")
 	// List Method for ModuleMapper
-	public List<ModuleData> getAllSortModuleInfo(String moduleId) {
+	public List<ModuleData> getAllSortModuleInfo(Long moduleId) {
 		List<Module> sortModuleList = moduleService.findByModuleOrderByModuleIdDesc(moduleId);
 		return ModuleConverter.moduleToModuleDataList(sortModuleList);
 

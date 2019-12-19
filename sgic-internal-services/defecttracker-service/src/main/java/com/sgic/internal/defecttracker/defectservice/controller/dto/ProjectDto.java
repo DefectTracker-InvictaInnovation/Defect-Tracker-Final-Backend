@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProjectDto {
 	
-	private String projectId;
+	private Long projectId;
 
 	private String projectName;
 	
@@ -23,11 +23,15 @@ public class ProjectDto {
 
 	private String status;
 
-	public String getProjectId() {
+	
+
+	
+
+	public Long getProjectId() {
 		return projectId;
 	}
 
-	public void setProjectId(String projectId) {
+	public void setProjectId(Long projectId) {
 		this.projectId = projectId;
 	}
 

@@ -183,20 +183,7 @@ public class EmployeeController {
 
 	}
 	
-	/* Author:DalistaaA 19-06-2019 */
-	// Get Employee By Designation
-//	@GetMapping("/getdesignationName/{designationname}")
-//	public List<EmployeeDTO> getByDesignationName(@RequestParam(value="designationname") String designationname) {
-//		try {
-//			logger.info("Employee Controller :-> GetDesignation");
-//			return employeeDTOMapper.getEmployeeByDesignationName(designationname);
-//		} catch (Exception ex) {
-//			logger.error("Employee Controller :-> Error" + ex.getMessage());
-//		}
-//		return null;
-//
-//	}
-
+	
 	/* Author:KeerthanaR 23-06-2019 */
 	// Get Employee By Name
 	@GetMapping("/getname/{name}")

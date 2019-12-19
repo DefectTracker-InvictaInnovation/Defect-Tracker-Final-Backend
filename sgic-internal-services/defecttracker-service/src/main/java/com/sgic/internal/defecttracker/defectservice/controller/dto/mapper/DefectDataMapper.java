@@ -73,7 +73,7 @@ public class DefectDataMapper {
 	
 	//get all defects by particular project id
 	@SuppressWarnings("static-access")
-	public List<DefectData> getAllDefectByProjectById(String projectId){
+	public List<DefectData> getAllDefectByProjectById(Long projectId){
 		logger.info("DefectData Mapper -> Defect List by productId");
 		List<Defect> defectProject=defectService.getProjectById(projectId);
 		return defectDataConverter.defectEntityToDefectData(defectProject);
@@ -81,7 +81,7 @@ public class DefectDataMapper {
 	
 	//get all defects by particular module id
 	@SuppressWarnings("static-access")
-	public List<DefectData> getAllDefectByModuleById(String moduleId){
+	public List<DefectData> getAllDefectByModuleById(Long moduleId){
 		logger.info("DefectData Mapper -> Defect List by moduleId");
 		List<Defect> defectModule=defectService.getModuleById(moduleId);
 		return defectDataConverter.defectEntityToDefectData(defectModule);
