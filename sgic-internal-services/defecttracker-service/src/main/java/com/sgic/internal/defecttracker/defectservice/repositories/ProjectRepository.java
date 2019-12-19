@@ -31,7 +31,7 @@ public interface ProjectRepository  extends JpaRepository<Project, Long> {
 	@Query(value = "FROM Project WHERE status= :status")
 	List<Project> getBystatus(String status);
 
-//	void deleteById(Long projectId);
+    //void deleteById(Long projectId);
 
 	boolean existsById(Long projectId);
 }

@@ -15,7 +15,9 @@ public interface DesignationService {
 	//	Get Designation by Designation Id Method
 	public Designation getBydesignationid(Long designationid);
 	
-	public List<Employee> getBydesignationname(String designationname);
+	public List<Employee> getBydesignationname();
+	
+	public List<Employee> getByQaAndDevelopersOnly();
 
 	//  Delete Designation by Designation Id Method
 	public void deleteDesignationBydesignationid(Long designationid);
