@@ -32,7 +32,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKr43af9ap4edm43mmtq01oddj6` (`username`),
   UNIQUE KEY `UK6dotkott2kjsp8vw4d0m25fb7` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Admin@gmail.com','Admin','Admin','$2a$10$fPM/pzWR4IBDoPQ5UPLYWOtKhAh2.ssQc.ck1UJt7kPTwS.BoddZa','Admin');
+INSERT INTO `users` VALUES (1,'Admin@gmail.com','Admin','Admin','$2a$10$fPM/pzWR4IBDoPQ5UPLYWOtKhAh2.ssQc.ck1UJt7kPTwS.BoddZa','Admin'),(2,'Pmadmin@gmail.com','Pmadmin','Pmadmin','$2a$10$HoPY.3zTgL87HAknPty3neHfOCwMPXXLheXOPlPpdCp999T94cY/u','Pmadmin');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-19 13:44:50
+-- Dump completed on 2019-12-19 14:04:05
