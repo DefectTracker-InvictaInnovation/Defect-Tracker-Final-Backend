@@ -16,9 +16,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 import com.sgic.internal.defecttracker.defectservice.repositories.ResourceAllocationRepository;
 import com.sgic.internal.defecttracker.defectservice.services.ResourceAllocationService;
+import com.sgic.internal.defecttracker.defectservice.util.AppConstants;
 
 @Service
 public class ResourceAllocationServiceImpl implements ResourceAllocationService {
@@ -83,12 +85,12 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 					}
 					HttpEntity<Object> response = new HttpEntity<Object>(resourceAllocation, headers1);
 
-					restTemplate.exchange("http://localhost:8084/employeeservice/update/availability/" + eid,
+					restTemplate.exchange(AppConstants.UPDATE_AVAILABILITY_IN_EMPLOYEE_URL + eid,
 							HttpMethod.PUT, response, String.class);
 					logger.info("ResourceAllocationServiceImpl-->successfully update availability");
 
 					// <----- Update Bench ----->
-					String url = "http://localhost:8084/employeeservice/getempolyeebyid/" + eid;
+					String url = AppConstants.EMPLOYEE_GET_BY_ID_URL + eid;
 					String resp = restTemplate.getForObject(url, String.class);
 
 					HttpHeaders headers = new HttpHeaders();
@@ -98,7 +100,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 					HttpEntity<String> respo = new HttpEntity<String>(resp, headers);
 
 					ResponseEntity<String> obj = restTemplate.exchange(
-							"http://localhost:8084/employeeservice/update/benchtrue/" + eid, HttpMethod.PUT, respo,
+							AppConstants.UPDATE_BENCHTRUE_IN_EMPLOYEE_URL + eid, HttpMethod.PUT, respo,
 							String.class);
 					logger.info("ResourceAllocationServiceImpl-->successfully updates Bench");
 
@@ -196,7 +198,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 
 			System.out.println("Employee id" + eid);
 
-			String url = "http://localhost:8084/employeeservice/getempolyeebyid/" + eid;
+			String url = AppConstants.EMPLOYEE_GET_BY_ID_URL + eid;
 			String resp = restTemplate.getForObject(url, String.class);
 
 			System.out.println("resp " + resp);
@@ -207,7 +209,7 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 			headers.setContentType(MediaType.APPLICATION_JSON);
 			HttpEntity<String> respo = new HttpEntity<String>(resp, headers);
 
-			restTemplate.exchange("http://localhost:8084/employeeservice/update/benchfalse/" + eid, HttpMethod.PUT,
+			restTemplate.exchange(AppConstants.UPDATE_BENCHFALSE_IN_EMPLOYEE_URL + eid, HttpMethod.PUT,
 					respo, String.class);
 
 			logger.info("ResourceAllocationServiceImpl-->successfully Updated Bench");
@@ -234,13 +236,18 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 	}
 
 	@Override
-	public List<ResourceAllocation> getByprojectId(Long projectId) {
-//		return resourceAllocationRepository.findResourceAllocationByprojectId(projectId);
-		List<ResourceAllocation> resourceAllocationq = resourceAllocationRepository
+	public List<ResourceAllocation> getByprojectId(Long projectId) { 
+				return resourceAllocationRepository.findResourceAllocationByprojectId(projectId);
+				
+		
+		
+		
+	/*	
+		//		return resourceAllocationRepository.findResourceAllocationByprojectId(projectId);
+		List<ResourceAllocation> resourceAllocationList = resourceAllocationRepository
 				.findResourceAllocationByprojectId(projectId);
-//		List<String> col = new ArrayList<>();
 		List<ResourceAllocation> resp = null;
-		for (ResourceAllocation res : resourceAllocationq) {
+		for (ResourceAllocation res : resourceAllocationList) {
 			System.out.println("resourceId " + res.getResourceId());
 			String url = "http://localhost:8081/defectservices/getRoleByResourceId/" + res.getResourceId();
 			resp = restTemplate.getForObject(url, List.class);
@@ -249,11 +256,21 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 		}
 		// System.out.println("resout" +resp);
 		return resp;
-
+		
+		*/
 	}
 
 	@Override
 	public List<ResourceAllocation> getResourceByprojectId(Long projectId) {
 		return resourceAllocationRepository.getByProjectId(projectId);
 	}
+	public List<ResourceAllocation> getAllResourceAllocationOnlyDevAndQA() {
+		return resourceAllocationRepository.findQaAndDev();
+	}
+	
+//	@Override
+//	public List<ProjectRoleAllocation> getAllRoleAllocationOnlyDevAndQA() {
+//		return resourceAllocationRepository.findQaAndDev();
+//	}
+
 }

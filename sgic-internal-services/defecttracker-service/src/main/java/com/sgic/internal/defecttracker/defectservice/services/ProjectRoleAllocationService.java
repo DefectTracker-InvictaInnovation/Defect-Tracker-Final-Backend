@@ -12,6 +12,7 @@ public interface ProjectRoleAllocationService {
 	public ProjectRoleAllocation getByprojectRoleId(Long projectroleId);
 
 	public ProjectRoleAllocation deleteProjectByprojectId(Long projectroleId);
-	
+
 	public List<ProjectRoleAllocation> getroleByProject(Long resourceId);
+
 }

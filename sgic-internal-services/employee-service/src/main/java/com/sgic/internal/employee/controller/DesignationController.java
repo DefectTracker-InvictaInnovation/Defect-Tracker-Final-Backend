@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.sgic.internal.employee.dto.DesignationDTO;
 import com.sgic.internal.employee.dto.mapper.DesignationDTOMapper;
 import com.sgic.internal.employee.entities.Designation;
+import com.sgic.internal.employee.entities.Employee;
+import com.sgic.internal.employee.services.DesignationService;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -23,6 +26,9 @@ public class DesignationController {
 
 	@Autowired
 	private DesignationDTOMapper designationDTOMapper;
+	
+	@Autowired
+	private DesignationService designationService;
 
 	private static Logger logger = LogManager.getLogger(DesignationDTOMapper.class);
 
@@ -46,6 +52,20 @@ public class DesignationController {
 	public ResponseEntity<Designation> getDesignationById(@PathVariable(name = "designationid") Long designationid) {
 		logger.info("Designation Controller --> Get by Designation by Id");
 		return new ResponseEntity<>(designationDTOMapper.getBydesignationid(designationid), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getpm")
+	// <---Get Designation By Designation ID--->
+	public ResponseEntity<List<Employee>> getByName() {
+		logger.info("Designation Controller --> Get by Designation by Id");
+		return new ResponseEntity<>(designationService.getBydesignationname(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getothers")
+	// <---Get Designation By Designation ID--->
+	public ResponseEntity<List<Employee>> getOtherAllEmployees() {
+		logger.info("Designation Controller --> Get by Designation by Id");
+		return new ResponseEntity<>(designationService.getByQaAndDevelopersOnly(), HttpStatus.OK);
 	}
 
 }

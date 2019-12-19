@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.sgic.internal.employee.dto.EmployeeDTO;
 import com.sgic.internal.employee.dto.converter.EmployeeConverter;
 import com.sgic.internal.employee.entities.Employee;
@@ -109,6 +110,15 @@ public class EmployeeDTOMapper {
 	public List<EmployeeDTO> getEmployeeByDesignation(Long designationid) {
 		logger.info("Successfully Get Employee By Designation");
 		List<Employee> employee = employeeService.getByDesignation(designationid);
+		return employeeConverter.EmployeeToEmployeeDTO(employee);
+
+	}
+	
+	@SuppressWarnings("static-access")
+	// Find Employee By Designation
+	public List<EmployeeDTO> getEmployeeByDesignationName(String designationname) {
+		logger.info("Successfully Get Employee By Designation");
+		List<Employee> employee = employeeService.getByDesignationName(designationname);
 		return employeeConverter.EmployeeToEmployeeDTO(employee);
 
 	}

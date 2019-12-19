@@ -6,8 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.sgic.internal.employee.dto.DesignationDTO;
 import com.sgic.internal.employee.dto.converter.DesignationConverter;
+import com.sgic.internal.employee.dto.converter.EmployeeConverter;
 import com.sgic.internal.employee.entities.Designation;
 import com.sgic.internal.employee.repositories.DesignationRepository;
 import com.sgic.internal.employee.services.DesignationService;
@@ -19,6 +21,10 @@ public class DesignationDTOMapper {
 	// Designation Service
 	private DesignationService designationService;
 
+	@Autowired
+	// Designation DTO converter
+	private EmployeeConverter employeeConverter;
+	
 	@Autowired
 	// Designation DTO converter
 	private DesignationConverter designationConverter;
@@ -46,6 +52,11 @@ public class DesignationDTOMapper {
 		logger.info("Successfully get Designation by Id");
 		return designationService.getBydesignationid(designationid);
 	}
+	
+//	public Employee getBydesignationName(String designationname) {
+//		logger.info("Successfully get Designation by Id");
+//		return (Employee) designationService.getBydesignationname(designationname);
+//	}
 
 	// Delete Method for DesignationDTOMapper
 	public DesignationDTO deleteBydesignationid(Long designationid) {
@@ -53,4 +64,11 @@ public class DesignationDTOMapper {
 		designationService.deleteDesignationBydesignationid(designationid);
 		return null;
 	}
+	
+//	public List<EmployeeDTO> getEmployeeByDesignation(String designationname) {
+//		logger.info("Successfully Get Employee By Designation");
+//		List<Employee> employee = designationService.getBydesignationname(designationname);
+//		return employeeConverter.EmployeeToEmployeeDTO(employee);
+//
+//	}
 }

@@ -15,6 +15,8 @@ public class ResourceAllocationList {
 	private String designationname;
 	private Long projectId;
 	private String projectName;
+	
+	private Employee employeeObj;
 
 	public Long getResourceId() {
 		return resourceId;
@@ -96,13 +98,13 @@ public class ResourceAllocationList {
 		this.empId = empId;
 	}
 
-//	public Employee getEmployeeObj() {
-//		return employeeObj;
-//	}
-//
-//	public void setEmployeeObj(Employee employeeObj) {
-//		this.employeeObj = employeeObj;
-//	}
+	public Employee getEmployeeObj() {
+		return employeeObj;
+	}
+
+	public void setEmployeeObj(Employee employeeObj) {
+		this.employeeObj = employeeObj;
+	}
 
 	public Long getProjectId() {
 		return projectId;

@@ -12,10 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.sgic.internal.defecttracker.defectservice.controller.dto.ProjectRoleAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ResourceAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.entities.Employee;
 import com.sgic.internal.defecttracker.defectservice.entities.Project;
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
+import com.sgic.internal.defecttracker.defectservice.util.AppConstants;
 
 @Service
 public class ResourceAllocationConverter {
@@ -49,8 +52,8 @@ public class ResourceAllocationConverter {
 			RestTemplate restTemplate = new RestTemplate();
 			
 			ResponseEntity<Employee> response = restTemplate.exchange(
-                    //<--Get EMPLOYEE SERVICE EMPLOYEE LIST BY EMPLOYEE ID-->
-					"http://localhost:8084/employeeservice/getempolyeebyid/" + resourceAllocation.getEmpId(),
+                   //<--Get EMPLOYEE SERVICE EMPLOYEE LIST BY EMPLOYEE ID-->
+					AppConstants.EMPLOYEE_GET_BY_ID_URL + resourceAllocation.getEmpId(),
 					HttpMethod.GET, null, new ParameterizedTypeReference<Employee>() {
 					});
 			Employee employee = response.getBody();
@@ -110,7 +113,7 @@ public class ResourceAllocationConverter {
 				
 				ResponseEntity<Employee> response = restTemplate.exchange(
 	                    //<--Get EMPLOYEE SERVICE EMPLOYEE LIST BY EMPLOYEE ID-->
-						"http://localhost:8084/employeeservice/getempolyeebyid/" + resourceAllocation.getEmpId(),
+						AppConstants.EMPLOYEE_GET_BY_ID_URL + resourceAllocation.getEmpId(),
 						HttpMethod.GET, null, new ParameterizedTypeReference<Employee>() {
 						});
 				Employee employee = response.getBody();
@@ -156,4 +159,57 @@ public class ResourceAllocationConverter {
 		return null;
 
 	}
+	
+//	public static List<ResourceAllocationDto> ResourceAllocationToResourceAllocationDtoListWIthRole(
+//			List<ResourceAllocation> resourceAllocationList) {
+//		if (resourceAllocationList != null) {
+//			List<ResourceAllocationDto> ListresourceAllocationDto = new ArrayList<>();
+//			for (ResourceAllocation resourceAllocation : resourceAllocationList) {
+//				logger.info("Resource Allocation Converter--- successfully Converte List");
+//				ResourceAllocationDto resourceAllocationDto = new ResourceAllocationDto();
+//				resourceAllocationDto.setResourceId(resourceAllocation.getResourceId());
+//				resourceAllocationDto.setEmpId(resourceAllocation.getEmpId());
+//				resourceAllocationDto.setProjectId(resourceAllocation.getProject().getProjectId());
+//				resourceAllocationDto.setProjectName(resourceAllocation.getProject().getProjectName());
+//				
+//				RestTemplate restTemplate = new RestTemplate();				
+//				ResponseEntity<ProjectRoleAllocation> response = restTemplate.exchange(
+//	                    //<--Get EMPLOYEE SERVICE EMPLOYEE LIST BY EMPLOYEE ID-->
+//						"http://localhost:8081/defectservices/getRoleByResourceId/" + resourceAllocation.getResourceId(),
+//						HttpMethod.GET, null, new ParameterizedTypeReference<ProjectRoleAllocation>() {
+//						});
+//				ProjectRoleAllocation projectRoleAllocation = response.getBody();
+//				resourceAllocationDto.setProjectRoleId(projectRoleAllocation.getProjectroleId());
+//				resourceAllocationDto.setRoleId(projectRoleAllocation.getRoleAllocationList().getRoleId());
+//				resourceAllocationDto.setRoleName(projectRoleAllocation.getRoleAllocationList().getRoleName());
+//				
+//				
+//				ResponseEntity<Employee> response1 = restTemplate.exchange(
+//	                    //<--Get EMPLOYEE SERVICE EMPLOYEE LIST BY EMPLOYEE ID-->
+//						"http://localhost:8084/employeeservice/getempolyeebyid/" + resourceAllocation.getEmpId(),
+//						HttpMethod.GET, null, new ParameterizedTypeReference<Employee>() {
+//						});
+//				Employee employee = response1.getBody();
+//				resourceAllocationDto.setEmployeeid(employee.getEmployeeid());
+//				resourceAllocationDto.setName(employee.getName());
+//				resourceAllocationDto.setFirstname(employee.getFirstname());
+//				resourceAllocationDto.setEmail(employee.getEmail());
+//				resourceAllocationDto.setAvailability(employee.getAvailability());
+//				resourceAllocationDto.setBench(employee.isBench());
+//				resourceAllocationDto.setDesignationid(employee.getDesignationid());
+//				resourceAllocationDto.setDesignationname(employee.getDesignationname());
+//				
+//				ListresourceAllocationDto.add(resourceAllocationDto);
+//				
+//
+//			}
+//			System.out.println(ListresourceAllocationDto);
+//			return ListresourceAllocationDto;
+//			
+//		}
+//		return null;
+//
+//	}
+	
+	
 }

@@ -48,4 +48,6 @@ public class ProjectRoleAllocationServiceImpl implements ProjectRoleAllocationSe
 		return projectRoleAllocationRepository.getResourceById(projectroleId);
 	}
 
+	
+
 }

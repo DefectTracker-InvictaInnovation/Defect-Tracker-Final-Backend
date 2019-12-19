@@ -25,4 +25,5 @@ public class Email {
 		this.text = text;
 	}
 	
+	
 }

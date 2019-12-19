@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 
 public interface ResourceAllocationService {
@@ -31,6 +32,8 @@ public interface ResourceAllocationService {
 	public List<ResourceAllocation> getByprojectId(Long projectId);
 
 	List<ResourceAllocation> getResourceByprojectId(Long projectId);
+	
+	public List<ResourceAllocation> getAllResourceAllocationOnlyDevAndQA();
 	
 
 }
