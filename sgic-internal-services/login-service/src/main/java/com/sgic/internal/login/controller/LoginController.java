@@ -132,7 +132,7 @@ NotificationService notificationService;
 		
 		email.setEmail(signUpRequest.getEmail());
 		email.setSubject("Username & Password");
-		email.setText("This is your password:" + signUpRequest.getPassword()+"&&"+"This is your Username:" + signUpRequest.getUsername());
+		email.setText("This is your Username:" + signUpRequest.getUsername()+"&&"+"This is your password:" + signUpRequest.getPassword());
 		
 		
 //		notificationService.sendNotofication(email);

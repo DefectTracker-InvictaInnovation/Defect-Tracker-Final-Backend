@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: login
+-- Host: localhost    Database: defectservices
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
@@ -16,28 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `roles`
+-- Table structure for table `module`
 --
 
-DROP TABLE IF EXISTS `roles`;
+DROP TABLE IF EXISTS `module`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `roles` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_nb4h0p6txrmfc0xbrd1kglp9t` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `module` (
+  `module_id` bigint(20) NOT NULL,
+  `module_name` varchar(255) DEFAULT NULL,
+  `projectid` bigint(20) NOT NULL,
+  PRIMARY KEY (`module_id`),
+  KEY `FKkhb03ivihrrnfuaym4d230n0f` (`projectid`),
+  CONSTRAINT `FKkhb03ivihrrnfuaym4d230n0f` FOREIGN KEY (`projectid`) REFERENCES `project` (`project_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `roles`
+-- Dumping data for table `module`
 --
 
-LOCK TABLES `roles` WRITE;
-/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'ROLE_ADMIN'),(4,'ROLE_DEVELOPER'),(2,'ROLE_HR'),(3,'ROLE_PM'),(6,'ROLE_PRODUCT_ADMIN'),(5,'ROLE_QA'),(7,'ROLE_TECH_LEAD');
-/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+LOCK TABLES `module` WRITE;
+/*!40000 ALTER TABLE `module` DISABLE KEYS */;
+/*!40000 ALTER TABLE `module` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17 15:13:33
+-- Dump completed on 2019-12-19 13:44:43

@@ -261,6 +261,9 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 	}
 
 	@Override
+	public List<ResourceAllocation> getResourceByprojectId(Long projectId) {
+		return resourceAllocationRepository.getByProjectId(projectId);
+	}
 	public List<ResourceAllocation> getAllResourceAllocationOnlyDevAndQA() {
 		return resourceAllocationRepository.findQaAndDev();
 	}
