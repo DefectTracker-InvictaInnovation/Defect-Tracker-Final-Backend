@@ -112,6 +112,15 @@ public class EmployeeDTOMapper {
 		return employeeConverter.EmployeeToEmployeeDTO(employee);
 
 	}
+	
+	@SuppressWarnings("static-access")
+	// Find Employee By Designation
+	public List<EmployeeDTO> getEmployeeByDesignationName(String designationname) {
+		logger.info("Successfully Get Employee By Designation");
+		List<Employee> employee = employeeService.getByDesignationName(designationname);
+		return employeeConverter.EmployeeToEmployeeDTO(employee);
+
+	}
 
 	@SuppressWarnings("static-access")
 	// Find Employee By Name

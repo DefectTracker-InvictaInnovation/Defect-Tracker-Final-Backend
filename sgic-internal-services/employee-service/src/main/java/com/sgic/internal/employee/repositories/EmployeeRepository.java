@@ -32,9 +32,14 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	@Query("SELECT COUNT(designationid) FROM Employee WHERE designationid=:designationid")
 	Long getDeveloperCount(Long designationid);
 	
+//	// Find Employee By Designation Name
+//	@Query(value="SELECT * from employee inner join designation ON employee.designationid=designation.designationid WHERE designation.designationname=?1", nativeQuery=true)
+//	//@Query("from Employee INNER JOIN Designation ON Employee.designationid=Designation.designationid WHERE designationname=:designationName")
+//	List<Employee> findByDesignationName(String designationname);
+	
 	// Find Employee By Designation Name
 	@Query("SELECT designationid FROM Designation WHERE designationname=:designationName")
-	Long findByDesignationName(String designationName);
+	Long countByDesignationName(String designationName);
 
 	// Find Employee By Bench
 	@Transactional
