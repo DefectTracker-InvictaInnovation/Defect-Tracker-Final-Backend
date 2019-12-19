@@ -53,4 +53,9 @@ public class DesignationServiceImpl implements DesignationService {
 		return designationRepository.getEmployeeByDesigName();
 	}
 
+	@Override
+	public List<Employee> getByQaAndDevelopersOnly() {
+		return designationRepository.getQaAndDevelopers();
+	}
+
 }
