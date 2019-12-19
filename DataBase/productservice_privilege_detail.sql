@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: defectservices
+-- Host: localhost    Database: productservice
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
@@ -16,28 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `qaprivilege`
+-- Table structure for table `privilege_detail`
 --
 
-DROP TABLE IF EXISTS `qaprivilege`;
+DROP TABLE IF EXISTS `privilege_detail`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `qaprivilege` (
+CREATE TABLE `privilege_detail` (
   `id` bigint(20) NOT NULL,
-  `privilege_name` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `privilege_id` varchar(255) NOT NULL,
+  `role_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKlwuuo6le4mr4jtoylkfads6g7` (`privilege_id`),
+  KEY `FKg490uhhsai7m58q7fj3c2u13l` (`role_id`),
+  CONSTRAINT `FKg490uhhsai7m58q7fj3c2u13l` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
+  CONSTRAINT `FKlwuuo6le4mr4jtoylkfads6g7` FOREIGN KEY (`privilege_id`) REFERENCES `privilege` (`privilege_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `qaprivilege`
+-- Dumping data for table `privilege_detail`
 --
 
-LOCK TABLES `qaprivilege` WRITE;
-/*!40000 ALTER TABLE `qaprivilege` DISABLE KEYS */;
-INSERT INTO `qaprivilege` VALUES (97,'AddDefect','1'),(98,'EditDefect','0'),(99,'ManageDefect','1'),(100,'DefectDashboard','1'),(101,'AddModule','1'),(102,'DeleteDefect','0'),(103,'EditModule','0'),(104,'ManageModule','0'),(105,'AddSubModule','0'),(106,'EditSubModule','0'),(107,'ManageSubModule','0'),(108,'QADashboard','1'),(109,'QAPrivilage','0'),(142,'PMAddAllocation','0'),(143,'DeveloperDashboard','1'),(283,'CompanyAdministration','0'),(284,'ProductAdministration','0'),(286,'privilege','0'),(288,'CompanyDashboard','0'),(289,'ManageCompany','0'),(290,'ManageProject','0'),(291,'ProjectAllocation','0'),(292,'PMDashboard','0'),(293,'LookAndFeel','0'),(333,'GeneralConfiguration','0'),(334,'ProfileSetting','0');
-/*!40000 ALTER TABLE `qaprivilege` ENABLE KEYS */;
+LOCK TABLES `privilege_detail` WRITE;
+/*!40000 ALTER TABLE `privilege_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `privilege_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17 15:08:45
+-- Dump completed on 2019-12-19 13:44:39

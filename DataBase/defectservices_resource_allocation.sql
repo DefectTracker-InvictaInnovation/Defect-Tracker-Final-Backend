@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: login
+-- Host: localhost    Database: defectservices
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
@@ -16,30 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `confirmation_token`
+-- Table structure for table `resource_allocation`
 --
 
-DROP TABLE IF EXISTS `confirmation_token`;
+DROP TABLE IF EXISTS `resource_allocation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `confirmation_token` (
-  `token_id` bigint(20) NOT NULL,
-  `confirmation_token` varchar(255) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`token_id`),
-  KEY `FKah4p1rycwibwm6s9bsyeckq51` (`user_id`),
-  CONSTRAINT `FKah4p1rycwibwm6s9bsyeckq51` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+CREATE TABLE `resource_allocation` (
+  `resource_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `availability` int(11) NOT NULL,
+  `emp_id` bigint(20) DEFAULT NULL,
+  `project_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`resource_id`),
+  KEY `FKjhnuv0bf5ainfd9hi00tmhcta` (`project_id`),
+  CONSTRAINT `FKjhnuv0bf5ainfd9hi00tmhcta` FOREIGN KEY (`project_id`) REFERENCES `project` (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confirmation_token`
+-- Dumping data for table `resource_allocation`
 --
 
-LOCK TABLES `confirmation_token` WRITE;
-/*!40000 ALTER TABLE `confirmation_token` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confirmation_token` ENABLE KEYS */;
+LOCK TABLES `resource_allocation` WRITE;
+/*!40000 ALTER TABLE `resource_allocation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `resource_allocation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17 15:13:32
+-- Dump completed on 2019-12-19 13:44:41
