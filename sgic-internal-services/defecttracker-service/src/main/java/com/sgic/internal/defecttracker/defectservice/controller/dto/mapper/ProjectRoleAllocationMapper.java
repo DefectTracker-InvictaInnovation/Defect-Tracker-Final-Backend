@@ -33,9 +33,9 @@ public class ProjectRoleAllocationMapper {
 	
 	@SuppressWarnings("static-access")
 //	<--- Get List Method's Mapped  -->
-	public List<ProjectRoleAllocationDto> getAllRole() {
+	public List<ProjectRoleAllocationDto> getAllRole(Long projectroleId) {
 		logger.info("Project Role Allaction Mapper --- Successfully Listed Project Role Allocation --- ");
-		List<ProjectRoleAllocation> roleList = projectRoleAllocationService.getAllRoleAllocation();
+		List<ProjectRoleAllocation> roleList = projectRoleAllocationService.findByProjectRoleAllocationOrderByRoleAllocationIdDesc(projectroleId);
 		return projectRoleAllocationConverter.ProjectRoleAllocationToProjectRoleAllocationDtoList(roleList);
 	}
 
