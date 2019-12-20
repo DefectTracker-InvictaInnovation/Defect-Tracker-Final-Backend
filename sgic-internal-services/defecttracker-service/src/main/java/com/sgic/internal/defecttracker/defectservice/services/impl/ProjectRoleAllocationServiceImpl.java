@@ -3,6 +3,7 @@ package com.sgic.internal.defecttracker.defectservice.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
@@ -25,11 +26,6 @@ public class ProjectRoleAllocationServiceImpl implements ProjectRoleAllocationSe
 	}
 
 	@Override
-	public List<ProjectRoleAllocation> getAllRoleAllocation() {
-		return projectRoleAllocationRepository.findAll();
-	}
-
-	@Override
 	public ProjectRoleAllocation getByprojectRoleId(Long projectroleId) {
 		return projectRoleAllocationRepository.findProjectRoleAllocationByprojectroleId(projectroleId);
 	}
@@ -47,5 +43,13 @@ public class ProjectRoleAllocationServiceImpl implements ProjectRoleAllocationSe
 	public List<ProjectRoleAllocation> getroleByProject(Long projectroleId) {
 		return projectRoleAllocationRepository.getResourceById(projectroleId);
 	}
+
+
+	@Override
+	public List<ProjectRoleAllocation> findByProjectRoleAllocationOrderByRoleAllocationIdDesc(Long projectroleId) {
+		return projectRoleAllocationRepository.findAll(Sort.by(Sort.Direction.DESC, "projectroleId"));
+	}
+
+	
 
 }

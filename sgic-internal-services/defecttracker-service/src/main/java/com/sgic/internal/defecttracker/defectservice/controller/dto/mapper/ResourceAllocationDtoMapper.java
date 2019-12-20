@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.sgic.internal.defecttracker.defectservice.controller.dto.converter.ResourceAllocationConverter;
+import com.sgic.internal.defecttracker.defectservice.controller.dto.ProjectRoleAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ResourceAllocationDto;
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 import com.sgic.internal.defecttracker.defectservice.services.ResourceAllocationService;
 
@@ -86,5 +88,24 @@ public class ResourceAllocationDtoMapper {
 		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceAllocation);
 
 	}
+	
+	public List<ResourceAllocationDto> getByprojectId(Long projectId) {
+		List<ResourceAllocation> resourceAllocation =resourceAllocationService.getResourceByprojectId(projectId);
+		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceAllocation);
+
+	}
+
+	public List<ResourceAllocationDto> getAllDevelopersAndQaforMapper() {
+		logger.info("Resource Allaction Mapper --- Successfully Listed Resource Allocation --- ");
+		List<ResourceAllocation> resourceList = resourceAllocationService.getAllResourceAllocationOnlyDevAndQA();
+		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceList);
+	}
+	
+	public List<ResourceAllocationDto> getPmforMapper() {
+		logger.info("Resource Allaction Mapper --- Successfully Listed Resource Allocation --- ");
+		List<ResourceAllocation> resourceList = resourceAllocationService.getResourceAllocationforPm();
+		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceList);
+	}
+
 
 }

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: login
+-- Host: localhost    Database: employeeservice
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
@@ -16,30 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `confirmation_token`
+-- Table structure for table `designation`
 --
 
-DROP TABLE IF EXISTS `confirmation_token`;
+DROP TABLE IF EXISTS `designation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `confirmation_token` (
-  `token_id` bigint(20) NOT NULL,
-  `confirmation_token` varchar(255) DEFAULT NULL,
-  `created_date` datetime DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`token_id`),
-  KEY `FKah4p1rycwibwm6s9bsyeckq51` (`user_id`),
-  CONSTRAINT `FKah4p1rycwibwm6s9bsyeckq51` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+CREATE TABLE `designation` (
+  `designationid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `designationname` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`designationid`),
+  UNIQUE KEY `UKcx7pu372ineqn17vp66wxq9f4` (`designationname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `confirmation_token`
+-- Dumping data for table `designation`
 --
 
-LOCK TABLES `confirmation_token` WRITE;
-/*!40000 ALTER TABLE `confirmation_token` DISABLE KEYS */;
-/*!40000 ALTER TABLE `confirmation_token` ENABLE KEYS */;
+LOCK TABLES `designation` WRITE;
+/*!40000 ALTER TABLE `designation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `designation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17 15:13:32
+-- Dump completed on 2019-12-20 11:09:08

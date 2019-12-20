@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: login
+-- Host: localhost    Database: defectservices
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
@@ -16,30 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_roles`
+-- Table structure for table `comments`
 --
 
-DROP TABLE IF EXISTS `user_roles`;
+DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_roles` (
-  `user_id` bigint(20) NOT NULL,
-  `role_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`user_id`,`role_id`),
-  KEY `FKh8ciramu9cc9q3qcqiv4ue8a6` (`role_id`),
-  CONSTRAINT `FKh8ciramu9cc9q3qcqiv4ue8a6` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
-  CONSTRAINT `FKhfh9dx7w3ubf1co1vdev94g3f` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+CREATE TABLE `comments` (
+  `comment_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `commented_date` varchar(255) DEFAULT NULL,
+  `comments` varchar(255) DEFAULT NULL,
+  `defect_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`comment_id`),
+  KEY `FKmcnyns24gbureihq4hj8f1jst` (`defect_id`),
+  CONSTRAINT `FKmcnyns24gbureihq4hj8f1jst` FOREIGN KEY (`defect_id`) REFERENCES `defect` (`defect_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_roles`
+-- Dumping data for table `comments`
 --
 
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (9,1),(10,2),(11,3);
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17 15:13:33
+-- Dump completed on 2019-12-20 15:26:41

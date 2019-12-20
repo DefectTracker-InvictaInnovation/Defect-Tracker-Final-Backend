@@ -56,6 +56,7 @@ import com.sgic.internal.login.servicesimpl.NotificationService;
 import com.sgic.internal.login.servicesimpl.UserDetailsServiceImpl;
 import com.sgic.internal.login.servicesimpl.UserPrinciple;
 import com.sgic.internal.login.servicesimpl.UserSummary;
+import com.sgic.internal.login.util.AppConstants;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -122,30 +123,30 @@ NotificationService notificationService;
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUpForm signUpRequest) {
-		Email email = new Email();
-		
-		email.setEmail(signUpRequest.getEmail());
-		email.setSubject("Username & Password");
-		email.setText("This is your password:" + signUpRequest.getPassword()+"&&"+"This is your Username:" + signUpRequest.getUsername());
+//		Email email = new Email();
+//		
+//		email.setEmail(signUpRequest.getEmail());
+//		email.setSubject("Username & Password");
+//		email.setText("This is your Username:" + signUpRequest.getUsername()+"&&"+"This is your password:" + signUpRequest.getPassword());
 		
 		
 //		notificationService.sendNotofication(email);
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<Email> entity = new HttpEntity<Email>(email, headers);
-		System.out.println("yes");
-		if(signUpRequest.getRole().equalsIgnoreCase("HR")) {
-		ResponseEntity<?> obj = restTemplate.exchange("http://localhost:8084/employeeservice/sendmail",
-				HttpMethod.POST, entity, Email.class);
-		
-
-		System.out.println("obj" + obj);
-		
-		}
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+//		HttpEntity<Email> entity = new HttpEntity<Email>(email, headers);
+//		System.out.println("yes");
+//		if(signUpRequest.getRole().equalsIgnoreCase("HR")) {
+//		ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SEND_EMAIL_URL,
+//				HttpMethod.POST, entity, Email.class);
+//		
+//
+//		System.out.println("obj" + obj);
+//		
+//		}
 		System.out.println("fffffffffffffffffffffffffffffffffffffff :" + signUpRequest.getEmail()
-				+ signUpRequest.getLastname() + signUpRequest.getName() + signUpRequest.getPassword()
-				+ signUpRequest.getRole() + signUpRequest.getUsername());
+				+ signUpRequest.getLastname() + signUpRequest.getName() + signUpRequest.getPassword() + signUpRequest.getUsername());
+//				+ signUpRequest.getRole() + 
 
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
@@ -160,7 +161,7 @@ NotificationService notificationService;
 		// Creating user's account
 		User user = new User(signUpRequest.getName(), signUpRequest.getLastname(), signUpRequest.getUsername(),
 				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
-
+		
 		String strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
@@ -214,7 +215,23 @@ NotificationService notificationService;
 		}
 
 		user.setRoles(roles);
-	userRepository.save(user);
+		userRepository.save(user);
+		
+		Email email2 = new Email();
+		email2.setEmail(user.getEmail());
+		email2.setSubject("UserName & Password");
+		email2.setText(
+				"This is your userName -" + " " + user.getUsername()+ "\n" + "This is your Password -" + " " + signUpRequest.getPassword());
+
+		HttpHeaders headers1 = new HttpHeaders();
+		headers1.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<Email> entity1 = new HttpEntity<Email>(email2, headers1);
+		System.out.println("wwwwwwwwwwwwwww"+ " " + email2.getEmail() + email2.getText());
+
+		RestTemplate restTemplate = new RestTemplate();
+		Email result = restTemplate.postForObject(AppConstants.SEND_EMAIL_URL, email2, Email.class);
+
+		System.out.println(result);
 
 		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 	}
@@ -279,7 +296,7 @@ NotificationService notificationService;
 			System.out.println("yes");
 
 			RestTemplate restTemplate = new RestTemplate();
-			Email result = restTemplate.postForObject("http://localhost:8084/employeeservice/sendmail", email1, Email.class);
+			Email result = restTemplate.postForObject(AppConstants.SEND_EMAIL_URL, email1, Email.class);
 
 			System.out.println(result);
 

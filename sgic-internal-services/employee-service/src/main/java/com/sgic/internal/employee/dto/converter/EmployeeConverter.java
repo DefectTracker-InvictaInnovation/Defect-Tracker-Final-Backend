@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
+
 import com.sgic.internal.employee.dto.EmployeeDTO;
+import com.sgic.internal.employee.dto.PasswordGenerator;
 import com.sgic.internal.employee.entities.Designation;
 import com.sgic.internal.employee.entities.Employee;
 
@@ -29,6 +31,9 @@ public class EmployeeConverter {
 			employeeDto.setDesignationid(employee.getDesignation().getDesignationid());
 			employeeDto.setDesignationname(employee.getDesignation().getDesignationname());
 			employeeDto.setProfilePicPath(employee.getProfilePicPath());
+			
+			PasswordGenerator password = new PasswordGenerator();
+			employeeDto.setPassword(password.generateRandomPassword());
 			return employeeDto;
 		}
 		return null;
@@ -59,7 +64,7 @@ public class EmployeeConverter {
 	}
 
 	// Employee List Converter
-	public static List<EmployeeDTO> EmployeeToEmployeeDTO(List<Employee> employeeList) {
+	public static List<EmployeeDTO> EmployeeToEmployeeDTOList(List<Employee> employeeList) {
 
 		if (employeeList != null) {
 			logger.info("Employee Converter---> Employee to DTO Converter");

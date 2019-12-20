@@ -2,6 +2,7 @@ package com.sgic.internal.employee.services;
 
 import java.util.List;
 import com.sgic.internal.employee.entities.Designation;
+import com.sgic.internal.employee.entities.Employee;
 
 public interface DesignationService {
 
@@ -13,8 +14,14 @@ public interface DesignationService {
 
 	//	Get Designation by Designation Id Method
 	public Designation getBydesignationid(Long designationid);
+	
+//	public List<Employee> getBydesignationname();
+//	
+//	public List<Employee> getByQaAndDevelopersOnly();
 
 	//  Delete Designation by Designation Id Method
 	public void deleteDesignationBydesignationid(Long designationid);
+	
+	
 
 }

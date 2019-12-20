@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.sgic.internal.employee.entities.Designation;
+import com.sgic.internal.employee.entities.Employee;
 import com.sgic.internal.employee.repositories.DesignationRepository;
 import com.sgic.internal.employee.repositories.EmployeeRepository;
 import com.sgic.internal.employee.services.DesignationService;
@@ -46,5 +47,15 @@ public class DesignationServiceImpl implements DesignationService {
 		logger.info("Designation Service Impl --> Deleted Successfully");
 		designationRepository.deleteDesignationBydesignationid(designationid);
 	}
+
+//	@Override
+//	public List<Employee> getBydesignationname() {// TODO Auto-generated method stub
+//		return designationRepository.getEmployeeByDesigName();
+//	}
+//
+//	@Override
+//	public List<Employee> getByQaAndDevelopersOnly() {
+//		return designationRepository.getQaAndDevelopers();
+//	}
 
 }

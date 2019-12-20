@@ -13,6 +13,7 @@ import com.sgic.internal.defecttracker.defectservice.entities.Employee;
 import com.sgic.internal.defecttracker.defectservice.entities.Module;
 import com.sgic.internal.defecttracker.defectservice.entities.ModuleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
+import com.sgic.internal.defecttracker.defectservice.util.AppConstants;
 
 @Service
 public class ModuleAllocationConverter {
@@ -79,7 +80,7 @@ public class ModuleAllocationConverter {
 				
 				RestTemplate restTemplate = new RestTemplate();
 				ResponseEntity<Employee> response = restTemplate.exchange(
-						"http://localhost:8084/employeeservice/getempolyeebyid/"+moduleAllocation.getProjectRoleAllocation().getResourceAllocation().getEmpId(), HttpMethod.GET, null,
+						AppConstants.EMPLOYEE_GET_BY_ID_URL+moduleAllocation.getProjectRoleAllocation().getResourceAllocation().getEmpId(), HttpMethod.GET, null,
 						new ParameterizedTypeReference<Employee>() {
 						});
 				Employee employee = response.getBody();

@@ -27,6 +27,7 @@ public interface EmployeeService {
 	// Method for Getting One Employee Record by Email
 	public List<Employee> getByDesignation(Long designationid);
 
+
 	// Method for Update Employee
 	public Employee updateEmployee(Employee employee);
 
@@ -48,5 +49,9 @@ public interface EmployeeService {
 	public long countDeveloper(Long designationid);
 
 	public long countDeveloperby(String designationName);
+
+	public List<Employee> getBydesignationname();
+
+	public List<Employee> getByQaAndDevelopersOnly();
 
 }

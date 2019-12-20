@@ -29,6 +29,7 @@ import com.sgic.internal.defecttracker.defectservice.controller.dto.ProjectRoleA
 import com.sgic.internal.defecttracker.defectservice.controller.dto.UserDto;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.mapper.ProjectRoleAllocationMapper;
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
+import com.sgic.internal.defecttracker.defectservice.util.AppConstants;
 
 @CrossOrigin
 @RestController
@@ -56,9 +57,9 @@ public class ProjectRoleAllocationController {
 	}
 
 	@GetMapping(value = "/getAllRole")
-	public ResponseEntity<List<ProjectRoleAllocationDto>> getAllRole() {
+	public ResponseEntity<List<ProjectRoleAllocationDto>> getAllRole(Long projectroleId) {
 		logger.info("Project Role Allocation Controller -> GetProjectRole");
-		return new ResponseEntity<>(projectRoleAllocationMapper.getAllRole(), HttpStatus.OK);
+		return new ResponseEntity<>(projectRoleAllocationMapper.getAllRole(projectroleId), HttpStatus.OK);
 	}
 
 	@GetMapping("/getprojectrolebyid/{projectroleId}")
@@ -78,7 +79,7 @@ public class ProjectRoleAllocationController {
 	public ResponseEntity<?> getAllRoleEmail() throws JsonParseException, JsonMappingException, IOException {
 		try {
 
-			String url = "http://localhost:8081/defectservices/getAllRole";
+			String url = AppConstants.ROLE_GET_All_URL;
 			String resp = restTemplate.getForObject(url, String.class);
 
 			System.out.println("resp" + resp);
@@ -110,7 +111,7 @@ public class ProjectRoleAllocationController {
 				headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 				HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
 				System.out.println("yes");
-				ResponseEntity<?> obj = restTemplate.exchange("http://localhost:8085/loginservice/api/auth/signup",
+				ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL,
 						HttpMethod.POST, entity, UserDto.class);
 
 				System.out.println("obj" + obj);
@@ -146,5 +147,7 @@ public class ProjectRoleAllocationController {
 		logger.info("Project Role Allocation Controller -> GetProjectRole");
 		return new ResponseEntity<>(projectRoleAllocationMapper.getRoleByProject(resourceId), HttpStatus.OK);
 	}
+	
+	
 
 }

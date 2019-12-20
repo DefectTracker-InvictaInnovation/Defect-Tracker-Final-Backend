@@ -18,6 +18,10 @@ public class ResourceAllocationDto {
 	private Long designationid;
 	private String designationname;
 	
+	private Long projectRoleId;
+	private Long roleId;
+	private String roleName;
+	
 	
 //	<--- Resource Allocation DTO--- Getter Setter --->
 	public Long getResourceId() {
@@ -32,8 +36,6 @@ public class ResourceAllocationDto {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	
-	
 	public Long getProjectId() {
 		return projectId;
 	}
@@ -93,5 +95,24 @@ public class ResourceAllocationDto {
 	}
 	public void setDesignationname(String designationname) {
 		this.designationname = designationname;
-	}	
+	}
+	public Long getProjectRoleId() {
+		return projectRoleId;
+	}
+	public void setProjectRoleId(Long projectRoleId) {
+		this.projectRoleId = projectRoleId;
+	}
+	public Long getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Long long1) {
+		this.roleId = long1;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+	
 }

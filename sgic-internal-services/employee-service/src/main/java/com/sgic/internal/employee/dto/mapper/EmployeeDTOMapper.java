@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.sgic.internal.employee.dto.EmployeeDTO;
 import com.sgic.internal.employee.dto.converter.EmployeeConverter;
 import com.sgic.internal.employee.entities.Employee;
@@ -35,7 +36,7 @@ public class EmployeeDTOMapper {
 	public List<EmployeeDTO> getAllSortEmployeeInfo(Long empId) {
 		logger.info(" Employee Successfully Get All Employee Details ");
 		List<Employee> sortEmployeeList = employeeService.findByEmployeeOrderByEmployeeIdDesc(empId);
-		return employeeConverter.EmployeeToEmployeeDTO(sortEmployeeList);
+		return employeeConverter.EmployeeToEmployeeDTOList(sortEmployeeList);
 
 	}
 
@@ -109,7 +110,7 @@ public class EmployeeDTOMapper {
 	public List<EmployeeDTO> getEmployeeByDesignation(Long designationid) {
 		logger.info("Successfully Get Employee By Designation");
 		List<Employee> employee = employeeService.getByDesignation(designationid);
-		return employeeConverter.EmployeeToEmployeeDTO(employee);
+		return employeeConverter.EmployeeToEmployeeDTOList(employee);
 
 	}
 
@@ -118,7 +119,7 @@ public class EmployeeDTOMapper {
 	public List<EmployeeDTO> getEmployeeByName(String name) {
 		logger.info("Successfully Get Employee By Name");
 		List<Employee> employee = employeeService.getByName(name);
-		return employeeConverter.EmployeeToEmployeeDTO(employee);
+		return employeeConverter.EmployeeToEmployeeDTOList(employee);
 	}
 
 	// Count Method for Employee
@@ -126,4 +127,18 @@ public class EmployeeDTOMapper {
 		return employeeService.count();
 	}
 	
+	
+	public List<EmployeeDTO> getAllPm() {
+		logger.info(" Employee Successfully Get All Employee Details ");
+		List<Employee> pmList = employeeService.getBydesignationname();
+		return employeeConverter.EmployeeToEmployeeDTOList(pmList);
+
+	}
+	
+	public List<EmployeeDTO> getAllOthers() {
+		logger.info(" Employee Successfully Get All Employee Details ");
+		List<Employee> othersList = employeeService.getByQaAndDevelopersOnly();
+		return employeeConverter.EmployeeToEmployeeDTOList(othersList);
+
+	}
 }
