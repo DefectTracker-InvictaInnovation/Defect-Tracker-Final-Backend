@@ -56,11 +56,11 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	@Query("UPDATE Employee e SET e.availability=:availablenow where e.empId = :empId")
 	void updateAvailability(@Param("availablenow") int availablenow, @Param("empId") Long empId);
 	
-	String fetchEmployeeByDesignation = "SELECT * FROM employee e WHERE e.designationid in (SELECT designationid from designation d where d.designationname=\"PM\")";
+	String fetchEmployeeByDesignation = "SELECT * FROM employee e WHERE e.availability>0 and e.designationid in (SELECT designationid from designation d where d.designationname=\"PM\")";
 	@Query(value = fetchEmployeeByDesignation, nativeQuery = true)
 	List<Employee> getEmployeeByDesigName();
 	
-	String fetchQAAndDeveolersOnly = "SELECT * FROM employee e WHERE e.availability>0 and e.designationid in (SELECT designationid from designation d where d.designationname!=\"PM\")";
+	String fetchQAAndDeveolersOnly = "SELECT * FROM employee e WHERE e.availability>0 and e.designationid in (SELECT designationid from designation d where d.designationname!=\"PM\" and d.designationname!=\"HR\")";
 	@Query(value = fetchQAAndDeveolersOnly, nativeQuery = true)
 	List<Employee> getQaAndDevelopers();
 
