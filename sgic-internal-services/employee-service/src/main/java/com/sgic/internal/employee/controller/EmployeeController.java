@@ -35,6 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sgic.internal.employee.dto.EmployeeDTO;
 import com.sgic.internal.employee.dto.mapper.EmployeeDTOMapper;
 import com.sgic.internal.employee.entities.AppResponse;
+import com.sgic.internal.employee.entities.Employee;
 import com.sgic.internal.employee.repositories.EmployeeRepository;
 import com.sgic.internal.employee.services.EmployeeService;
 import com.sgic.internal.employee.services.FileStorageService;
@@ -404,5 +405,20 @@ public class EmployeeController {
 		}
 
 		return null;
+	}
+	
+	
+	@GetMapping("/getpm")
+	// <---Get Designation By Designation ID--->
+	public ResponseEntity<List<EmployeeDTO>> getByName() {
+		logger.info("Designation Controller --> Get by Designation by Id");
+		return new ResponseEntity<>(employeeDTOMapper.getAllPm(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getothers")
+	// <---Get Designation By Designation ID--->
+	public ResponseEntity<List<EmployeeDTO>> getOtherAllEmployees() {
+		logger.info("Designation Controller --> Get by Designation by Id");
+		return new ResponseEntity<>(employeeDTOMapper.getAllOthers(), HttpStatus.OK);
 	}
 }

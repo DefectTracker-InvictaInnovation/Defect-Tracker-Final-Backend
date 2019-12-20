@@ -219,6 +219,9 @@ public class ResourceAllocationController {
 		logger.info("Resource Allocation Controller -> GetProjectRole");
 		return new ResponseEntity<>(resourceAllocationDtoMapper.getAllDevelopersAndQaforMapper(), HttpStatus.OK);
 	}
+	
+	
+	
 
 	@GetMapping("/getprojectbyId/{projectId}") 
 	public List<ResourceAllocationDto> getresourceByprojectId(@PathVariable(name = "projectId") Long projectId) {

@@ -48,14 +48,14 @@ public class DesignationServiceImpl implements DesignationService {
 		designationRepository.deleteDesignationBydesignationid(designationid);
 	}
 
-	@Override
-	public List<Employee> getBydesignationname() {// TODO Auto-generated method stub
-		return designationRepository.getEmployeeByDesigName();
-	}
-
-	@Override
-	public List<Employee> getByQaAndDevelopersOnly() {
-		return designationRepository.getQaAndDevelopers();
-	}
+//	@Override
+//	public List<Employee> getBydesignationname() {// TODO Auto-generated method stub
+//		return designationRepository.getEmployeeByDesigName();
+//	}
+//
+//	@Override
+//	public List<Employee> getByQaAndDevelopersOnly() {
+//		return designationRepository.getQaAndDevelopers();
+//	}
 
 }
