@@ -20,4 +20,9 @@ public class RoleServiceImpl implements RoleService{
 		return roleRepository.findAll();
 	}
 
+	@Override
+	public List<Role> getPmRole() {
+		return roleRepository.findPmRoleOnly();
+	}
+
 }

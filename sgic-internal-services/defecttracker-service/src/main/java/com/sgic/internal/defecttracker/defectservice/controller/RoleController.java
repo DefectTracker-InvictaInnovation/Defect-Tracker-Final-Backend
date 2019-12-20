@@ -21,4 +21,9 @@ public class RoleController {
 	public List<RoleDto> getAllroleInfo(){
 		return roleMapper.getAllRole();	
 	}
+	
+	@GetMapping("/getPmRoleInfo")
+	public List<RoleDto> getPMroleInfo(){
+		return roleMapper.getPmRoleforMapper();	
+	}
 }
