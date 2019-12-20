@@ -30,4 +30,10 @@ public class RoleMapper {
 		List<Role> roleList = roleService.getAllRole();
 		return roleConverter.RoleToRoleDtoList(roleList);
 	}
+	
+	public List<RoleDto> getPmRoleforMapper() {
+		logger.info("Role Mapper --- Successfully Listed Role --- ");
+		List<Role> roleList = roleService.getPmRole();
+		return roleConverter.RoleToRoleDtoList(roleList);
+	}
 }

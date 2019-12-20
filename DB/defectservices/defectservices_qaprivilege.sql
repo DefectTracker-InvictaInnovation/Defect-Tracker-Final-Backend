@@ -36,7 +36,7 @@ CREATE TABLE `qaprivilege` (
 
 LOCK TABLES `qaprivilege` WRITE;
 /*!40000 ALTER TABLE `qaprivilege` DISABLE KEYS */;
-INSERT INTO `qaprivilege` VALUES (97,'AddDefect','1'),(98,'EditDefect','0'),(99,'ManageDefect','1'),(100,'DefectDashboard','1'),(101,'AddModule','1'),(102,'DeleteDefect','0'),(103,'EditModule','0'),(104,'ManageModule','0'),(105,'AddSubModule','0'),(106,'EditSubModule','0'),(107,'ManageSubModule','0'),(108,'QADashboard','1'),(109,'QAPrivilage','0'),(142,'PMAddAllocation','0'),(143,'DeveloperDashboard','1'),(283,'CompanyAdministration','0'),(284,'ProductAdministration','0'),(286,'privilege','0'),(288,'CompanyDashboard','0'),(289,'ManageCompany','0'),(290,'ManageProject','0'),(291,'ProjectAllocation','0'),(292,'PMDashboard','0'),(293,'LookAndFeel','0'),(333,'GeneralConfiguration','0'),(334,'ProfileSetting','0');
+INSERT INTO `qaprivilege` VALUES (97,'AddDefect','1'),(98,'EditDefect','1'),(99,'ManageDefect','1'),(100,'DefectDashboard','1'),(101,'AddModule','1'),(102,'DeleteDefect','0'),(103,'EditModule','0'),(104,'ManageModule','0'),(105,'AddSubModule','0'),(106,'EditSubModule','0'),(107,'ManageSubModule','0'),(108,'QADashboard','1'),(109,'QAPrivilage','0'),(142,'PMAddAllocation','0'),(143,'DeveloperDashboard','1'),(283,'CompanyAdministration','0'),(284,'ProductAdministration','0'),(286,'privilege','0'),(288,'CompanyDashboard','0'),(289,'ManageCompany','0'),(290,'ManageProject','0'),(291,'ProjectAllocation','0'),(292,'PMDashboard','0'),(293,'LookAndFeel','0'),(333,'GeneralConfiguration','0'),(334,'ProfileSetting','0');
 /*!40000 ALTER TABLE `qaprivilege` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

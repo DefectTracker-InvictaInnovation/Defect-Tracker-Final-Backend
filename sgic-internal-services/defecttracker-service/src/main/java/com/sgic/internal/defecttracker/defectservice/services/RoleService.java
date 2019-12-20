@@ -8,4 +8,6 @@ public interface RoleService {
 
 	public List<Role> getAllRole();
 	
+	public List<Role> getPmRole();
+	
 }

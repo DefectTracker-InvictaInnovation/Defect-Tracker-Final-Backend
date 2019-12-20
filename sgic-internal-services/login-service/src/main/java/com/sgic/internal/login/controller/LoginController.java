@@ -128,27 +128,27 @@ NotificationService notificationService;
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignUpForm signUpRequest) {
-		Email email = new Email();
-		
-		email.setEmail(signUpRequest.getEmail());
-		email.setSubject("Username & Password");
-		email.setText("This is your Username:" + signUpRequest.getUsername()+"&&"+"This is your password:" + signUpRequest.getPassword());
+//		Email email = new Email();
+//		
+//		email.setEmail(signUpRequest.getEmail());
+//		email.setSubject("Username & Password");
+//		email.setText("This is your Username:" + signUpRequest.getUsername()+"&&"+"This is your password:" + signUpRequest.getPassword());
 		
 		
 //		notificationService.sendNotofication(email);
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<Email> entity = new HttpEntity<Email>(email, headers);
-		System.out.println("yes");
-		if(signUpRequest.getRole().equalsIgnoreCase("HR")) {
-		ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SEND_EMAIL_URL,
-				HttpMethod.POST, entity, Email.class);
-		
-
-		System.out.println("obj" + obj);
-		
-		}
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+//		HttpEntity<Email> entity = new HttpEntity<Email>(email, headers);
+//		System.out.println("yes");
+//		if(signUpRequest.getRole().equalsIgnoreCase("HR")) {
+//		ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SEND_EMAIL_URL,
+//				HttpMethod.POST, entity, Email.class);
+//		
+//
+//		System.out.println("obj" + obj);
+//		
+//		}
 		System.out.println("fffffffffffffffffffffffffffffffffffffff :" + signUpRequest.getEmail()
 				+ signUpRequest.getLastname() + signUpRequest.getName() + signUpRequest.getPassword() + signUpRequest.getUsername());
 //				+ signUpRequest.getRole() + 
