@@ -57,9 +57,9 @@ public class ProjectRoleAllocationController {
 	}
 
 	@GetMapping(value = "/getAllRole")
-	public ResponseEntity<List<ProjectRoleAllocationDto>> getAllRole() {
+	public ResponseEntity<List<ProjectRoleAllocationDto>> getAllRole(Long projectroleId) {
 		logger.info("Project Role Allocation Controller -> GetProjectRole");
-		return new ResponseEntity<>(projectRoleAllocationMapper.getAllRole(), HttpStatus.OK);
+		return new ResponseEntity<>(projectRoleAllocationMapper.getAllRole(projectroleId), HttpStatus.OK);
 	}
 
 	@GetMapping("/getprojectrolebyid/{projectroleId}")
