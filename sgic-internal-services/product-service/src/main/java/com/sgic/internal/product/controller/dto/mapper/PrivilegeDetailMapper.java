@@ -1,8 +1,10 @@
 package com.sgic.internal.product.controller.dto.mapper;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.sgic.internal.product.controller.dto.PrivilegeDetailDto;
 import com.sgic.internal.product.controller.dto.converter.PrivilegeDetailConverter;
 import com.sgic.internal.product.entities.PrivilegeDetail;
