@@ -100,12 +100,12 @@ public class ResourceAllocationDtoMapper {
 		List<ResourceAllocation> resourceList = resourceAllocationService.getAllResourceAllocationOnlyDevAndQA();
 		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceList);
 	}
+	
+	public List<ResourceAllocationDto> getPmforMapper() {
+		logger.info("Resource Allaction Mapper --- Successfully Listed Resource Allocation --- ");
+		List<ResourceAllocation> resourceList = resourceAllocationService.getResourceAllocationforPm();
+		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceList);
+	}
 
-	
-	
-//	public List<ProjectRoleAllocationDto> getAllDevelopersAndQaforMapper() {
-//		logger.info("Project Role Allaction Mapper --- Successfully Listed Project Role Allocation --- ");
-//		List<ProjectRoleAllocation> roleList = resourceAllocationService.getAllRoleAllocationOnlyDevAndQA();
-//		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceList);
-//	}
+
 }

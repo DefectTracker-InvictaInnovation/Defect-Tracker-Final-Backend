@@ -267,6 +267,11 @@ public class ResourceAllocationServiceImpl implements ResourceAllocationService 
 	public List<ResourceAllocation> getAllResourceAllocationOnlyDevAndQA() {
 		return resourceAllocationRepository.findQaAndDev();
 	}
+
+	@Override
+	public List<ResourceAllocation> getResourceAllocationforPm() {
+		return resourceAllocationRepository.findPmOnly();
+	}
 	
 //	@Override
 //	public List<ProjectRoleAllocation> getAllRoleAllocationOnlyDevAndQA() {

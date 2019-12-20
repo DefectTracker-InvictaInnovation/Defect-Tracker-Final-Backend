@@ -35,5 +35,7 @@ public interface ResourceAllocationService {
 	
 	public List<ResourceAllocation> getAllResourceAllocationOnlyDevAndQA();
 	
+	public List<ResourceAllocation> getResourceAllocationforPm();
+	
 
 }

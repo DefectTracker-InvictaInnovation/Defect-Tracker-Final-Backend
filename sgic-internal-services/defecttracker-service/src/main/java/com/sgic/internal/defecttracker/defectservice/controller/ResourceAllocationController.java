@@ -220,6 +220,12 @@ public class ResourceAllocationController {
 		return new ResponseEntity<>(resourceAllocationDtoMapper.getAllDevelopersAndQaforMapper(), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/getpmOnly")
+	public ResponseEntity<List<ResourceAllocationDto>> getPM() {
+		logger.info("Resource Allocation Controller -> GetProjectRole");
+		return new ResponseEntity<>(resourceAllocationDtoMapper.getPmforMapper(), HttpStatus.OK);
+	}
+	
 	
 	
 
