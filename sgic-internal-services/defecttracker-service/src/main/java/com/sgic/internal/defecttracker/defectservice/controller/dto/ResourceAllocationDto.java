@@ -1,7 +1,5 @@
 package com.sgic.internal.defecttracker.defectservice.controller.dto;
 
-import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
-
 public class ResourceAllocationDto {
 
 	
@@ -116,8 +114,5 @@ public class ResourceAllocationDto {
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
 	}
-
-	
-	
 	
 }

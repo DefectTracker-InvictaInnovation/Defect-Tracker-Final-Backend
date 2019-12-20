@@ -11,6 +11,7 @@ public class AppConstants {
 	
 	//Apis From Defect Service
 	public static final String ROLE_GET_All_URL = "http://localhost:8081/defectservices/getAllRole";
+	public static final String ONLY_PM_ROLE = "http://localhost:8081/defectservices/getpmOnly";
 	
 	//Apis From Login Service
 	public static final String SIGNUP_URL = "http://localhost:8085/loginservice/api/auth/signup";

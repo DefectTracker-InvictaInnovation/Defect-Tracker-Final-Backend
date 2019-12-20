@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.sgic.internal.defecttracker.defectservice.controller.dto.PasswordGeneratorText;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ProjectRoleAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ResourceAllocationDto;
 import com.sgic.internal.defecttracker.defectservice.entities.Employee;
@@ -107,7 +108,6 @@ public class ResourceAllocationConverter {
 				resourceAllocationDto.setEmpId(resourceAllocation.getEmpId());
 				resourceAllocationDto.setProjectId(resourceAllocation.getProject().getProjectId());
 				resourceAllocationDto.setProjectName(resourceAllocation.getProject().getProjectName());
-				
 				
 				RestTemplate restTemplate = new RestTemplate();
 				
