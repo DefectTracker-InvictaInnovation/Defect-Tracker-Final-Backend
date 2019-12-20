@@ -29,6 +29,7 @@ import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocationList;
 import com.sgic.internal.defecttracker.defectservice.repositories.ResourceAllocationRepository;
 import com.sgic.internal.defecttracker.defectservice.services.ResourceAllocationService;
+import com.sgic.internal.defecttracker.defectservice.util.AppConstants;
 
 @SuppressWarnings("unused")
 @RestController
@@ -77,7 +78,7 @@ public class ResourceAllocationController {
 			logger.info("Resource Controller :--> Successfully Get Resource List");
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<List<Employee>> response = restTemplate.exchange(
-					"http://localhost:8084/employeeservice/getallemployee", HttpMethod.GET, null,
+					AppConstants.EMPLOYEE_GET_All_URL, HttpMethod.GET, null,
 					new ParameterizedTypeReference<List<Employee>>() {
 					});
 			List<Employee> employee = response.getBody();
@@ -115,7 +116,7 @@ public class ResourceAllocationController {
 		// Used Rest Template For Get EMPLOYEE SERVICE EMPLOYEE API
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<Employee> response = restTemplate.exchange(
-				"http://localhost:8084/employeeservice/getempolyeebyid/" + resourceAllocation.getEmpId(),
+				AppConstants.EMPLOYEE_GET_BY_ID_URL + resourceAllocation.getEmpId(),
 				HttpMethod.GET, null, new ParameterizedTypeReference<Employee>() {
 				});
 
@@ -148,7 +149,7 @@ public class ResourceAllocationController {
 
 				ResponseEntity<Employee> response = restTemplate.exchange(
 						// <--Get EMPLOYEE SERVICE EMPLOYEE LIST BY EMPLOYEE ID-->
-						"http://localhost:8084/employeeservice/getempolyeebyid/" + resourceallocation.getEmpId(),
+						AppConstants.EMPLOYEE_GET_BY_ID_URL + resourceallocation.getEmpId(),
 						HttpMethod.GET, null, new ParameterizedTypeReference<Employee>() {
 						});
 				Employee employee = response.getBody();
@@ -217,6 +218,19 @@ public class ResourceAllocationController {
 	public ResponseEntity<List<ResourceAllocationDto>> getAllDevelopersAndQa() {
 		logger.info("Resource Allocation Controller -> GetProjectRole");
 		return new ResponseEntity<>(resourceAllocationDtoMapper.getAllDevelopersAndQaforMapper(), HttpStatus.OK);
+	}
+	
+	
+	
+
+	@GetMapping("/getprojectbyId/{projectId}") 
+	public List<ResourceAllocationDto> getresourceByprojectId(@PathVariable(name = "projectId") Long projectId) {
+		try {
+			return resourceAllocationDtoMapper.getByprojectId(projectId);
+			
+		} catch (Exception ex) {
+		}
+		return null;
 	}
 
 }

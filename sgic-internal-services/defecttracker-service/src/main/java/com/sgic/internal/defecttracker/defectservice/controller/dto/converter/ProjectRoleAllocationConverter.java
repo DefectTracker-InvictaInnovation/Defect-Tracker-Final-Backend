@@ -18,6 +18,7 @@ import com.sgic.internal.defecttracker.defectservice.entities.Employee;
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.ResourceAllocation;
 import com.sgic.internal.defecttracker.defectservice.entities.Role;
+import com.sgic.internal.defecttracker.defectservice.util.AppConstants;
 
 
 @Service
@@ -45,7 +46,7 @@ public class ProjectRoleAllocationConverter {
             
 			RestTemplate restTemplate = new RestTemplate();
 			ResponseEntity<Employee> response = restTemplate.exchange(
-					"http://localhost:8084/employeeservice/getempolyeebyid/"+projectRoleAllocation.getResourceAllocation().getEmpId(), HttpMethod.GET, null,
+					AppConstants.EMPLOYEE_GET_BY_ID_URL+projectRoleAllocation.getResourceAllocation().getEmpId(), HttpMethod.GET, null,
 					new ParameterizedTypeReference<Employee>() {
 					});
 			Employee employee = response.getBody();
@@ -104,7 +105,7 @@ public class ProjectRoleAllocationConverter {
 				
 				RestTemplate restTemplate = new RestTemplate();
 				ResponseEntity<Employee> response = restTemplate.exchange(
-						"http://localhost:8084/employeeservice/getempolyeebyid/"+projectRoleAllocation.getResourceAllocation().getEmpId(), HttpMethod.GET, null,
+						AppConstants.EMPLOYEE_GET_BY_ID_URL+projectRoleAllocation.getResourceAllocation().getEmpId(), HttpMethod.GET, null,
 						new ParameterizedTypeReference<Employee>() {
 						});
 				Employee employee = response.getBody();

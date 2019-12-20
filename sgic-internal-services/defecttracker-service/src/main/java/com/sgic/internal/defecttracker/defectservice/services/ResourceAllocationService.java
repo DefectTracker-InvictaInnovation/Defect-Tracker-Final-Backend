@@ -30,6 +30,8 @@ public interface ResourceAllocationService {
 	public List<ResourceAllocation> getByEmployee(Long empId);
 	
 	public List<ResourceAllocation> getByprojectId(Long projectId);
+
+	List<ResourceAllocation> getResourceByprojectId(Long projectId);
 	
 	public List<ResourceAllocation> getAllResourceAllocationOnlyDevAndQA();
 	

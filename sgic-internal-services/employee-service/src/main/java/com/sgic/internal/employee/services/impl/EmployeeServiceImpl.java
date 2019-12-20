@@ -240,22 +240,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.countByDesignationName(designationname);
 	}
 
+	
 	@Override
-	public List<Employee> getByDesignationName(String designationname) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Employee> getBydesignationname() {// TODO Auto-generated method stub
+		return employeeRepository.getEmployeeByDesigName();
 	}
 
-	
-//	@Override
-//	// Find By Employee Designation
-//	public List<Employee> getByDesignationName(String designationName) {
-//		try {
-//			logger.info("Successfully Get Employee By Designation");
-//			return employeeRepository.;
-//		} catch (Exception ex) {
-//			logger.error("Employee Service Imp:--> Error" + ex.getMessage());
-//		}
-//		return null;
-//	}
+	@Override
+	public List<Employee> getByQaAndDevelopersOnly() {
+		return employeeRepository.getQaAndDevelopers();
+	}
 }

@@ -88,6 +88,12 @@ public class ResourceAllocationDtoMapper {
 		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceAllocation);
 
 	}
+	
+	public List<ResourceAllocationDto> getByprojectId(Long projectId) {
+		List<ResourceAllocation> resourceAllocation =resourceAllocationService.getResourceByprojectId(projectId);
+		return resourceAllocationConverter.ResourceAllocationToResourceAllocationDtoList(resourceAllocation);
+
+	}
 
 	public List<ResourceAllocationDto> getAllDevelopersAndQaforMapper() {
 		logger.info("Resource Allaction Mapper --- Successfully Listed Resource Allocation --- ");

@@ -61,6 +61,7 @@ import com.sgic.internal.login.servicesimpl.NotificationService;
 import com.sgic.internal.login.servicesimpl.UserDetailsServiceImpl;
 import com.sgic.internal.login.servicesimpl.UserPrinciple;
 import com.sgic.internal.login.servicesimpl.UserSummary;
+import com.sgic.internal.login.util.AppConstants;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -131,7 +132,7 @@ NotificationService notificationService;
 		
 		email.setEmail(signUpRequest.getEmail());
 		email.setSubject("Username & Password");
-		email.setText("This is your password:" + signUpRequest.getPassword()+"&&"+"This is your Username:" + signUpRequest.getUsername());
+		email.setText("This is your Username:" + signUpRequest.getUsername()+"&&"+"This is your password:" + signUpRequest.getPassword());
 		
 		
 //		notificationService.sendNotofication(email);
@@ -141,7 +142,7 @@ NotificationService notificationService;
 		HttpEntity<Email> entity = new HttpEntity<Email>(email, headers);
 		System.out.println("yes");
 		if(signUpRequest.getRole().equalsIgnoreCase("HR")) {
-		ResponseEntity<?> obj = restTemplate.exchange("http://localhost:8084/employeeservice/sendmail",
+		ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SEND_EMAIL_URL,
 				HttpMethod.POST, entity, Email.class);
 		
 
@@ -233,7 +234,7 @@ NotificationService notificationService;
 		System.out.println("wwwwwwwwwwwwwww"+ " " + email2.getEmail() + email2.getText());
 
 		RestTemplate restTemplate = new RestTemplate();
-		Email result = restTemplate.postForObject("http://localhost:8084/employeeservice/sendmail", email2, Email.class);
+		Email result = restTemplate.postForObject(AppConstants.SEND_EMAIL_URL, email2, Email.class);
 
 		System.out.println(result);
 
@@ -300,7 +301,7 @@ NotificationService notificationService;
 			System.out.println("yes");
 
 			RestTemplate restTemplate = new RestTemplate();
-			Email result = restTemplate.postForObject("http://localhost:8084/employeeservice/sendmail", email1, Email.class);
+			Email result = restTemplate.postForObject(AppConstants.SEND_EMAIL_URL, email1, Email.class);
 
 			System.out.println(result);
 
