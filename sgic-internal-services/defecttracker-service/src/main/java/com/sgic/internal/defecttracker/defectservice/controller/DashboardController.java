@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.sgic.internal.defecttracker.defectservice.repositories.DefectRepository;
 import com.sgic.internal.defecttracker.defectservice.services.DashboardService;
@@ -13,6 +14,7 @@ import com.sgic.internal.defecttracker.defectservice.services.DashboardService;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @SuppressWarnings("unused")
 @RestController
+//@RequestMapping("/dashboard")
 public class DashboardController {
 
 	@Autowired

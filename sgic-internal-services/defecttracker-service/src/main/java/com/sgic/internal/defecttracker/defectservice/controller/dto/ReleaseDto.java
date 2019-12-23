@@ -1,11 +1,16 @@
 package com.sgic.internal.defecttracker.defectservice.controller.dto;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ReleaseDto {
 	
 	private Long releaseId;
-	private List<String> releaseName;
+	
+	@JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+	private ArrayList<String> releaseName;
 	
 	private Long projectId;
 
@@ -17,11 +22,13 @@ public class ReleaseDto {
 		this.releaseId = releaseId;
 	}
 
-	public List<String> getReleaseName() {
+	
+
+	public ArrayList<String> getReleaseName() {
 		return releaseName;
 	}
 
-	public void setReleaseName(List<String> releaseName) {
+	public void setReleaseName(ArrayList<String> releaseName) {
 		this.releaseName = releaseName;
 	}
 

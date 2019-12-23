@@ -17,7 +17,8 @@ public class ReleaseDtoConverter {
 		Release release = new Release();
 		
 		release.setReleaseId(releaseDto.getReleaseId());
-		//release.setReleaseName(releaseDto.getReleaseName());
+		
+		release.setReleaseName(releaseDto.getReleaseName());
 		
 		Project project =new Project();
 		project.setProjectId(releaseDto.getProjectId());
@@ -35,7 +36,8 @@ public class ReleaseDtoConverter {
 				ReleaseDto releaseDto = new ReleaseDto();
 				
 				releaseDto.setReleaseId(release.getReleaseId());
-				//releaseDto.setReleaseName(release.getReleaseName());
+				
+				releaseDto.setReleaseName(release.getReleaseName());
 				releaseDto.setProjectId(release.getProject().getProjectId());
 				
 				releaseDto1.add(releaseDto);
