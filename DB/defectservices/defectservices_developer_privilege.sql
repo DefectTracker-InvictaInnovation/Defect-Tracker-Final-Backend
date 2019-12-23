@@ -26,7 +26,8 @@ CREATE TABLE `developer_privilege` (
   `id` bigint(20) NOT NULL,
   `privilege_name` varchar(255) DEFAULT NULL,
   `status` bit(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_md4ktu363gyoqg18t0texts82` (`privilege_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -49,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-20 11:08:25
+-- Dump completed on 2019-12-23 16:04:29
