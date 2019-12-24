@@ -33,7 +33,7 @@ public class DefectTrackerApplication extends SpringBootServletInitializer{
 			return new Docket(DocumentationType.SWAGGER_2)
 					.select()
 					.apis(RequestHandlerSelectors.basePackage("com.sgic.internal.defecttracker.defectservice.controller"))
-					.paths(PathSelectors.ant("/*"))
+					.paths(PathSelectors.ant("/**"))
 					.build();
 		}
 }

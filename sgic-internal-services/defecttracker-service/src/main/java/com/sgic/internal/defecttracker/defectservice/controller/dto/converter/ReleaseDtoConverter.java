@@ -26,6 +26,18 @@ public class ReleaseDtoConverter {
 		
 		return release;
 	}
+	//release entity to dto convertered
+	public static ReleaseDto releaseToReleaseDto(Release release) {
+		
+		ReleaseDto releaseDto = new ReleaseDto();
+		
+		releaseDto.setReleaseId(release.getReleaseId());
+		
+		releaseDto.setReleaseName(release.getReleaseName());
+		releaseDto.setProjectId(release.getProject().getProjectId());
+		
+		return releaseDto;
+	}
 
 	//getAllRelease
 	public static List<ReleaseDto> releaseToReleaseDto(List<Release> releaseList) {

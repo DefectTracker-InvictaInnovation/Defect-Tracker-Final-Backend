@@ -65,6 +65,8 @@ Long countByStatus(String status, Long projectId );
 
 
 //For Severity Index Start
+//@Query("SELECT COUNT(severity) FROM Defect WHERE  project_id=:projectId AND severity='Low'")
+//int countBySeverity(Long projectId);
 @Query("SELECT COUNT(severity) FROM Defect WHERE severity='Low'")
 int countBySeverity();
 

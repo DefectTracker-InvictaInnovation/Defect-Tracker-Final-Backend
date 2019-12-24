@@ -27,7 +27,7 @@ import com.sgic.internal.defecttracker.defectservice.services.DefectService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/defect")
+//@RequestMapping("/defect")
 public class DefectController {
 
 	@Autowired
