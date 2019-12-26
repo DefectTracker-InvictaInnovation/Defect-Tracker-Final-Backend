@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +32,7 @@ public class Project implements Serializable {
 
 	@NotEmpty
 	@Size(min = 2, max = 50)
-	@Pattern(regexp = "[0-9a-zA-Z]*", message = "Project Name can not contain invalid characters")
+//	@Pattern(regexp = "[0-9a-zA-Z]*", message = "Project Name can not contain invalid characters")
 	@Column(name = "project_name")
 	private String projectName;
 	
@@ -45,7 +44,7 @@ public class Project implements Serializable {
 
 	@NotEmpty
 	@Size(min = 2, max = 20)
-	@Pattern(regexp = "[a-z-A-Z]*", message = "Project Type can not contain invalid characters")
+//	@Pattern(regexp = "[a-z-A-Z]*", message = "Project Type can not contain invalid characters")
 	@Column(name = "type")
 	private String type;
 
@@ -61,7 +60,7 @@ public class Project implements Serializable {
 
 	@NotEmpty
 	@Size(min = 2, max = 10)
-	@Pattern(regexp = "[a-z-A-Z]*", message = "Project Status can not contain invalid characters")
+//	@Pattern(regexp = "[a-z-A-Z]*", message = "Project Status can not contain invalid characters")
 	@Column(name = "status")
 	private String status;
 
@@ -77,8 +76,6 @@ public class Project implements Serializable {
 	public String getProjectName() {
 		return projectName;
 	}
-
-
 
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
