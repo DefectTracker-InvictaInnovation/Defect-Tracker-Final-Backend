@@ -8,7 +8,11 @@ import com.sgic.internal.defecttracker.defectservice.entities.ProjectStatus;
 public interface ProjectStatusService {
 
 	public ProjectStatus createProjectStatus(ProjectStatus projectStatus);
-	
+
 	List<ProjectStatus> getAllProjectStatus();
-	
+
+	public ProjectStatus updateProjectStatus(ProjectStatus projectStatus);
+
+	public void deleteProjectStatus(Long projectstatusId);
+
 }

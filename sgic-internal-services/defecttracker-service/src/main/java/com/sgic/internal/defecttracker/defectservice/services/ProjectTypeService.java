@@ -9,4 +9,8 @@ public interface ProjectTypeService {
 	
 	public List<ProjectType> getallprojectType();
 	
+	public ProjectType updateProjectType(ProjectType projectType);
+	
+	public void deleteProjectType(Long projecttypeId);
+	
 }
