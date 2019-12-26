@@ -10,8 +10,7 @@ import com.sgic.internal.defecttracker.defectservice.repositories.ProjectStatusR
 import com.sgic.internal.defecttracker.defectservice.services.ProjectStatusService;
 
 @Repository
-public class ProjectStatusServiceImpl implements ProjectStatusService{
-
+public class ProjectStatusServiceImpl implements ProjectStatusService {
 
 	@Autowired
 	private ProjectStatusRepository projectStatusRepository;
@@ -25,7 +24,23 @@ public class ProjectStatusServiceImpl implements ProjectStatusService{
 	public List<ProjectStatus> getAllProjectStatus() {
 		return projectStatusRepository.findAll();
 	}
-	
-	
+
+	@Override
+	public ProjectStatus updateProjectStatus(ProjectStatus projectStatus) {
+		Long projectstatusId = projectStatus.getProjectstatusId();
+		boolean isExist = projectStatusRepository.findProjectStatusByProjectstatusId(projectstatusId) != null;
+		if (isExist) {
+			return projectStatusRepository.save(projectStatus);
+		} else {
+
+		}
+		return null;
+	}
+
+	@Override
+	public void deleteProjectStatus(Long projectstatusId) {
+		projectStatusRepository.deleteById(projectstatusId);
+
+	}
 
 }

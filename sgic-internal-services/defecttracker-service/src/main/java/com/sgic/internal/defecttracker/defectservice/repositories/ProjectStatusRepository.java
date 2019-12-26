@@ -5,4 +5,5 @@ import com.sgic.internal.defecttracker.defectservice.entities.ProjectStatus;
 
 public interface ProjectStatusRepository extends JpaRepository<ProjectStatus, Long>{
 
+	ProjectStatus findProjectStatusByProjectstatusId(Long projectstatusId);
 }

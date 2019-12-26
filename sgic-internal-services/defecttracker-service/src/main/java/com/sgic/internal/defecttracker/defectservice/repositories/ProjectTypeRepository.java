@@ -6,4 +6,5 @@ import com.sgic.internal.defecttracker.defectservice.entities.ProjectType;
 
 public interface ProjectTypeRepository extends JpaRepository<ProjectType, Long> {
 
+	ProjectType findProjectTypeByProjecttypeId(Long projecttypeId);
 }
