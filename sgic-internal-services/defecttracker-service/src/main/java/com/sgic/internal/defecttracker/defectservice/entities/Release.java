@@ -39,10 +39,6 @@ public class Release {
 	private Project project;
 
 	
-	
-	
-	
-	
 	public Long getReleaseId() {
 		return releaseId;
 	}
