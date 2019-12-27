@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectStatus;
 import com.sgic.internal.defecttracker.defectservice.services.ProjectStatusService;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class ProjectStatusController {
 	

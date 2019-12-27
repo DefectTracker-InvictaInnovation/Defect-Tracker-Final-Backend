@@ -23,5 +23,8 @@ public interface ProjectRoleAllocationRepository extends JpaRepository<ProjectRo
 	@Modifying
 	@Query(value = "from ProjectRoleAllocation where resource_id=:resourceId")
 	List<ProjectRoleAllocation> getResourceById(@Param("resourceId") Long resourceId);
+	
+//	Boolean existsByUsername(String username);
+//    Boolean existsByEmail(String email);
 
 }

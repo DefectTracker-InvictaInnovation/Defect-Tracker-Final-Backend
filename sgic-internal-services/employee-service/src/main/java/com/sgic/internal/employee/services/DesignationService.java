@@ -15,6 +15,9 @@ public interface DesignationService {
 	//	Get Designation by Designation Id Method
 	public Designation getBydesignationid(Long designationid);
 	
+	//  Update Designation for Designation Method
+	public Designation updateDesignation(Designation designation);
+	
 //	public List<Employee> getBydesignationname();
 //	
 //	public List<Employee> getByQaAndDevelopersOnly();

@@ -40,6 +40,9 @@ public class ProjectRoleAllocationController {
 
 	@Autowired
 	private ProjectRoleAllocationMapper projectRoleAllocationMapper;
+	
+//	@Autowired
+//	private ProjectRoleAllocationRepository projectRoleAllocationRepository;
 
 	private static Logger logger = LogManager.getLogger(ProjectRoleAllocationMapper.class);
 
@@ -91,8 +94,6 @@ public class ProjectRoleAllocationController {
 			System.out.println("list " + list);
 
 			for (ProjectRoleAllocationDto entry : list) {
-				
-//				if(entry.isBench()) {
 					
 				UserDto user = new UserDto();
 				user.setName(entry.getName());
@@ -107,17 +108,21 @@ public class ProjectRoleAllocationController {
 //
 				System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
 
-				HttpHeaders headers = new HttpHeaders();
-				headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-				HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
-				System.out.println("yes");
-				ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL,
-						HttpMethod.POST, entity, UserDto.class);
+//				if(projectRoleAllocationRepository.existsByEmail(user.getEmail())) {
+//					System.out.println("Already Exist");
+////					return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
+////							HttpStatus.BAD_REQUEST);
+//				}else {
+					HttpHeaders headers = new HttpHeaders();
+					headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+					HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
+					System.out.println("yes");
+					ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL,
+							HttpMethod.POST, entity, UserDto.class);
 
-				System.out.println("obj" + obj);
-				}
-
-//			}
+					System.out.println("obj" + obj);
+//				}
+			}
 			return null;
 		} catch (Exception ex) {
 			logger.error("Check Your Error");
