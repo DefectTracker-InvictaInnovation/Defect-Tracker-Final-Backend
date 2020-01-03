@@ -43,4 +43,9 @@ public class ProjectStatusServiceImpl implements ProjectStatusService {
 
 	}
 
+	@Override
+	public ProjectStatus findByProjectStatusId(Long projectstatusId) {
+		return projectStatusRepository.findProjectStatusByProjectstatusId(projectstatusId);
+	}
+
 }

@@ -13,7 +13,7 @@ public interface ModuleService {
 
 	public List<Module> getallModuleDetails(Long projectid);
 
-	public void deleteById(Long moduleId);
+	public void deleteByModuleId(Long moduleId);
 
 	public Module updateModule(Long moduleId, Module module);
 

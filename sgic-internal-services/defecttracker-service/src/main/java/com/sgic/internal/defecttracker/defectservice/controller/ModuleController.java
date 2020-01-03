@@ -125,7 +125,7 @@ public class ModuleController {
 	@DeleteMapping("deleteModuleById/{moduleId}")
 	public void deleteById(@PathVariable Long moduleId) {
 		logger.info("Module are delete by id ");
-		moduleDataMapper.deleteById(moduleId);
+		moduleDataMapper.deleteBymoduleId(moduleId);
 		
 	}
 

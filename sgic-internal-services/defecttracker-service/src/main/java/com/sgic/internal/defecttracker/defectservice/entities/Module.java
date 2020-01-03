@@ -57,7 +57,7 @@ public class Module {
 	}
 
 	// create relationship with SubModule //
-	@OneToMany(mappedBy = "module", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "module", cascade =CascadeType.ALL, fetch = FetchType.LAZY )
 	public List<SubModule> subModule;
 
 	public List<SubModule> getSubModule() {

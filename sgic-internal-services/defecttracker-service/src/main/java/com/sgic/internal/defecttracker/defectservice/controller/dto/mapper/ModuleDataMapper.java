@@ -46,8 +46,8 @@ public class ModuleDataMapper {
 		return moduleService.updateModule(moduleId, module);
 	}
 	
-	public ModuleData deleteById(Long moduleId) {
-		moduleService.deleteById(moduleId);
+	public ModuleData deleteBymoduleId(Long moduleId) {
+		moduleService.deleteByModuleId(moduleId);
 		return null;
 	}
 

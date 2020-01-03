@@ -13,4 +13,6 @@ public interface ProjectTypeService {
 	
 	public void deleteProjectType(Long projecttypeId);
 	
+	public ProjectType findByProjectTypeId(Long projecttypeId);
+	
 }

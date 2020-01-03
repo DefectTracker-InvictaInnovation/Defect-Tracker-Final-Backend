@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sgic.internal.defecttracker.defectservice.entities.ProjectStatus;
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectType;
 import com.sgic.internal.defecttracker.defectservice.services.ProjectTypeService;
 
@@ -58,4 +59,11 @@ public class ProjectTypeController {
 		}
 		return null;
 	}
+	
+	@GetMapping("/getprojecttypeId/{projecttypeId}")
+	public ResponseEntity<ProjectType> getProjectTypeById(@PathVariable(name = "projecttypeId") Long projecttypeId) {
+		return new ResponseEntity<ProjectType>(projectTypeService.findByProjectTypeId(projecttypeId),HttpStatus.OK) ;	
+	}
+	
+	
 }

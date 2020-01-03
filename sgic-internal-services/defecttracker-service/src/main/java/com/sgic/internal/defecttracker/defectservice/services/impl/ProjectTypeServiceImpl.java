@@ -40,4 +40,9 @@ public class ProjectTypeServiceImpl implements ProjectTypeService {
 		projectTypeRepository.deleteById(projecttypeId);
 	}
 
+	@Override
+	public ProjectType findByProjectTypeId(Long projecttypeId) {
+		return projectTypeRepository.findProjectTypeByProjecttypeId(projecttypeId);
+	}
+
 }

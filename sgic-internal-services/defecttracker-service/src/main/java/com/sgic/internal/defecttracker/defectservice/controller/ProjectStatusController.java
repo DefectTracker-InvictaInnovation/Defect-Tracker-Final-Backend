@@ -57,4 +57,9 @@ public class ProjectStatusController {
 		}
 		return null;
 	}
+	
+	@GetMapping("/getprojectstatusId/{projectstatusId}")
+	public ResponseEntity<ProjectStatus> getProjectStatusById(@PathVariable(name = "projectstatusId") Long projectstatusId) {
+		return new ResponseEntity<ProjectStatus>(projectStatusService.findByProjectStatusId(projectstatusId),HttpStatus.OK) ;	
+	}
 }
