@@ -42,5 +42,7 @@ public interface ProjectService {
 	public Long countProject();
 	
 	public List<Project> findByProjectOrderByProjectIdDesc(Long projectId);
+	
+	public boolean isProjectNameAlreadyExist(String projectName);
 
 }

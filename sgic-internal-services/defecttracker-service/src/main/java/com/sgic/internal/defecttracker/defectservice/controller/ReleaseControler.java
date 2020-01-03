@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,6 +50,18 @@ public class ReleaseControler {
 	public List<Release> getAllRelease(Release release) {
 		List<Release> releases  = (List<Release>) releaseService.getAllRelease();
 		return releases;
+	}
+	//get all details by projectId in release table
+	@GetMapping("/release/{projectId}")
+	public List<ReleaseDto> getReleaseByprojectId(@PathVariable(name="projectId")Long projectId) {
+		return releaseDtoMapper.getReleaseByprojectId(projectId);
+		
+	}
+	
+	@PutMapping("/updateRelease/{releaseId}")
+	public ResponseEntity<String> updateRelease(@RequestBody Release release){
+		releaseService.updateRelease(release);
+		return null;
 	}
 
 

@@ -32,4 +32,6 @@ public interface ModuleService {
 
 	// List Module Info
 	public List<Module> findByModuleOrderByModuleIdDesc(Long moduleId);
+	
+	public boolean isModuleNameAlreadyExist(String moduleName);
 }
