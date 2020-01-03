@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ReleaseDto;
+import com.sgic.internal.defecttracker.defectservice.entities.Project;
 import com.sgic.internal.defecttracker.defectservice.entities.Release;
 
 @Service
@@ -16,9 +17,26 @@ public class ReleaseDtoConverter {
 		Release release = new Release();
 		
 		release.setReleaseId(releaseDto.getReleaseId());
+		
 		release.setReleaseName(releaseDto.getReleaseName());
 		
+		Project project =new Project();
+		project.setProjectId(releaseDto.getProjectId());
+		release.setProject(project);
+		
 		return release;
+	}
+	//release entity to dto convertered
+	public static ReleaseDto releaseToReleaseDto(Release release) {
+		
+		ReleaseDto releaseDto = new ReleaseDto();
+		
+		releaseDto.setReleaseId(release.getReleaseId());
+		
+		releaseDto.setReleaseName(release.getReleaseName());
+		releaseDto.setProjectId(release.getProject().getProjectId());
+		
+		return releaseDto;
 	}
 
 	//getAllRelease
@@ -30,7 +48,9 @@ public class ReleaseDtoConverter {
 				ReleaseDto releaseDto = new ReleaseDto();
 				
 				releaseDto.setReleaseId(release.getReleaseId());
+				
 				releaseDto.setReleaseName(release.getReleaseName());
+				releaseDto.setProjectId(release.getProject().getProjectId());
 				
 				releaseDto1.add(releaseDto);
 			}

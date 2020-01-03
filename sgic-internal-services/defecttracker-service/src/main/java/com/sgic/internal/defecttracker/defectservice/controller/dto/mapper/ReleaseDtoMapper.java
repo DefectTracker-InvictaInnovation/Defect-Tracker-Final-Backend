@@ -30,5 +30,10 @@ public class ReleaseDtoMapper {
 	public Release saveRelease(ReleaseDto releaseDto) {
 		return releaseService.createRelease(releaseDtoConverter.relaseDtoToRelease(releaseDto));
 	}
-
+	
+	@SuppressWarnings("static-access")
+	public List<ReleaseDto> getReleaseByprojectId(Long projectId) {
+		List<Release> release=releaseService.getReleaseByProjectId(projectId);
+		return releaseDtoConverter.releaseToReleaseDto(release);
+	}
 }

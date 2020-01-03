@@ -25,4 +25,23 @@ public class ReleaseServiceImpl implements ReleaseService {
 		return releaseRepository.findAll();
 	}
 
+	@Override
+	public Release updateRelease(Release release) {
+		Long releaseId=release.getReleaseId();
+		boolean isExist=releaseRepository.getByReleaseId(releaseId) != null;
+		if(isExist) {
+			return releaseRepository.save(release);
+		}else {
+		}
+		
+		
+		return null;
+	}
+
+	@Override
+	public List<Release> getReleaseByProjectId(Long projectId) {
+		
+		return releaseRepository.getReleaseByProjectId(projectId);
+	}
+	
 }
