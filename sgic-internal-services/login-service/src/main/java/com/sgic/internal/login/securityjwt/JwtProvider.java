@@ -30,7 +30,8 @@ public class JwtProvider {
         UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
 
         return Jwts.builder()
-		                .setSubject((userPrincipal.getUsername()))
+//		                .setSubject((userPrincipal.getUsername()))
+        		        .setSubject(Long.toString(userPrincipal.getId()))
 		                .setIssuedAt(new Date())
 		                .setExpiration(new Date((new Date()).getTime() + jwtExpiration*1000))
 		                .signWith(SignatureAlgorithm.HS512, jwtSecret)
@@ -56,10 +57,19 @@ public class JwtProvider {
         return false;
     }
     
-    public String getUserNameFromJwtToken(String token) {
-        return Jwts.parser()
-			                .setSigningKey(jwtSecret)
-			                .parseClaimsJws(token)
-			                .getBody().getSubject();
+//    public String getUserNameFromJwtToken(String token) {
+//        return Jwts.parser()
+//			                .setSigningKey(jwtSecret)
+//			                .parseClaimsJws(token)
+//			                .getBody().getSubject();
+//    }
+    
+    public Long getUserIdFromJWT(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(jwtSecret)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return Long.parseLong(claims.getSubject());
     }
 }

@@ -13,12 +13,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -35,10 +32,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.eureka.common.security.JwtConfig;
 
@@ -51,7 +46,7 @@ import com.sgic.internal.login.payload.UserProfile;
 import com.sgic.internal.login.repositories.ConfirmationTokenRepository;
 import com.sgic.internal.login.repositories.RoleRepository;
 import com.sgic.internal.login.repositories.UserRepository;
-import com.sgic.internal.login.request.LoginForm;
+import com.sgic.internal.login.request.LoginRequest;
 import com.sgic.internal.login.request.SignUpForm;
 import com.sgic.internal.login.response.JwtResponse;
 import com.sgic.internal.login.response.ResponseMessage;
@@ -89,8 +84,8 @@ public class LoginController {
 	@Autowired
 	UserDetailsServiceImpl userDetailsServiceImpl;
 
-@Autowired
-NotificationService notificationService;
+	@Autowired
+	NotificationService notificationService;
 
 	@Autowired
 	private ConfirmationTokenRepository confirmationTokenRepository;
@@ -102,12 +97,11 @@ NotificationService notificationService;
 	private RestTemplate restTemplate;
 
 	@PostMapping("/signin")
-	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginForm loginRequest) {
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		System.out.println(
-				"fffffffffffffffffffffffffffffffffffffff :" + loginRequest.getUsername() + loginRequest.getUsername());
+				"fffffffffffffffffffffffffffffffffffffff :" + loginRequest.getUsernameOrEmail() + loginRequest.getPassword());
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
+				new UsernamePasswordAuthenticationToken(loginRequest.getUsernameOrEmail(), loginRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		Long now = System.currentTimeMillis();
@@ -133,10 +127,9 @@ NotificationService notificationService;
 //		email.setEmail(signUpRequest.getEmail());
 //		email.setSubject("Username & Password");
 //		email.setText("This is your Username:" + signUpRequest.getUsername()+"&&"+"This is your password:" + signUpRequest.getPassword());
-		
-		
+
 //		notificationService.sendNotofication(email);
-		
+
 //		HttpHeaders headers = new HttpHeaders();
 //		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 //		HttpEntity<Email> entity = new HttpEntity<Email>(email, headers);
@@ -149,8 +142,9 @@ NotificationService notificationService;
 //		System.out.println("obj" + obj);
 //		
 //		}
-		System.out.println("fffffffffffffffffffffffffffffffffffffff :" + signUpRequest.getEmail()
-				+ signUpRequest.getLastname() + signUpRequest.getName() + signUpRequest.getPassword() + signUpRequest.getUsername());
+		System.out.println(
+				"fffffffffffffffffffffffffffffffffffffff :" + signUpRequest.getEmail() + signUpRequest.getLastname()
+						+ signUpRequest.getName() + signUpRequest.getPassword() + signUpRequest.getUsername());
 //				+ signUpRequest.getRole() + 
 
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -166,7 +160,7 @@ NotificationService notificationService;
 		// Creating user's account
 		User user = new User(signUpRequest.getName(), signUpRequest.getLastname(), signUpRequest.getUsername(),
 				signUpRequest.getEmail(), encoder.encode(signUpRequest.getPassword()));
-		
+
 		String strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
@@ -221,17 +215,17 @@ NotificationService notificationService;
 
 		user.setRoles(roles);
 		userRepository.save(user);
-		
+
 		Email email2 = new Email();
 		email2.setEmail(user.getEmail());
 		email2.setSubject("UserName & Password");
-		email2.setText(
-				"This is your userName -" + " " + user.getUsername()+ "\n" + "This is your Password -" + " " + signUpRequest.getPassword());
+		email2.setText("This is your userName -" + " " + user.getUsername() + "\n" + "This is your Password -" + " "
+				+ signUpRequest.getPassword());
 
 		HttpHeaders headers1 = new HttpHeaders();
 		headers1.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<Email> entity1 = new HttpEntity<Email>(email2, headers1);
-		System.out.println("wwwwwwwwwwwwwww"+ " " + email2.getEmail() + email2.getText());
+		System.out.println("wwwwwwwwwwwwwww" + " " + email2.getEmail() + email2.getText());
 
 		RestTemplate restTemplate = new RestTemplate();
 		Email result = restTemplate.postForObject(AppConstants.SEND_EMAIL_URL, email2, Email.class);
