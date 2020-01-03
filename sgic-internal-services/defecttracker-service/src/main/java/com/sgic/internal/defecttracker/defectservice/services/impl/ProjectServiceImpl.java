@@ -96,4 +96,9 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectRepository.findAll(Sort.by(Sort.Direction.DESC, "projectId"));
 	}
 
+	@Override
+	public boolean isProjectNameAlreadyExist(String projectName) {
+		return projectRepository.existsByProjectName(projectName);
+	}
+
 }

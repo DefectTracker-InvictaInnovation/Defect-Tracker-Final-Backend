@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.sgic.internal.defecttracker.defectservice.repositories.DefectRepository;
 import com.sgic.internal.defecttracker.defectservice.services.DashboardService;
@@ -51,13 +52,6 @@ public class DashboardController {
 	public ResponseEntity<Float> getTotalCountmedium() {
 		return new ResponseEntity<>(dashboardService.CalculateMedium(count, rejectlow, medium, rejectmedium),
 				HttpStatus.OK);
-
-	}
-
-	//get severity index for the defects
-	@GetMapping("/getseverityindex")
-	public ResponseEntity<Double> getSeverityIndex() {
-		return new ResponseEntity<>(dashboardService.calculateSeverityIndex(), HttpStatus.OK);
 
 	}
 
@@ -119,5 +113,13 @@ public class DashboardController {
 	@GetMapping("/getprioritylowcount")
 	public ResponseEntity<Integer> countprioritytotallow() {
 		return new ResponseEntity<>(dashboardService.countprioritytotallow(count, High), HttpStatus.OK);
+	}
+	
+	
+	//get severity index for the defects
+	@GetMapping("/getseverityindex/{projectId}")
+	public ResponseEntity<Float> getSeverityIndex(@PathVariable(name = "projectId") Long projectId) {
+		return new ResponseEntity<>(dashboardService.calculateSeverityIndex(projectId), HttpStatus.OK);
+
 	}
 }

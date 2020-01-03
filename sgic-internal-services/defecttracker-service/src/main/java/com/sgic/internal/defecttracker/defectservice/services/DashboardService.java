@@ -5,13 +5,6 @@ public interface DashboardService {
 //	<----Calculate severity Low defect --- Method--- >
 	public float CalculateLow(long count, int reject, int low, int rejectlow);
 
-//	public Integer countlow();
-//
-//	public Integer countmudium();
-
-//	public Integer countHigh();
-//
-//	public Integer countReject();
 
 
 	//<----Calculate severity high defect --- Method--- >
@@ -37,15 +30,7 @@ public interface DashboardService {
 	
 	public Integer countReject();
 	
-	public Integer fetchHighWeight();
-	
-	public Integer fetchMediumWeight();
-	
-	public Integer fetchLowWeight();
-	
 	public Long TotalCount();
-	
-	public Double calculateSeverityIndex();
 
 //	<--Severity Total Count -->
 	public Integer countseveritytotalLow(long countseveritylow, int rejectseveritylow);
@@ -63,5 +48,8 @@ public interface DashboardService {
 	public Integer countprioritytotalhigh(long countpriorityhigh, int rejectpriorityhigh);
 	
 	public Integer countprioritytotallow(long countprioritylow, int rejectprioritylow);
+	
+	//Severity Index Matrix
+	public Float calculateSeverityIndex(Long projectId);
 	
 }

@@ -18,7 +18,7 @@ public class DesignationServiceImpl implements DesignationService {
 	private DesignationRepository designationRepository;
 
 	private static Logger logger = LogManager.getLogger(EmployeeRepository.class);
-
+	
 	@Override
 	// Save Designation Method
 	public Designation savedesignation(Designation designation) {
@@ -64,6 +64,7 @@ public class DesignationServiceImpl implements DesignationService {
 		}
 		return null;
 	}
+
 
 //	@Override
 //	public List<Employee> getBydesignationname() {// TODO Auto-generated method stub

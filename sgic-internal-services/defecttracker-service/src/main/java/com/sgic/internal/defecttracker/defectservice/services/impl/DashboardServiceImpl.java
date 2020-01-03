@@ -52,47 +52,10 @@ public class DashboardServiceImpl implements DashboardService {
 	}
 
 	@Override
-	public Integer fetchHighWeight() {
-		return defectRepository.getHighWeight();
-	}
-
-	@Override
-	public Integer fetchMediumWeight() {
-		return defectRepository.getMediumWeight();
-	}
-
-	@Override
-	public Integer fetchLowWeight() {
-		return defectRepository.getLowWeight();
-	}
-
-	@Override
 	public Long TotalCount() {
 		return defectRepository.count();
 	}
-
-	@Override
-	public Double calculateSeverityIndex() {
-		 
-		int countLow = countLow() - lowReject();
-		int countMedium = countMedium() - mediumReject();
-		int countHigh = countHigh()-  highReject();
-		int fetchHighWeight = fetchHighWeight();
-		int fetchMediumWeight = fetchMediumWeight();
-		int fetchLowWeight = fetchLowWeight();
-		long totalCount = TotalCount() - countReject();
-
-		int severityIndex1 = ((countHigh* fetchHighWeight) + (countMedium * fetchMediumWeight)
-				+ (countLow * fetchLowWeight));
-		double severityIndex1d = severityIndex1;
-
-		int totcount = (int) totalCount;
-		double totcountd = totcount;
-
-		double severityIndex = severityIndex1d / totcountd;
-		return severityIndex;
-	}
-
+	
 	public Integer countReject() {
 		return defectRepository.countByStatusRejected();
 	}
@@ -246,6 +209,25 @@ public class DashboardServiceImpl implements DashboardService {
 		
 		int totalprioritylow =(int) ( countprioritylow - rejectprioritylow);
 		return totalprioritylow;
+	}
+	
+	//severity index
+	@Override
+	public Float calculateSeverityIndex(Long projectId) {
+		long countSeverityHigh = defectRepository.siCountDefectByRejectedStatusAndSeverityHigh(projectId);
+		long countSeverityLow = defectRepository.siCountDefectByRejectedStatusAndSeverityLow(projectId);
+		long countSeverityMedium = defectRepository.siCountDefectByRejectedStatusAndSeverityMedium(projectId);
+		long countSeverityTotal = defectRepository.siCountDefectByProject(projectId);
+		
+		long lowWeight = defectRepository.getLowWeight();
+		long highWeight = defectRepository.getHighWeight();
+		long mediumWeight = defectRepository.getMediumWeight();
+
+		long severityIndexinInt = ((countSeverityHigh* highWeight) + (countSeverityMedium * mediumWeight)
+				+ (countSeverityLow * lowWeight))/countSeverityTotal;
+		float severityIndex = severityIndexinInt;
+		System.out.println(severityIndex);
+		return severityIndex;
 	}
 
 }
