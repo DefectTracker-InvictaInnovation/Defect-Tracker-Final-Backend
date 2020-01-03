@@ -41,14 +41,13 @@ public class ProjectController {
 	// Post Mapping For Create a Project
 	@PostMapping(value = "/createproject")
 	public ResponseEntity<Object> createProject(@Valid @RequestBody ProjectDto projectDto) {
-		
-		if (projectDtoMapper.getByProjectId(projectDto.getProjectId()) != null) {
-//			logger.info("Successfully Saved");
-		} else {
+		if (projectService.isProjectNameAlreadyExist(projectDto.getProjectName())) {
+			logger.debug("Project Name is already exists: createProject()");
+			return new ResponseEntity<>(new ApiResponse(RestApiResponseStatus.VALIDATION_FAILURE), HttpStatus.BAD_REQUEST);
+			}
 			projectDtoMapper.saveProjectforMapper(projectDto);
 			logger.info("Project created");
-		}	
-		return new ResponseEntity<>(new ApiResponse(RestApiResponseStatus.OK), HttpStatus.OK);
+			return new ResponseEntity<>(new ApiResponse(RestApiResponseStatus.OK), HttpStatus.OK);
 	}
 
 	// Get Mapping For Get all Project

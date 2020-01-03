@@ -52,13 +52,11 @@ public class ModuleController {
 	@PostMapping(value = "/createmodule")
 	public ResponseEntity<Object> createModule(@Valid @RequestBody ModuleData moduleData) {
 		
-		if (moduleDataMapper.getByModuleId(moduleData.getModuleId()) != null) {
-			logger.info("Successfully Saved");
-			System.out.println("Successfully Saved");
-		} else {
+		if (moduleService.isModuleNameAlreadyExist(moduleData.getModuleName())) {
+			logger.debug("Module Name is already exists: createModule()");
+			return new ResponseEntity<>(new ApiResponse(RestApiResponseStatus.VALIDATION_FAILURE), HttpStatus.BAD_REQUEST);
+			}
 			moduleDataMapper.saveModuleforMapper(moduleData);
-		}
-		
 		return new ResponseEntity<Object>(new ApiResponse(RestApiResponseStatus.OK), HttpStatus.OK);
 
 	}

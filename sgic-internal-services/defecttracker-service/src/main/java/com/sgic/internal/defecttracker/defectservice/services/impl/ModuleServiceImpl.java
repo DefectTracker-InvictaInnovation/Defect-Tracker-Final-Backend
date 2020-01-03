@@ -98,6 +98,11 @@ public class ModuleServiceImpl implements ModuleService {
 		return moduleRepository.findAll(Sort.by(Sort.Direction.DESC, "moduleId"));
 	}
 
+	@Override
+	public boolean isModuleNameAlreadyExist(String moduleName) {
+		return moduleRepository.existsByModuleName(moduleName);
+	}
+
 //	@Override
 //	public List<Module> findByModuleOrderByModuleIdDesc(Long moduleId) {
 //		// TODO Auto-generated method stub

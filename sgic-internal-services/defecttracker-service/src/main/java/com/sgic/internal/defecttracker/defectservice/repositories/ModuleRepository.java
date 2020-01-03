@@ -40,4 +40,6 @@ public interface ModuleRepository extends JpaRepository<Module, Long> {
 //	List<Module> getBySubModuleId(String subModuleId);
 	
 	Module findAllmoduleByModuleId(Long moduleId);
+	
+	boolean existsByModuleName(String moduleName);
 }
