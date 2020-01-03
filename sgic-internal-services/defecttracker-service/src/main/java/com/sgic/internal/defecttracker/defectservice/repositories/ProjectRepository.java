@@ -34,4 +34,6 @@ public interface ProjectRepository  extends JpaRepository<Project, Long> {
     //void deleteById(Long projectId);
 
 	boolean existsById(Long projectId);
+	
+	boolean existsByProjectName(String projectName);
 }

@@ -47,5 +47,24 @@ public class DashboardServiceImpl implements DashboardService{
 		
 		return defectRepository.countdefectByProject(projectId);
 	}
+	
+	//severity index
+	@Override
+	public Float calculateSeverityIndex(Long projectId) {
+		long countSeverityHigh = defectRepository.siCountDefectByRejectedStatusAndSeverityHigh(projectId);
+		long countSeverityLow = defectRepository.siCountDefectByRejectedStatusAndSeverityLow(projectId);
+		long countSeverityMedium = defectRepository.siCountDefectByRejectedStatusAndSeverityMedium(projectId);
+		long countSeverityTotal = defectRepository.siCountDefectByProject(projectId);
+		
+		long lowWeight = defectRepository.getLowWeight();
+		long highWeight = defectRepository.getHighWeight();
+		long mediumWeight = defectRepository.getMediumWeight();
+
+		long severityIndexinInt = ((countSeverityHigh* highWeight) + (countSeverityMedium * mediumWeight)
+				+ (countSeverityLow * lowWeight))/countSeverityTotal;
+		float severityIndex = severityIndexinInt;
+		System.out.println(severityIndex);
+		return severityIndex;
+	}
 
 }

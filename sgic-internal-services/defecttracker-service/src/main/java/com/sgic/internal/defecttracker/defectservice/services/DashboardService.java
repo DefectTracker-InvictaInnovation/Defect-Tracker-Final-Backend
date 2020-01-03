@@ -6,9 +6,14 @@ public interface DashboardService {
 	
 	
 	public Integer countpriority(Long projectId,String priority);
+
+	
 	
 	public Integer countopenseverity(Long projectId,String openseverity);
 	
 	public Integer countdefectByproject(Long projectId);
+
+
+	public Float calculateSeverityIndex(Long projectId);
 
 }

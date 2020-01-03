@@ -43,4 +43,12 @@ public class DashboardController {
 	public ResponseEntity<Integer> countdefectbyproject(@PathVariable(name="projectId") Long projectId) {
 		return new ResponseEntity<>(dashboardService.countdefectByproject(projectId),HttpStatus.OK );
 	}
+	
+	
+	//get severity index for the defects
+	@GetMapping("/getseverityindex/{projectId}")
+	public ResponseEntity<Float> getSeverityIndex(@PathVariable(name = "projectId") Long projectId) {
+		return new ResponseEntity<>(dashboardService.calculateSeverityIndex(projectId), HttpStatus.OK);
+
+	}
 }

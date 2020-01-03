@@ -60,14 +60,6 @@ List<Defect> getByType(@Param("type")String type);
 @Query(value = "SELECT COUNT(status) FROM Defect WHERE project_id=:projectId AND status =:status")
 Long countByStatus(String status, Long projectId );
 
-//@Query("SELECT COUNT(*) FROM Defect d WHERE d.status=:rejected")
-//Long countRejectedDefect(@Param("rejected") String defectId);
-
-
-//For Severity Index Start
-//@Query("SELECT COUNT(severity) FROM Defect WHERE severity='Low'")
-//int countBySeverity();
-
 @Query("SELECT COUNT(severity) FROM Defect WHERE severity='Medium'")
 int countBySeverityMedium();
 
@@ -78,16 +70,6 @@ int countBySeverityhigh();
 int countByStatusRejected();
 
 public long count();
-
-@Query("SELECT highWeight FROM SeverityWeight")
-int getHighWeight();
-
-@Query("SELECT mediumWeight FROM SeverityWeight")
-int getMediumWeight();
-
-@Query("SELECT lowWeight FROM SeverityWeight")
-int getLowWeight();
-//For Severity Index End
 
 @Query("SELECT COUNT(severity) FROM Defect WHERE status='Rejected' AND severity = 'low'")
 int countByStatusRejectedlow();
@@ -116,7 +98,42 @@ int countByPriorityLow();
 @Query("SELECT COUNT(priority) FROM Defect WHERE status='Rejected' AND priority = 'low'")
 int countByPriorityStatusRejectedlow();
 
-//
+
+
+//start code for severity Index
+
+String fetchhighseverityweight = "SELECT high_weight FROM severityweight";
+@Query(value = fetchhighseverityweight, nativeQuery = true)
+long getHighWeight();
+
+String fetchmediumseverityweight = "SELECT medium_weight FROM severityweight";
+@Query(value = fetchmediumseverityweight, nativeQuery = true)
+long getMediumWeight();
+
+String fetchlowseverityweight = "SELECT low_weight FROM severityweight";
+@Query(value = fetchlowseverityweight, nativeQuery = true)
+long getLowWeight();
+
+String countByRejectedStatusAndSeverityHigh ="SELECT COUNT(defect_id) FROM defect WHERE project_id=:projectId AND severity=\"High\" AND status!=\"Rejected\"";
+@Query(value = countByRejectedStatusAndSeverityHigh, nativeQuery = true)
+Long siCountDefectByRejectedStatusAndSeverityHigh(Long projectId );
+
+String countByRejectedStatusAndSeverityLow ="SELECT COUNT(defect_id) FROM defect WHERE project_id=:projectId AND severity=\"Low\" AND status!=\"Rejected\"";
+@Query(value = countByRejectedStatusAndSeverityLow, nativeQuery = true)
+Long siCountDefectByRejectedStatusAndSeverityLow(Long projectId );
+
+String countByRejectedStatusAndSeverityMedium ="SELECT COUNT(defect_id) FROM defect WHERE project_id=:projectId AND severity=\"Medium\" AND status!=\"Rejected\"";
+@Query(value = countByRejectedStatusAndSeverityMedium, nativeQuery = true)
+Long siCountDefectByRejectedStatusAndSeverityMedium(Long projectId );
+
+String countTotalDefectWithoutRejected ="SELECT COUNT(defect_id) FROM defect WHERE project_id=:projectId AND status!=\"Rejected\"";
+@Query(value = countTotalDefectWithoutRejected, nativeQuery = true)
+Long siCountDefectByProject(Long projectId );
+
+//end code for severity Index
+
+
+//dashbord for marix (pakees)
 @Query(value ="SELECT COUNT(priority) FROM Defect WHERE project_id=:projectId AND priority=:priority AND status !='rejected'")
 int countByPriority(Long projectId,String priority);
 
