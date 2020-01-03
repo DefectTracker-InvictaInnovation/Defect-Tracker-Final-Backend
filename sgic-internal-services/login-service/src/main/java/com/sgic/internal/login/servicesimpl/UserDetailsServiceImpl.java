@@ -9,8 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.sgic.internal.login.entities.Role;
 import com.sgic.internal.login.entities.User;
 import com.sgic.internal.login.repositories.ConfirmationTokenRepository;
 import com.sgic.internal.login.repositories.RoleRepository;
@@ -29,12 +27,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	ConfirmationTokenRepository comfirmationTokenRepository;
 
 	@Override
-	@Transactional
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    @Transactional
+    public UserDetails loadUserByUsername(String usernameOrEmail)
+            throws UsernameNotFoundException {
+        // Let people login with either username or email
+        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("User not found with username or email : " + usernameOrEmail)
+        );
 
-		User user = userRepository.findByUsername(username);
-		return UserPrinciple.build(user);
-	}
+        return UserPrinciple.build(user);
+    }
 	
 	public List<User> getUserDetails() {
 		return userRepository.findAll();

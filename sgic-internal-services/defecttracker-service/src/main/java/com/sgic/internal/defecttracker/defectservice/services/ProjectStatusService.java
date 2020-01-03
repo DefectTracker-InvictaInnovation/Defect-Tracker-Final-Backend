@@ -14,5 +14,7 @@ public interface ProjectStatusService {
 	public ProjectStatus updateProjectStatus(ProjectStatus projectStatus);
 
 	public void deleteProjectStatus(Long projectstatusId);
+	
+	public ProjectStatus findByProjectStatusId(Long projectstatusId);
 
 }

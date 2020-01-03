@@ -1,25 +1,20 @@
 package com.sgic.internal.login.request;
 
-
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
-
-public class LoginForm {
+public class LoginRequest {
     @NotBlank
-    @Size(min=3, max = 60)
-    private String username;
+    private String usernameOrEmail;
 
     @NotBlank
-    @Size(min = 2, max = 40)
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getUsernameOrEmail() {
+        return usernameOrEmail;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsernameOrEmail(String usernameOrEmail) {
+        this.usernameOrEmail = usernameOrEmail;
     }
 
     public String getPassword() {
@@ -30,3 +25,4 @@ public class LoginForm {
         this.password = password;
     }
 }
+

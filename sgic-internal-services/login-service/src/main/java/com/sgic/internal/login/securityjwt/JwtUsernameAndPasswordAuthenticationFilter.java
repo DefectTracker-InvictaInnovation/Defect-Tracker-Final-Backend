@@ -2,9 +2,7 @@ package com.sgic.internal.login.securityjwt;
 
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -16,7 +14,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -25,13 +22,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.eureka.common.security.JwtConfig;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sgic.internal.login.request.LoginForm;
+import com.sgic.internal.login.request.LoginRequest;
 import com.sgic.internal.login.servicesimpl.UserDetailsServiceImpl;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
@@ -62,11 +58,11 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 		try {
 			
 			// 1. Get credentials from request
-			LoginForm creds = new ObjectMapper().readValue(request.getInputStream(), LoginForm.class);
+			LoginRequest creds = new ObjectMapper().readValue(request.getInputStream(), LoginRequest.class);
 			
 			// 2. Create auth object (contains credentials) which will be used by auth manager
 			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-					creds.getUsername(), creds.getPassword(), Collections.emptyList());
+					creds.getUsernameOrEmail(), creds.getPassword(), Collections.emptyList());
 			
 			// 3. Authentication manager authenticate the user, and use UserDetialsServiceImpl::loadUserByUsername() method to load the user.
 			return authManager.authenticate(authToken);
