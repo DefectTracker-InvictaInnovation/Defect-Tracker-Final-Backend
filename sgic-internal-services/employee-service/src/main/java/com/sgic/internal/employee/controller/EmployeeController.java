@@ -318,7 +318,9 @@ public class EmployeeController {
 //			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path(AppConstants.DOWNLOAD_PATH)
 //					.path(fileName).toUriString();
 			employeeDTO.setProfilePicPath(
-					"http://localhost:8084/employeeservice/downloadFile/1570768396385_Full-HD-1080p-Wallpaper-HD-Nature.jpg");
+					"https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjFgLXdl93mAhXd6XMBHUTzCToQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.shutterstock.com%2Fes%2Fsearch%2Fprofile%2Bof%2Ba%2Bperson%3Fcontext_photo%3D1103677865%26search_source%3Dbase_related_searches&psig=AOvVaw3GSmrip5LoyojI51YUhcxU&ust=1577788873949401"
+//					"http://localhost:8084/employeeservice/downloadFile/1570768396385_Full-HD-1080p-Wallpaper-HD-Nature.jpg"
+					);
 			employeeDTOMapper.saveEmployee(employeeDTO);
 		}
 
