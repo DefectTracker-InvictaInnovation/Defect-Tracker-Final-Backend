@@ -1,10 +1,6 @@
 package com.sgic.internal.defecttracker.defectservice.entities;
 
-
-
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,8 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(schema="defectservices",name = "release", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
             "projectId"
-        })
-        
+        })       
 })
 public class Release {
 
@@ -55,8 +50,6 @@ public class Release {
 		this.releaseName = releaseName;
 	}
 
-
-
 	public Project getProject() {
 		return project;
 	}
@@ -64,8 +57,5 @@ public class Release {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-
-	
-
 	
 }
