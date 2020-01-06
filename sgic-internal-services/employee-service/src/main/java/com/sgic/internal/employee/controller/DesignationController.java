@@ -48,12 +48,12 @@ public class DesignationController {
 		return new ResponseEntity<>(designationDTOMapper.getAllDesignation(), HttpStatus.OK);
 	}
 
-//	@GetMapping("/getbydesignationId/{designationid}")
-//	// <---Get Designation By Designation ID--->
-//	public ResponseEntity<Designation> getDesignationById(@PathVariable(name = "designationid") Long designationid) {
-//		logger.info("Designation Controller --> Get by Designation by Id");
-//		return new ResponseEntity<>(designationDTOMapper.getBydesignationid(designationid), HttpStatus.OK);
-//	}
+	@GetMapping("/getbydesignationId/{designationid}")
+	// <---Get Designation By Designation ID--->
+	public ResponseEntity<Designation> getDesignationById(@PathVariable(name = "designationid") Long designationid) {
+		logger.info("Designation Controller --> Get by Designation by Id");
+		return new ResponseEntity<>(designationDTOMapper.getBydesignationid(designationid), HttpStatus.OK);
+	}
 	
 	@PutMapping("updatedesignation/{designationid}")
 	public ResponseEntity<String> updateDesignation(@RequestBody Designation designation) {
