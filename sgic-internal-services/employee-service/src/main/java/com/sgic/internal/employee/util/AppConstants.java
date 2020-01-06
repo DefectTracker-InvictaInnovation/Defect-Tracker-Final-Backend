@@ -26,4 +26,8 @@ public class AppConstants {
 	public static final String PNG_FILE_FORMAT = ".png";
 	public static final String JPEG_FILE_FORMAT = ".jpeg";
 	public static final String JPG_FILE_FORMAT = ".jpg";
+	
+	public static final String GET_HR_URL= "http://localhost:8084/employeeservice/getallemployee";
+	//Apis From Login Service
+	public static final String SIGNUP_URL = "http://localhost:8085/loginservice/api/auth/signup";
 }

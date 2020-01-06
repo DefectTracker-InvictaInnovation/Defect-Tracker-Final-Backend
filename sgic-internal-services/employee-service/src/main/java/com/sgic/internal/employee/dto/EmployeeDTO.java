@@ -13,6 +13,8 @@ public class EmployeeDTO {
 	private int availability =100;
 	private boolean bench;
 	private String profilePicPath;
+	
+	private String username;
 	private String password;
 
 	public EmployeeDTO() {
@@ -111,6 +113,15 @@ public class EmployeeDTO {
 	public void setProfilePicPath(String profilePicPath) {
 		this.profilePicPath = profilePicPath;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	
 
 }

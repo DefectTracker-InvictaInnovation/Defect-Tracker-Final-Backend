@@ -141,4 +141,11 @@ public class EmployeeDTOMapper {
 		return employeeConverter.EmployeeToEmployeeDTOList(othersList);
 
 	}
+	
+	public List<EmployeeDTO> getHr() {
+		logger.info(" Employee Successfully Get All Employee Details ");
+		List<Employee> othersList = employeeService.getHR();
+		return employeeConverter.EmployeeToEmployeeDTOList(othersList);
+
+	}
 }
