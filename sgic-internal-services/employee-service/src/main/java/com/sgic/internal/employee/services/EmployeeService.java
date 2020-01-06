@@ -53,5 +53,8 @@ public interface EmployeeService {
 	public List<Employee> getBydesignationname();
 
 	public List<Employee> getByQaAndDevelopersOnly();
+	
+	public List<Employee> getHR();
+	
 
 }

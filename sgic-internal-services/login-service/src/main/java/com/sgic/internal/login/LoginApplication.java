@@ -10,19 +10,15 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EntityScan(basePackageClasses = {
-		LoginApplication.class,
-		Jsr310JpaConverters.class
-})
-public class LoginApplication 
-{
-    public static void main( String[] args )
-    {
-    	SpringApplication.run(LoginApplication.class, args);
-    }
-    
-    @Bean
+@EntityScan(basePackageClasses = { LoginApplication.class, Jsr310JpaConverters.class })
+public class LoginApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(LoginApplication.class, args);
+	}
+
+	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
+
 }

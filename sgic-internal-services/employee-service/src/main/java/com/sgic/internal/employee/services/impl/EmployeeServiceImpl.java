@@ -250,4 +250,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> getByQaAndDevelopersOnly() {
 		return employeeRepository.getQaAndDevelopers();
 	}
+
+	@Override
+	public List<Employee> getHR() {
+		return employeeRepository.getHrOnly();
+	}
 }

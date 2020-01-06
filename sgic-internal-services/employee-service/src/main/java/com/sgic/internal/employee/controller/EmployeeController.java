@@ -35,11 +35,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sgic.internal.employee.dto.EmployeeDTO;
 import com.sgic.internal.employee.dto.mapper.EmployeeDTOMapper;
 import com.sgic.internal.employee.entities.AppResponse;
-import com.sgic.internal.employee.entities.Employee;
 import com.sgic.internal.employee.repositories.EmployeeRepository;
 import com.sgic.internal.employee.services.EmployeeService;
 import com.sgic.internal.employee.services.FileStorageService;
 import com.sgic.internal.employee.util.AppConstants;
+
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -54,10 +54,11 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
 
 	@Autowired
 	FileStorageService fileStorageService;
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -183,8 +184,7 @@ public class EmployeeController {
 		return null;
 
 	}
-	
-	
+
 	/* Author:KeerthanaR 23-06-2019 */
 	// Get Employee By Name
 	@GetMapping("/getname/{name}")
@@ -226,19 +226,18 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/getdevelopercount")
-	// <----	Employee DataBase Employee Table Row Count Method --->
-		public long getTotalDeveloperCount() {
-			try {
-				logger.info("Employee Controller :-> getCount");
-				long name=employeeRepository.countByDesignationName("Developer");
-				return employeeservice.countDeveloper(name);
-			} catch (Exception ex) {
-				logger.error("Employee Controller :-> Error" + ex.getMessage());
-			}
-			return (Long) null;
-
+	// <---- Employee DataBase Employee Table Row Count Method --->
+	public long getTotalDeveloperCount() {
+		try {
+			logger.info("Employee Controller :-> getCount");
+			long name = employeeRepository.countByDesignationName("Developer");
+			return employeeservice.countDeveloper(name);
+		} catch (Exception ex) {
+			logger.error("Employee Controller :-> Error" + ex.getMessage());
 		}
+		return (Long) null;
 
+	}
 
 	@GetMapping("/getTotalQaCount")
 	public long getTotalQaCount() {
@@ -261,7 +260,7 @@ public class EmployeeController {
 		return (Long) null;
 
 	}
-	
+
 	@GetMapping("/getTotalHRCount")
 	public long getTotalHRCount() {
 		try {
@@ -272,7 +271,7 @@ public class EmployeeController {
 		return (Long) null;
 
 	}
-	
+
 	@GetMapping("/getTotalTecLeadCount")
 	public long getTotalTecLeadCount() {
 		try {
@@ -283,7 +282,7 @@ public class EmployeeController {
 		return (Long) null;
 
 	}
-	
+
 	@GetMapping("/getTotalQALeadCount")
 	public long getTotalQALeadCount() {
 		try {
@@ -308,7 +307,7 @@ public class EmployeeController {
 			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
 					.path(AppConstants.DOWNLOAD_PATH).path(fileName).toUriString();
 			employeeDTO.setProfilePicPath(fileDownloadUri);
-			
+
 			employeeDTOMapper.saveEmployee(employeeDTO);
 
 		} else {
@@ -384,7 +383,6 @@ public class EmployeeController {
 		return null;
 	}
 
-	
 // <-------       update availability when allocate the resource      ------>
 	@RequestMapping(value = "update/availability/{empId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateAvailability(@RequestBody EmployeeDTO employeeDTO,
@@ -393,8 +391,8 @@ public class EmployeeController {
 		try {
 			logger.info("Employee Controller :-> Update Availability");
 			int availablenow = employeeDTO.getAvailability();
-			System.out.println("availablenow" +availablenow);
-			employeeRepository.updateAvailability(availablenow,empId);
+			System.out.println("availablenow" + availablenow);
+			employeeRepository.updateAvailability(availablenow, empId);
 
 //			if (employeeDTOMapper.UpdateAvailaibility(empId, employeeDTO) != null) {
 //				return new ResponseEntity<>("Successfully Updated Availability", HttpStatus.OK);
@@ -406,19 +404,25 @@ public class EmployeeController {
 
 		return null;
 	}
-	
-	
+
 	@GetMapping("/getpm")
 	// <---Get Designation By Designation ID--->
 	public ResponseEntity<List<EmployeeDTO>> getByName() {
 		logger.info("Designation Controller --> Get by Designation by Id");
 		return new ResponseEntity<>(employeeDTOMapper.getAllPm(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/getothers")
 	// <---Get Designation By Designation ID--->
 	public ResponseEntity<List<EmployeeDTO>> getOtherAllEmployees() {
 		logger.info("Designation Controller --> Get by Designation by Id");
 		return new ResponseEntity<>(employeeDTOMapper.getAllOthers(), HttpStatus.OK);
+	}
+
+	@GetMapping("/gethr")
+	// <---Get Designation By Designation ID--->
+	public ResponseEntity<List<EmployeeDTO>> getHROnly() {
+		logger.info("Designation Controller --> Get by Designation by Id");
+		return new ResponseEntity<>(employeeDTOMapper.getHr(), HttpStatus.OK);
 	}
 }
