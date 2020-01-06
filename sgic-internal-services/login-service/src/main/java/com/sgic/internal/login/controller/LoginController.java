@@ -219,7 +219,7 @@ public class LoginController {
 		Email email2 = new Email();
 		email2.setEmail(user.getEmail());
 		email2.setSubject("UserName & Password");
-		email2.setText("This is your userName -" + " " + user.getUsername() + "\n" + "This is your Password -" + " "
+		email2.setText("This is your userName -" + " " + user.getUsername() +" OR "+user.getEmail()+ "\n" + "This is your Password -" + " "
 				+ signUpRequest.getPassword());
 
 		HttpHeaders headers1 = new HttpHeaders();
