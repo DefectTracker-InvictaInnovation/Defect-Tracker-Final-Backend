@@ -44,7 +44,6 @@ import com.sgic.internal.employee.repositories.EmployeeRepository;
 import com.sgic.internal.employee.services.EmployeeService;
 import com.sgic.internal.employee.services.FileStorageService;
 import com.sgic.internal.employee.util.AppConstants;
-import com.sgic.internal.login.repositories.UserRepository;
 
 
 
