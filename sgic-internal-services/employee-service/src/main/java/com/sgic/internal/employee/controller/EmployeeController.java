@@ -316,6 +316,43 @@ public class EmployeeController {
 
 			employeeDTOMapper.saveEmployee(employeeDTO);
 
+			/***********************************************************************/
+
+			String url = AppConstants.GET_HR_URL;
+			String response = restTemplate.getForObject(url, String.class);
+
+			System.out.println("response" + response);
+
+			ObjectMapper objectMapper = new ObjectMapper();
+			List<EmployeeDTO> employeeDtoList = objectMapper.readValue(response,
+					new TypeReference<List<EmployeeDTO>>() {
+					});
+			System.out.println("list " + employeeDtoList);
+
+			for (EmployeeDTO employeeDto : employeeDtoList) {
+
+				UserDto user = new UserDto();
+				user.setName(employeeDto.getFirstname());
+				user.setLastname(employeeDto.getName());
+				user.setUsername(employeeDto.getFirstname());
+				user.setEmail(employeeDto.getEmail());
+				user.setPassword(employeeDto.getPassword());
+				user.setRole(employeeDto.getRoleName());
+				
+				System.out.println("userList " + user);
+				System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
+
+				HttpHeaders headers = new HttpHeaders();
+				headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+				HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
+				System.out.println("yes");
+				ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
+						UserDto.class);
+
+				System.out.println("obj" + obj);
+}
+				/***********************************************************************/
+			
 			}
 		 else {
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);

@@ -14,6 +14,10 @@ public class EmployeeDTO {
 	private boolean bench;
 	private String profilePicPath;
 	private String password;
+//	private String role;
+	
+	private Long roleId;
+	private String roleName;
 
 	public EmployeeDTO() {
 		super();
@@ -111,6 +115,32 @@ public class EmployeeDTO {
 	public void setProfilePicPath(String profilePicPath) {
 		this.profilePicPath = profilePicPath;
 	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+//	public String getRole() {
+//		return role;
+//	}
+//
+//	public void setRole(String role) {
+//		this.role = role;
+//	}
+
+	
 
 	
 	
