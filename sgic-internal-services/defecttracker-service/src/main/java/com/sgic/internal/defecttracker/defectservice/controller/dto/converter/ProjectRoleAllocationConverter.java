@@ -102,6 +102,7 @@ public class ProjectRoleAllocationConverter {
 				
 				PasswordGeneratorText passwordGeneratorText = new PasswordGeneratorText();
 				projectRoleAllocationDto.setPassword(passwordGeneratorText.generateRandomPassword());
+				projectRoleAllocationDto.setUsername(passwordGeneratorText.generateRandomPassword());
 				
 				RestTemplate restTemplate = new RestTemplate();
 				ResponseEntity<Employee> response = restTemplate.exchange(
