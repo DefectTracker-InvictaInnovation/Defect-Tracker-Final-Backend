@@ -50,13 +50,13 @@ public class FileStorageServiceImpl implements FileStorageService {
 			fout.write(file.getBytes());
 			fout.close();
 			 BufferedImage image = ImageIO.read(f);
-		   int height = image.getHeight();
-		   int width = image.getWidth();
-		   if(width>2000 || height>2000) {
-			   if(f.exists())
-				   f.delete();
-			   throw new FileStorageException(AppConstants.INVALID_FILE_DIMENSIONS);
-		   }
+//		   int height = image.getHeight();
+//		   int width = image.getWidth();
+//		   if(width>2000 || height>2000) {
+//			   if(f.exists())
+//				   f.delete();
+//			   throw new FileStorageException(AppConstants.INVALID_FILE_DIMENSIONS);
+//		   }
 		
 		   if(f.exists())
 			   f.delete();
