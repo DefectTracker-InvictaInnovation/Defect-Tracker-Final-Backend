@@ -40,6 +40,7 @@ import com.sgic.internal.employee.dto.EmployeeDTO;
 import com.sgic.internal.employee.dto.UserDto;
 import com.sgic.internal.employee.dto.mapper.EmployeeDTOMapper;
 import com.sgic.internal.employee.entities.AppResponse;
+import com.sgic.internal.employee.entities.Designation;
 import com.sgic.internal.employee.repositories.EmployeeRepository;
 import com.sgic.internal.employee.services.EmployeeService;
 import com.sgic.internal.employee.services.FileStorageService;
@@ -316,42 +317,7 @@ public class EmployeeController {
 
 			employeeDTOMapper.saveEmployee(employeeDTO);
 
-			/***********************************************************************/
-
-			String url = AppConstants.GET_HR_URL;
-			String response = restTemplate.getForObject(url, String.class);
-
-			System.out.println("response" + response);
-
-			ObjectMapper objectMapper = new ObjectMapper();
-			List<EmployeeDTO> employeeDtoList = objectMapper.readValue(response,
-					new TypeReference<List<EmployeeDTO>>() {
-					});
-			System.out.println("list " + employeeDtoList);
-
-			for (EmployeeDTO employeeDto : employeeDtoList) {
-
-				UserDto user = new UserDto();
-				user.setName(employeeDto.getFirstname());
-				user.setLastname(employeeDto.getName());
-				user.setUsername(employeeDto.getFirstname());
-				user.setEmail(employeeDto.getEmail());
-				user.setPassword(employeeDto.getPassword());
-				user.setRole(employeeDto.getRoleName());
-				
-				System.out.println("userList " + user);
-				System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
-
-				HttpHeaders headers = new HttpHeaders();
-				headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-				HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
-				System.out.println("yes");
-				ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
-						UserDto.class);
-
-				System.out.println("obj" + obj);
-}
-				/***********************************************************************/
+			
 			
 			}
 		 else {
@@ -469,4 +435,60 @@ public class EmployeeController {
 		logger.info("Designation Controller --> Get by Designation by Id");
 		return new ResponseEntity<>(employeeDTOMapper.getHr(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/saveHr")
+	public ResponseEntity<UserDto> saveHRInUser() throws JsonParseException, JsonMappingException, IOException {
+		//try {
+
+			/***********************************************************************/
+
+			String url = AppConstants.GET_HR_URL;
+			String response = restTemplate.getForObject(url, String.class);
+
+			System.out.println("response" + response);
+
+			ObjectMapper objectMapper = new ObjectMapper();
+			List<EmployeeDTO> employeeDtoList = objectMapper.readValue(response,
+					new TypeReference<List<EmployeeDTO>>() {
+					});
+			System.out.println("list " + employeeDtoList);
+
+			for (EmployeeDTO employeeDto : employeeDtoList) {
+
+				UserDto user = new UserDto();
+				user.setName(employeeDto.getFirstname());
+				user.setLastname(employeeDto.getName());
+				user.setUsername(employeeDto.getUsername());
+				user.setEmail(employeeDto.getEmail());
+				user.setPassword(employeeDto.getPassword());
+				user.setRole(employeeDto.getDesignationname());
+				
+				System.out.println("userList " + user);
+				System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
+
+				HttpHeaders headers = new HttpHeaders();
+				headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+				HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
+				System.out.println(entity.getBody().getName());
+				System.out.println(entity.getBody().getRole());
+				System.out.println("yes");
+				ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
+						UserDto.class);
+
+				System.out.println("obj" + obj);
+		}
+				/***********************************************************************/
+
+			
+			//return null;
+//		} catch (Exception ex) {
+//			logger.error("Check Your Error");
+//			System.out.println("Something went Wrong" + ex.getCause());
+//		}
+		return null;
+	}
+	
+	
+	
+	
 }
