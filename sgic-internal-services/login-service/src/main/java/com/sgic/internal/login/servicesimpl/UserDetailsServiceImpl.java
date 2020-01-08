@@ -39,6 +39,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return UserPrinciple.build(user);
     }
 	
+	 @Transactional
+	 public UserDetails loadUserById(Long id) {
+	        User user = userRepository.findById(id)
+	        		 .orElseThrow(() ->
+                     new UsernameNotFoundException("User not found with username or email : " + id)
+	        );
+
+	        return UserPrinciple.build(user);
+	    }
+	
 	public List<User> getUserDetails() {
 		return userRepository.findAll();
 		

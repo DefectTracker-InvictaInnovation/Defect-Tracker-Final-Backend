@@ -32,8 +32,8 @@ public class EmployeeConverter {
 			employeeDto.setDesignationname(employee.getDesignation().getDesignationname());
 			employeeDto.setProfilePicPath(employee.getProfilePicPath());
 			
-			PasswordGenerator password = new PasswordGenerator();
-			employeeDto.setPassword(password.generateRandomPassword());
+//			PasswordGenerator password = new PasswordGenerator();
+//			employeeDto.setPassword(password.generateRandomPassword());
 			return employeeDto;
 		}
 		return null;
@@ -58,6 +58,11 @@ public class EmployeeConverter {
 			desi.setDesignationid(employeeDTO.getDesignationid());
 			desi.setDesignationname(employeeDTO.getDesignationname());
 			employee.setDesignation(desi);
+			
+			PasswordGenerator passwordGeneratorText = new PasswordGenerator();
+			employeeDTO.setPassword(passwordGeneratorText.generateRandomPassword());
+			employeeDTO.setUsername(passwordGeneratorText.generateRandomPassword());
+			
 			return employee;
 		}
 		return null;

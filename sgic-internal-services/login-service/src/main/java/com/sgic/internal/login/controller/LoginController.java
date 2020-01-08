@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.eureka.common.security.JwtConfig;
 
@@ -98,8 +99,8 @@ public class LoginController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-		System.out.println(
-				"fffffffffffffffffffffffffffffffffffffff :" + loginRequest.getUsernameOrEmail() + loginRequest.getPassword());
+		System.out.println("fffffffffffffffffffffffffffffffffffffff :" + loginRequest.getUsernameOrEmail()
+				+ loginRequest.getPassword());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsernameOrEmail(), loginRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -219,8 +220,8 @@ public class LoginController {
 		Email email2 = new Email();
 		email2.setEmail(user.getEmail());
 		email2.setSubject("UserName & Password");
-		email2.setText("This is your userName -" + " " + user.getUsername() +" OR "+user.getEmail()+ "\n" + "This is your Password -" + " "
-				+ signUpRequest.getPassword());
+		email2.setText("This is your userName -" + " " + user.getUsername() + " OR " + user.getEmail() + "\n"
+				+ "This is your Password -" + " " + signUpRequest.getPassword());
 
 		HttpHeaders headers1 = new HttpHeaders();
 		headers1.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -235,7 +236,16 @@ public class LoginController {
 		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 	}
 
+//	@GetMapping("/user/me")
+//    @PreAuthorize("hasRole('HR')")
+//	public UserSummary getCurrentUser(@CurrentUser UserPrinciple currentUser) {
+//		UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(),
+//				currentUser.getName());
+//		return userSummary;
+//	}
+
 	@GetMapping("/user/me")
+	@PreAuthorize("hasRole('HR')")
 	public UserSummary getCurrentUser(@CurrentUser UserPrinciple currentUser) {
 		UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(),
 				currentUser.getName());
@@ -243,7 +253,6 @@ public class LoginController {
 	}
 
 	@GetMapping("/user/admin")
-
 	public UserSummary getCurrentAdmin(@CurrentUser UserPrinciple currentUser) {
 		UserSummary userSummary = new UserSummary(currentUser.getId(), currentUser.getUsername(),
 				currentUser.getName());
@@ -377,4 +386,17 @@ public class LoginController {
 		userDetailsServiceImpl.deleteBytokenId(tokenid);
 		return new ResponseEntity<>("Deleted Successfully", HttpStatus.OK);
 	}
+
+//	@SuppressWarnings("rawtypes")
+//	@GetMapping("/me")
+//    public ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails){
+//        Map<Object, Object> model = new HashMap<>();
+//        model.put("username", userDetails.getUsername());
+//        model.put("roles", userDetails.getAuthorities()
+//            .stream()
+//            .map(a -> ((GrantedAuthority) a).getAuthority())
+//            .collect(toList())
+//        );
+//        return ok(model);
+//    }
 }
