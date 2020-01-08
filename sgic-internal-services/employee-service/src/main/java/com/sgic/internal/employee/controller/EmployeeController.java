@@ -33,7 +33,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sgic.internal.employee.dto.EmployeeDTO;
@@ -307,6 +306,7 @@ public class EmployeeController {
 			@RequestParam(required = false, value = AppConstants.EMPLOYEE_FILE_PARAM) MultipartFile file)
 			throws JsonParseException, JsonMappingException, IOException {
 
+
 		if (!file.isEmpty()) {
 			System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);
@@ -314,11 +314,35 @@ public class EmployeeController {
 			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
 					.path(AppConstants.DOWNLOAD_PATH).path(fileName).toUriString();
 			employeeDTO.setProfilePicPath(fileDownloadUri);
-
-			employeeDTOMapper.saveEmployee(employeeDTO);
-
 			
-			
+			if(employeeDTO.getDesignationname().equalsIgnoreCase("HR")) {
+				employeeDTOMapper.saveEmployee(employeeDTO);
+					UserDto user = new UserDto();
+					user.setName(employeeDTO.getFirstname());
+					user.setUsername(employeeDTO.getUsername());
+					user.setEmail(employeeDTO.getEmail());
+					user.setPassword(employeeDTO.getPassword());
+					user.setRole(employeeDTO.getDesignationname());
+					user.setLastname(employeeDTO.getName());
+
+					System.out.println("userList " + user);
+
+					System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
+
+					HttpHeaders headers = new HttpHeaders();
+					headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+					HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
+					System.out.println("yes");
+					ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
+							UserDto.class);
+
+					System.out.println("obj" + obj);
+
+				
+			}else {
+				employeeDTOMapper.saveEmployee(employeeDTO);
+
+			}
 			}
 		 else {
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);
@@ -436,59 +460,5 @@ public class EmployeeController {
 		return new ResponseEntity<>(employeeDTOMapper.getHr(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/saveHr")
-	public ResponseEntity<UserDto> saveHRInUser() throws JsonParseException, JsonMappingException, IOException {
-		//try {
 
-			/***********************************************************************/
-
-			String url = AppConstants.GET_HR_URL;
-			String response = restTemplate.getForObject(url, String.class);
-
-			System.out.println("response" + response);
-
-			ObjectMapper objectMapper = new ObjectMapper();
-			List<EmployeeDTO> employeeDtoList = objectMapper.readValue(response,
-					new TypeReference<List<EmployeeDTO>>() {
-					});
-			System.out.println("list " + employeeDtoList);
-
-			for (EmployeeDTO employeeDto : employeeDtoList) {
-
-				UserDto user = new UserDto();
-				user.setName(employeeDto.getFirstname());
-				user.setLastname(employeeDto.getName());
-				user.setUsername(employeeDto.getUsername());
-				user.setEmail(employeeDto.getEmail());
-				user.setPassword(employeeDto.getPassword());
-				user.setRole(employeeDto.getDesignationname());
-				
-				System.out.println("userList " + user);
-				System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
-
-				HttpHeaders headers = new HttpHeaders();
-				headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-				HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
-				System.out.println(entity.getBody().getName());
-				System.out.println(entity.getBody().getRole());
-				System.out.println("yes");
-				ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
-						UserDto.class);
-
-				System.out.println("obj" + obj);
-		}
-				/***********************************************************************/
-
-			
-			//return null;
-//		} catch (Exception ex) {
-//			logger.error("Check Your Error");
-//			System.out.println("Something went Wrong" + ex.getCause());
-//		}
-		return null;
-	}
-	
-	
-	
-	
 }
