@@ -80,18 +80,17 @@ public class DesignationController {
 		return null;
 	}
 	
-//	@GetMapping("/getpm")
-//	// <---Get Designation By Designation ID--->
-//	public ResponseEntity<List<Employee>> getByName() {
-//		logger.info("Designation Controller --> Get by Designation by Id");
-//		return new ResponseEntity<>(designationService.getBydesignationname(), HttpStatus.OK);
-//	}
-//	
-//	@GetMapping("/getothers")
-//	// <---Get Designation By Designation ID--->
-//	public ResponseEntity<List<Employee>> getOtherAllEmployees() {
-//		logger.info("Designation Controller --> Get by Designation by Id");
-//		return new ResponseEntity<>(designationService.getByQaAndDevelopersOnly(), HttpStatus.OK);
-//	}
+
+	@GetMapping(value = "/hronly")
+	public ResponseEntity<List<DesignationDTO>> getHR() {
+		logger.info("Designation Controller -> GetDesignation");
+		return new ResponseEntity<>(designationDTOMapper.gethr(), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/others")
+	public ResponseEntity<List<DesignationDTO>> getOthers() {
+		logger.info("Designation Controller -> GetDesignation");
+		return new ResponseEntity<>(designationDTOMapper.getothers(), HttpStatus.OK);
+	}
 
 }

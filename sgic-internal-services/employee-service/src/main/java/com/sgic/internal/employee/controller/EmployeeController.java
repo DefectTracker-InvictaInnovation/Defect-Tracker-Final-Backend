@@ -315,34 +315,35 @@ public class EmployeeController {
 					.path(AppConstants.DOWNLOAD_PATH).path(fileName).toUriString();
 			employeeDTO.setProfilePicPath(fileDownloadUri);
 			
-			if(employeeDTO.getDesignationname().equalsIgnoreCase("HR")) {
-				employeeDTOMapper.saveEmployee(employeeDTO);
-					UserDto user = new UserDto();
-					user.setName(employeeDTO.getFirstname());
-					user.setUsername(employeeDTO.getUsername());
-					user.setEmail(employeeDTO.getEmail());
-					user.setPassword(employeeDTO.getPassword());
-					user.setRole(employeeDTO.getDesignationname());
-					user.setLastname(employeeDTO.getName());
-
-					System.out.println("userList " + user);
-
-					System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
-
-					HttpHeaders headers = new HttpHeaders();
-					headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-					HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
-					System.out.println("yes");
-					ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
-							UserDto.class);
-
-					System.out.println("obj" + obj);
-
-				
-			}else {
-				employeeDTOMapper.saveEmployee(employeeDTO);
-
-			}
+//			if(employeeDTO.getDesignationname().equalsIgnoreCase("HR")) {
+//				employeeDTOMapper.saveEmployee(employeeDTO);
+//					UserDto user = new UserDto();
+//					user.setName(employeeDTO.getFirstname());
+//					user.setUsername(employeeDTO.getUsername());
+//					user.setEmail(employeeDTO.getEmail());
+//					user.setPassword(employeeDTO.getPassword());
+//					user.setRole(employeeDTO.getDesignationname());
+//					user.setLastname(employeeDTO.getName());
+//
+//					System.out.println("userList " + user);
+//
+//					System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
+//
+//					HttpHeaders headers = new HttpHeaders();
+//					headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+//					HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
+//					System.out.println("yes");
+//					ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
+//							UserDto.class);
+//
+//					System.out.println("obj" + obj);
+//
+//				
+//			}else {
+//				employeeDTOMapper.saveEmployee(employeeDTO);
+//
+//			}
+			employeeDTOMapper.saveEmployee(employeeDTO);
 			}
 		 else {
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);
