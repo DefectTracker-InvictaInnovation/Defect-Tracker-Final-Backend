@@ -321,6 +321,7 @@ public class EmployeeController {
 					user.setUsername(employeeDTO.getUsername());
 					user.setEmail(employeeDTO.getEmail());
 					user.setPassword(employeeDTO.getPassword());
+					user.setRole(String.valueOf(employeeDTO.getDesignationid()));
 					user.setRole(employeeDTO.getDesignationname());
 					user.setLastname(employeeDTO.getName());
 
