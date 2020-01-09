@@ -65,15 +65,15 @@ public class DesignationServiceImpl implements DesignationService {
 		return null;
 	}
 
+	@Override
+	public List<Designation> getByHR() {
+		return designationRepository.getHr();
+	}
 
-//	@Override
-//	public List<Employee> getBydesignationname() {// TODO Auto-generated method stub
-//		return designationRepository.getEmployeeByDesigName();
-//	}
-//
-//	@Override
-//	public List<Employee> getByQaAndDevelopersOnly() {
-//		return designationRepository.getQaAndDevelopers();
-//	}
+	@Override
+	public List<Designation> getByOthers() {
+		return designationRepository.getQaAndDevelopers();
+	}
+
 
 }

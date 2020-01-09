@@ -39,6 +39,7 @@ import com.sgic.internal.employee.dto.EmployeeDTO;
 import com.sgic.internal.employee.dto.UserDto;
 import com.sgic.internal.employee.dto.mapper.EmployeeDTOMapper;
 import com.sgic.internal.employee.entities.AppResponse;
+import com.sgic.internal.employee.entities.Designation;
 import com.sgic.internal.employee.repositories.EmployeeRepository;
 import com.sgic.internal.employee.services.EmployeeService;
 import com.sgic.internal.employee.services.FileStorageService;
@@ -459,4 +460,6 @@ public class EmployeeController {
 		logger.info("Designation Controller --> Get by Designation by Id");
 		return new ResponseEntity<>(employeeDTOMapper.getHr(), HttpStatus.OK);
 	}
+	
+
 }
