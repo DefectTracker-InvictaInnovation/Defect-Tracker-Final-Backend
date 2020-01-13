@@ -33,13 +33,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sgic.internal.employee.dto.EmployeeDTO;
 import com.sgic.internal.employee.dto.UserDto;
 import com.sgic.internal.employee.dto.mapper.EmployeeDTOMapper;
 import com.sgic.internal.employee.entities.AppResponse;
+import com.sgic.internal.employee.entities.Designation;
 import com.sgic.internal.employee.repositories.EmployeeRepository;
 import com.sgic.internal.employee.services.EmployeeService;
 import com.sgic.internal.employee.services.FileStorageService;
@@ -306,6 +306,7 @@ public class EmployeeController {
 			@RequestParam(required = false, value = AppConstants.EMPLOYEE_FILE_PARAM) MultipartFile file)
 			throws JsonParseException, JsonMappingException, IOException {
 
+
 		if (!file.isEmpty()) {
 			System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);
@@ -313,9 +314,36 @@ public class EmployeeController {
 			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
 					.path(AppConstants.DOWNLOAD_PATH).path(fileName).toUriString();
 			employeeDTO.setProfilePicPath(fileDownloadUri);
-
+			
+//			if(employeeDTO.getDesignationname().equalsIgnoreCase("HR")) {
+//				employeeDTOMapper.saveEmployee(employeeDTO);
+//					UserDto user = new UserDto();
+//					user.setName(employeeDTO.getFirstname());
+//					user.setUsername(employeeDTO.getUsername());
+//					user.setEmail(employeeDTO.getEmail());
+//					user.setPassword(employeeDTO.getPassword());
+//					user.setRole(employeeDTO.getDesignationname());
+//					user.setLastname(employeeDTO.getName());
+//
+//					System.out.println("userList " + user);
+//
+//					System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
+//
+//					HttpHeaders headers = new HttpHeaders();
+//					headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+//					HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
+//					System.out.println("yes");
+//					ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
+//							UserDto.class);
+//
+//					System.out.println("obj" + obj);
+//
+//				
+//			}else {
+//				employeeDTOMapper.saveEmployee(employeeDTO);
+//
+//			}
 			employeeDTOMapper.saveEmployee(employeeDTO);
-
 			}
 		 else {
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);
@@ -432,4 +460,6 @@ public class EmployeeController {
 		logger.info("Designation Controller --> Get by Designation by Id");
 		return new ResponseEntity<>(employeeDTOMapper.getHr(), HttpStatus.OK);
 	}
+	
+
 }

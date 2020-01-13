@@ -18,9 +18,9 @@ public interface DesignationService {
 	//  Update Designation for Designation Method
 	public Designation updateDesignation(Designation designation);
 	
-//	public List<Employee> getBydesignationname();
-//	
-//	public List<Employee> getByQaAndDevelopersOnly();
+	public List<Designation> getByHR();
+	
+	public List<Designation> getByOthers();
 
 	//  Delete Designation by Designation Id Method
 	public void deleteDesignationBydesignationid(Long designationid);

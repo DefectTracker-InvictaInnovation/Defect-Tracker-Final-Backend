@@ -1,8 +1,7 @@
 package com.sgic.internal.employee.dto;
 
 public class EmployeeDTO {
-
-//	Initialize EmployeeDTO
+	
 	private Long empId;
 	private String employeeid;
 	private String name;
@@ -13,6 +12,7 @@ public class EmployeeDTO {
 	private int availability =100;
 	private boolean bench;
 	private String profilePicPath;
+	private String username;
 	private String password;
 
 	public EmployeeDTO() {
@@ -29,6 +29,15 @@ public class EmployeeDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	// Initialize Designation DTO Getter Setter
@@ -112,7 +121,5 @@ public class EmployeeDTO {
 		this.profilePicPath = profilePicPath;
 	}
 
-	
-	
 
 }

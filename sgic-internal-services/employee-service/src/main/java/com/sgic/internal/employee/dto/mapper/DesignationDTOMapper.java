@@ -65,10 +65,17 @@ public class DesignationDTOMapper {
 		return null;
 	}
 	
-//	public List<EmployeeDTO> getEmployeeByDesignation(String designationname) {
-//		logger.info("Successfully Get Employee By Designation");
-//		List<Employee> employee = designationService.getBydesignationname(designationname);
-//		return employeeConverter.EmployeeToEmployeeDTO(employee);
-//
-//	}
+	public List<DesignationDTO> gethr(){
+		logger.info("Successfully Get Employee By Designation");
+		List<Designation> designation = designationService.getByHR();
+		return designationConverter.DesignationToDesignationDTO(designation);
+
+	}
+	
+	public List<DesignationDTO> getothers(){
+		logger.info("Successfully Get Employee By Designation");
+		List<Designation> designation = designationService.getByOthers();
+		return designationConverter.DesignationToDesignationDTO(designation);
+
+	}
 }

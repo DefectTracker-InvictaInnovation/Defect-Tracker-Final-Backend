@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.sgic.internal.employee.dto.EmployeeDTO;
 import com.sgic.internal.employee.dto.PasswordGenerator;
+import com.sgic.internal.employee.dto.Role;
+import com.sgic.internal.employee.dto.UserDto;
 import com.sgic.internal.employee.entities.Designation;
 import com.sgic.internal.employee.entities.Employee;
 
@@ -32,8 +34,8 @@ public class EmployeeConverter {
 			employeeDto.setDesignationname(employee.getDesignation().getDesignationname());
 			employeeDto.setProfilePicPath(employee.getProfilePicPath());
 			
-			PasswordGenerator password = new PasswordGenerator();
-			employeeDto.setPassword(password.generateRandomPassword());
+//			PasswordGenerator password = new PasswordGenerator();
+//			employeeDto.setPassword(password.generateRandomPassword());
 			return employeeDto;
 		}
 		return null;
@@ -58,6 +60,11 @@ public class EmployeeConverter {
 			desi.setDesignationid(employeeDTO.getDesignationid());
 			desi.setDesignationname(employeeDTO.getDesignationname());
 			employee.setDesignation(desi);
+			
+			PasswordGenerator passwordGeneratorText = new PasswordGenerator();
+			employeeDTO.setPassword(passwordGeneratorText.generateRandomPassword());
+			employeeDTO.setUsername(passwordGeneratorText.generateRandomPassword());
+			
 			return employee;
 		}
 		return null;
@@ -82,6 +89,11 @@ public class EmployeeConverter {
 				employeeDto.setDesignationid(employee.getDesignation().getDesignationid());
 				employeeDto.setDesignationname(employee.getDesignation().getDesignationname());
 				employeeDto.setProfilePicPath(employee.getProfilePicPath());
+				
+				PasswordGenerator passwordGeneratorText = new PasswordGenerator();
+				employeeDto.setPassword(passwordGeneratorText.generateRandomPassword());
+				employeeDto.setUsername(passwordGeneratorText.generateRandomPassword());
+				
 				listemployeeDto.add(employeeDto);
 			}
 
