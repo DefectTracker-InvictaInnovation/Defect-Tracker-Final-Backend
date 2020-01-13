@@ -67,11 +67,14 @@ public class ModuleController {
 		logger.info("Module are listed ");
 		return new ResponseEntity<>(moduleDataMapper.getAllModuleForMapper(projectid), HttpStatus.OK);
 	}
+	
+	
 	// Get All By Project Id  //
 	@GetMapping(value = "/GetAllmodule/{projectid}")
-	public List<Module> getModuleByProjectId(@PathVariable Long projectid) {
+	public ResponseEntity<List<ModuleData>> getModuleByProjectId(@PathVariable Long projectid) {
 		logger.info("Module are listed ");
-		return moduleService.getByprojectId(projectid);
+		return new ResponseEntity<>(moduleDataMapper.getAllModuleByProjectIdForMapper(projectid), HttpStatus.OK);
+	
 	}
 	// Get All Details in module Table
 	@GetMapping("/FindallMain")

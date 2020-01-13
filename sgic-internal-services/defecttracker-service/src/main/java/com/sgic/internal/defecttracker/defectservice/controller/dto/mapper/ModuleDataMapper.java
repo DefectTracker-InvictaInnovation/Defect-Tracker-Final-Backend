@@ -22,6 +22,14 @@ public class ModuleDataMapper {
 		return ModuleConverter.moduleToModuleDataList(moduleList);
 	}
 	
+
+	public List<ModuleData>getAllModuleByProjectIdForMapper(Long projectid){
+		List<Module> moduleList =moduleService.getByprojectId(projectid);
+		return ModuleConverter.moduleToModuleDataList(moduleList);
+	}
+	
+	
+	
 	public Module saveModuleforMapper(ModuleData moduleData) {
 		Module module = ModuleConverter.moduleDataToModule(moduleData);
 		return moduleService.createModule(module);

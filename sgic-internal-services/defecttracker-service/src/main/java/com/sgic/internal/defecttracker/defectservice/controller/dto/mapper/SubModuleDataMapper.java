@@ -47,5 +47,8 @@ public class SubModuleDataMapper {
 		
 	}
 	
-
+	public List<SubModuleData> getByModuleName(Long moduleId) {
+		List<SubModule> subModule = subModuleService.getByModuleId(moduleId);
+		return SubModuleConverter.subModuleToSubModuleData(subModule);
+	}
 }

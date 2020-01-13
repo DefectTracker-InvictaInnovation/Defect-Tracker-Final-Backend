@@ -84,6 +84,13 @@ public class SubModuleController {
 		logger.info("SubModule are get by name ");
 		return subModuleDataMapper.getBysubModuleNameForMapper(submoduleName);
 	}
-
-
+	
+	//  N.Rammiya 1/9/2020
+	
+	@GetMapping("/getModules/{moduleId}")
+	public List<SubModuleData> getBymoduleId(@PathVariable(name="moduleId") Long moduleId) {
+		logger.info("Sub Moduleare get by Id ");
+		
+		return subModuleDataMapper.getByModuleName(moduleId);
+	}
 }

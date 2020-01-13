@@ -21,4 +21,6 @@ public interface SubModuleService {
 	public List<SubModule> getByabbre(String abbre);
 
 	public List<SubModule> getBysubModuleName(String subModuleName);
+	
+	public List<SubModule> getByModuleId(Long moduleId);
 }
