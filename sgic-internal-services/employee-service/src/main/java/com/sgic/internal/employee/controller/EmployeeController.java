@@ -322,7 +322,6 @@ public class EmployeeController {
 					user.setUsername(employeeDTO.getUsername());
 					user.setEmail(employeeDTO.getEmail());
 					user.setPassword(employeeDTO.getPassword());
-					user.setRole(String.valueOf(employeeDTO.getDesignationid()));
 					user.setRole(employeeDTO.getDesignationname());
 					user.setLastname(employeeDTO.getName());
 
@@ -340,10 +339,10 @@ public class EmployeeController {
 					System.out.println("obj" + obj);
 
 				
-			}else {
+			}
 				employeeDTOMapper.saveEmployee(employeeDTO);
 
-			}
+			
 			}
 		 else {
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);
