@@ -50,6 +50,11 @@ public class ProjectRoleAllocationServiceImpl implements ProjectRoleAllocationSe
 		return projectRoleAllocationRepository.findAll(Sort.by(Sort.Direction.DESC, "projectroleId"));
 	}
 
+	@Override
+	public List<ProjectRoleAllocation> getByQaAndDevelopersOnly() {
+		return projectRoleAllocationRepository.getQaAndDevelopers();
+	}
+
 	
 
 }

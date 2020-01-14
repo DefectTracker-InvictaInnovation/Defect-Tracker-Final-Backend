@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 
+
 public interface ProjectRoleAllocationRepository extends JpaRepository<ProjectRoleAllocation, Long> {
 
 	ProjectRoleAllocation findProjectRoleAllocationByprojectroleId(Long projectroleId);
@@ -26,5 +27,9 @@ public interface ProjectRoleAllocationRepository extends JpaRepository<ProjectRo
 	
 //	Boolean existsByUsername(String username);
 //    Boolean existsByEmail(String email);
+	
+	String fetchQAAndDeveolersOnly = "SELECT * FROM assign_role e WHERE e.role_id in (SELECT role_id from role d where d.role_name=\"Developer\")";
+	@Query(value = fetchQAAndDeveolersOnly, nativeQuery = true)
+	List<ProjectRoleAllocation> getQaAndDevelopers();
 
 }

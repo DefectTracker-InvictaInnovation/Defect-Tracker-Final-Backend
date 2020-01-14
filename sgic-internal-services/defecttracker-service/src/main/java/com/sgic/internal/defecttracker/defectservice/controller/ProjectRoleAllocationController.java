@@ -157,4 +157,9 @@ public class ProjectRoleAllocationController {
 		return new ResponseEntity<>(projectRoleAllocationMapper.getRoleByProject(resourceId), HttpStatus.OK);
 	}
 
+	@GetMapping("/getothers")
+	// <---Get Designation By Designation ID--->
+	public ResponseEntity<List<ProjectRoleAllocationDto>> getOtherAll() {
+		return new ResponseEntity<>(projectRoleAllocationMapper.getAllOthers(), HttpStatus.OK);
+	}
 }

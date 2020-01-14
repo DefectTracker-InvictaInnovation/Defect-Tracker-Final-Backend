@@ -60,6 +60,13 @@ public class ProjectRoleAllocationMapper {
 		return projectRoleAllocationConverter.ProjectRoleAllocationToProjectRoleAllocationDtoList(namelist);
 	}
 	
+	@SuppressWarnings("static-access")
+	public List<ProjectRoleAllocationDto> getAllOthers() {
+		logger.info(" Employee Successfully Get All Employee Details ");
+		List<ProjectRoleAllocation> othersList = projectRoleAllocationService.getByQaAndDevelopersOnly();
+		return projectRoleAllocationConverter.ProjectRoleAllocationToProjectRoleAllocationDtoList(othersList);
+
+	}
 	
 	
 }
