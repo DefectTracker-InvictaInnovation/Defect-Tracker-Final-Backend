@@ -25,7 +25,7 @@ public class ModuleAssignController {
 	@PostMapping(value = "/assignmodule")
 	public ResponseEntity<Object> createModule(@RequestBody ModuleAssignDto moduleAssignDto) {
 		ModuleAssign moduleAssign = ModuleAssignConverter.moduleAssignDtoToModuleAssign(moduleAssignDto);
-		System.out.println(moduleAssignDto.getSubmoduleId());
+		System.out.println("sub module" +moduleAssignDto.getSubmoduleId());
 		moduleAssignRepository.save(moduleAssign);
 		return new ResponseEntity<Object>(new ApiResponse(RestApiResponseStatus.OK), HttpStatus.OK);
 

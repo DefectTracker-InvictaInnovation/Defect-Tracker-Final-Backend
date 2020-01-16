@@ -4,6 +4,7 @@ package com.sgic.internal.defecttracker.defectservice.controller.dto.converter;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.ModuleAssignDto;
 import com.sgic.internal.defecttracker.defectservice.entities.Module;
 import com.sgic.internal.defecttracker.defectservice.entities.ModuleAssign;
+import com.sgic.internal.defecttracker.defectservice.entities.Project;
 import com.sgic.internal.defecttracker.defectservice.entities.ProjectRoleAllocation;
 
 public class ModuleAssignConverter {
@@ -15,7 +16,13 @@ public class ModuleAssignConverter {
 
 		if (moduleAssignDto != null) {
 
-			moduleAssign.setProjectId(moduleAssignDto.getProjectId());
+			Project project = new Project();
+//			moduleAssign.setProjectId(moduleAssignDto.getProjectId());
+//			moduleAssign.setSubmoduleId(moduleAssignDto.getSubmoduleId());
+			
+			project.setProjectId(moduleAssignDto.getProjectId());
+			moduleAssign.setProject(project);
+			
 			moduleAssign.setSubmoduleId(moduleAssignDto.getSubmoduleId());
 
 			Module module = new Module();
@@ -41,7 +48,7 @@ public class ModuleAssignConverter {
 			moduleAssignDto.setModuleName(moduleAssign.getModule().getModuleName());
 			moduleAssignDto.setProjectroleId(moduleAssign.getProjectRoleAllocation().getProjectroleId());
 			moduleAssignDto.setSubmoduleId(moduleAssign.getSubmoduleId());
-			moduleAssignDto.setProjectId(moduleAssign.getProjectId());
+			moduleAssignDto.setProjectId(moduleAssign.getProject().getProjectId());
 			return moduleAssignDto;
 		}
 		return null;

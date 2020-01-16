@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,9 +16,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Embeddable
 @Entity
-@Table(schema = "defectservices", name = "module")
+@Table( name = "module")
 public class Module {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -68,6 +72,8 @@ public class Module {
 		this.subModule = subModule;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "module")
-	private ModuleAssign moduleAssign;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "module")
+	private List<ModuleAssign> moduleAssign;
 }
+
+
