@@ -1,6 +1,7 @@
 package com.sgic.internal.employee.dto.mapper;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -148,4 +149,12 @@ public class EmployeeDTOMapper {
 		return employeeConverter.EmployeeToEmployeeDTOList(othersList);
 
 	}
+	
+	public List<EmployeeDTO> getByEmployees(String empId,String employeeid, String name, String firstname,
+			String email,String designationname){
+		List<Employee> list = employeeService.getByEmployee(empId,employeeid, name, firstname, email,designationname);
+				return employeeConverter.EmployeeToEmployeeDTOList(list);
+		
+	}
+
 }

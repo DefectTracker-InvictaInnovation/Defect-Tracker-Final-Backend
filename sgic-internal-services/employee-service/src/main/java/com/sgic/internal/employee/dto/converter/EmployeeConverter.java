@@ -2,6 +2,8 @@ package com.sgic.internal.employee.dto.converter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -90,9 +92,9 @@ public class EmployeeConverter {
 				employeeDto.setDesignationname(employee.getDesignation().getDesignationname());
 				employeeDto.setProfilePicPath(employee.getProfilePicPath());
 				
-				PasswordGenerator passwordGeneratorText = new PasswordGenerator();
-				employeeDto.setPassword(passwordGeneratorText.generateRandomPassword());
-				employeeDto.setUsername(passwordGeneratorText.generateRandomPassword());
+//				PasswordGenerator passwordGeneratorText = new PasswordGenerator();
+//				employeeDto.setPassword(passwordGeneratorText.generateRandomPassword());
+//				employeeDto.setUsername(passwordGeneratorText.generateRandomPassword());
 				
 				listemployeeDto.add(employeeDto);
 			}

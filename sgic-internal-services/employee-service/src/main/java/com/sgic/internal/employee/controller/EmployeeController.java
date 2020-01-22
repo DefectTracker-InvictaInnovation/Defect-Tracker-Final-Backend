@@ -40,12 +40,11 @@ import com.sgic.internal.employee.dto.UserDto;
 import com.sgic.internal.employee.dto.mapper.EmployeeDTOMapper;
 import com.sgic.internal.employee.entities.AppResponse;
 import com.sgic.internal.employee.entities.Designation;
+import com.sgic.internal.employee.entities.Employee;
 import com.sgic.internal.employee.repositories.EmployeeRepository;
 import com.sgic.internal.employee.services.EmployeeService;
 import com.sgic.internal.employee.services.FileStorageService;
 import com.sgic.internal.employee.util.AppConstants;
-
-
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -60,7 +59,6 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
 
 	@Autowired
 	FileStorageService fileStorageService;
@@ -306,7 +304,6 @@ public class EmployeeController {
 			@RequestParam(required = false, value = AppConstants.EMPLOYEE_FILE_PARAM) MultipartFile file)
 			throws JsonParseException, JsonMappingException, IOException {
 
-
 		if (!file.isEmpty()) {
 			System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);
@@ -314,37 +311,34 @@ public class EmployeeController {
 			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
 					.path(AppConstants.DOWNLOAD_PATH).path(fileName).toUriString();
 			employeeDTO.setProfilePicPath(fileDownloadUri);
-			
-			if(employeeDTO.getDesignationname().equalsIgnoreCase("HR")) {
+
+			if (employeeDTO.getDesignationname().equalsIgnoreCase("HR")) {
 				employeeDTOMapper.saveEmployee(employeeDTO);
-					UserDto user = new UserDto();
-					user.setName(employeeDTO.getFirstname());
-					user.setUsername(employeeDTO.getUsername());
-					user.setEmail(employeeDTO.getEmail());
-					user.setPassword(employeeDTO.getPassword());
-					user.setRole(employeeDTO.getDesignationname());
-					user.setLastname(employeeDTO.getName());
+				UserDto user = new UserDto();
+				user.setName(employeeDTO.getFirstname());
+				user.setUsername(employeeDTO.getUsername());
+				user.setEmail(employeeDTO.getEmail());
+				user.setPassword(employeeDTO.getPassword());
+				user.setRole(employeeDTO.getDesignationname());
+				user.setLastname(employeeDTO.getName());
 
-					System.out.println("userList " + user);
+				System.out.println("userList " + user);
 
-					System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
+				System.out.println("passowrdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" + user.getPassword());
 
-					HttpHeaders headers = new HttpHeaders();
-					headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-					HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
-					System.out.println("yes");
-					ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
-							UserDto.class);
+				HttpHeaders headers = new HttpHeaders();
+				headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+				HttpEntity<UserDto> entity = new HttpEntity<UserDto>(user, headers);
+				System.out.println("yes");
+				ResponseEntity<?> obj = restTemplate.exchange(AppConstants.SIGNUP_URL, HttpMethod.POST, entity,
+						UserDto.class);
 
-					System.out.println("obj" + obj);
+				System.out.println("obj" + obj);
 
-				
 			}
-				employeeDTOMapper.saveEmployee(employeeDTO);
+			employeeDTOMapper.saveEmployee(employeeDTO);
 
-			
-			}
-		 else {
+		} else {
 			EmployeeDTO employeeDTO = objectMapper.readValue(extra, EmployeeDTO.class);
 			System.out.println("llllllllllllllllllllllllllllllllllllllllllllll");
 //			String fileName = fileStorageService.storeFile(file);
@@ -459,6 +453,18 @@ public class EmployeeController {
 		logger.info("Designation Controller --> Get by Designation by Id");
 		return new ResponseEntity<>(employeeDTOMapper.getHr(), HttpStatus.OK);
 	}
-	
+
+	@GetMapping("/employee/{empObj}")
+	public ResponseEntity<List<EmployeeDTO>> getEmployee(HttpServletRequest httpServletRequest, @PathVariable(name = "empObj") String empObj,
+			@RequestParam(value = "empId", defaultValue = "false") String empId,
+			@RequestParam(value = "employeeid", defaultValue = "false") String employeeid,
+			@RequestParam(value = "name", defaultValue = "false") String name,
+			@RequestParam(value = "designationname", defaultValue = "false") String designationname,
+			@RequestParam(value = "firstname", defaultValue = "false") String firstname,
+			@RequestParam(value = "email", defaultValue = "false") String email) throws Exception {
+			
+		return new ResponseEntity<>(employeeDTOMapper.getByEmployees(empId,employeeid, name, firstname, email,designationname),HttpStatus.OK);
+
+	}
 
 }

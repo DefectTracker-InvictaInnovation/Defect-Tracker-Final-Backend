@@ -1,6 +1,7 @@
 package com.sgic.internal.employee.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -8,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sgic.internal.employee.entities.Designation;
 // import form Employee Entity 
 import com.sgic.internal.employee.entities.Employee;
 
@@ -67,5 +69,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	String fetchHrOnly = "SELECT * FROM employee e WHERE e.designationid in (SELECT designationid from designation d where d.designationname=\"HR\")";
 	@Query(value = fetchHrOnly, nativeQuery = true)
 	List<Employee> getHrOnly();
-
+	
+	String query = "SELECT * FROM employee inner join designation on employee.designationid = designation.designationid WHERE (emp_id = :empId OR employee_id = :employeeid OR name = :name OR firstname = :firstname OR email = :email OR designationname = :designationname )";
+	@Query(value = query , nativeQuery = true)
+	List<Employee> findEmployeeByEmployeeidOrNameOrFirstnameOrEmail(@Param("empId")String empId, @Param("employeeid") String employeeid,@Param("name") String name,@Param("firstname") String firstname,@Param("email") String email, @Param("designationname") String designationname);
 }

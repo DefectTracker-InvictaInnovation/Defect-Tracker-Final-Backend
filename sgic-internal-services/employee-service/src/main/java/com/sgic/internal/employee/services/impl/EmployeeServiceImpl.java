@@ -2,6 +2,8 @@ package com.sgic.internal.employee.services.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -254,5 +256,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getHR() {
 		return employeeRepository.getHrOnly();
+	}
+
+	@Override
+	public List<Employee> getByEmployee(String empId,String employeeid, String name, String firstname,
+			String email, String designationname) {
+		return employeeRepository.findEmployeeByEmployeeidOrNameOrFirstnameOrEmail(empId, employeeid, name, firstname, email,designationname);
 	}
 }

@@ -1,6 +1,8 @@
 package com.sgic.internal.employee.services;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.web.multipart.MultipartFile;
 import com.sgic.internal.employee.entities.Employee;
 
@@ -56,5 +58,6 @@ public interface EmployeeService {
 	
 	public List<Employee> getHR();
 	
+	public List<Employee> getByEmployee(String empId, String employeeid, String name, String firstname, String email,String designationname);
 
 }

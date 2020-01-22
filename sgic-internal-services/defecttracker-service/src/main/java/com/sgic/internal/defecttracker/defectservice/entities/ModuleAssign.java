@@ -1,5 +1,6 @@
 package com.sgic.internal.defecttracker.defectservice.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Convert;
@@ -13,26 +14,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sgic.internal.defecttracker.defectservice.controller.dto.converter.SubmoduleMapConverter;
 
 @Entity
 @Table(name = "module_assign")
 public class ModuleAssign {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY )
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "moduleId", nullable = false)
+
+	@ManyToOne
+	@JoinColumn(name = "moduleId", nullable = false)
 	private Module module;
-	
-	private Long projectId;
-	
-	@Convert(converter = SubmoduleMapConverter.class)
-	private List<Long> submoduleId;
+
+	@ManyToOne
+	@JoinColumn(name = "projectId", nullable = false)
+	private Project project;
+
+	@JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+	private ArrayList<Long> submoduleId;
 
 	public ModuleAssign() {
-		
+
 	}
 
 	public Long getId() {
@@ -43,8 +47,6 @@ public class ModuleAssign {
 		this.id = id;
 	}
 
-	
-
 	public Module getModule() {
 		return module;
 	}
@@ -53,31 +55,30 @@ public class ModuleAssign {
 		this.module = module;
 	}
 
-	
-
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
-	}
-
-	public List<Long> getSubmoduleId() {
-		return submoduleId;
-	}
-
-	public void setSubmoduleId(List<Long> submoduleId) {
-		this.submoduleId = submoduleId;
-	}
-
-	public ModuleAssign(Long id, Module module, Long projectId, List<Long> submoduleId) {
+	public ModuleAssign(Long id, Module module, Long projectId, ArrayList<Long> submoduleId) {
 		super();
 		this.id = id;
 		this.module = module;
-		this.projectId = projectId;
+		this.project = project;
 		this.submoduleId = submoduleId;
 	}
+
+	public ArrayList<Long> getSubmoduleId() {
+		return submoduleId;
+	}
+
+	public void setSubmoduleId(ArrayList<Long> submoduleId) {
+		this.submoduleId = submoduleId;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
 	@Embedded
 	@ManyToOne
 	@JoinColumn(name = "projectrole_id", nullable = false)
